@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#060807">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<title>CMCOOKING Admin</title>
+<style>
+:root{--g:#B2D235;--o:#F58220;--bg:#07090a;--card:#0f1512;--ink:#e8f0e4;--mut:#8fa196;--line:#22302a;--soft:#16201b;--err:#ff5c5c;--glow:0 0 12px #B2D23566;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+.hide{display:none!important}
+[hidden]{display:none!important}
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g),transparent) no-repeat;background-size:50% 100%;animation:slide 1s linear infinite;opacity:0;transition:opacity .15s;z-index:9;pointer-events:none}
+#bar.on{opacity:1}
+@keyframes slide{from{background-position:-50% 0}to{background-position:150% 0}}
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#060807;border-bottom:2px solid var(--g);box-shadow:0 2px 16px #B2D23540}
+.mark{width:36px;height:36px;flex:none;border-radius:10px;border:1.5px solid var(--g);box-shadow:var(--glow);display:grid;place-items:center;color:var(--g);font-weight:800}
+.ttl{flex:1;min-width:0}
+header h1{margin:0;font-size:19px;letter-spacing:1.5px;color:var(--g);text-shadow:0 0 10px #B2D235aa}
+header small{display:block;font-size:12px;color:var(--mut)}
+.exit{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;box-shadow:none}
+nav.nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line);background:#0a0e0c;scrollbar-width:none}
+nav.nav a{flex:none;display:inline-flex;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:10px;color:var(--mut);text-decoration:none;font-size:13px;font-weight:600}
+nav.nav a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 10px #B2D23540}
+.badge{display:inline-block;min-width:20px;text-align:center;margin-left:6px;padding:0 6px;border-radius:10px;background:var(--o);color:#1a0b00;font-size:12px;font-weight:800;box-shadow:0 0 8px #F5822099}
+main{max-width:720px;margin:auto;padding:14px 16px 90px}
+.hint{color:var(--mut);font-size:13px;margin:0 0 12px}
+#msg{color:var(--err);min-height:1.5em;margin:0 0 8px}
+#msg.ok{color:var(--g)}
+input,select{font:inherit;color:var(--ink);width:100%;padding:12px;background:#0a0f0c;border:1px solid var(--line);border-radius:10px;margin:4px 0 12px}
+input:focus,select:focus{outline:2px solid var(--o);outline-offset:1px}
+label{font-size:13px;color:var(--mut)}
+button{font:inherit;font-weight:700;color:var(--g);background:transparent;border:1.5px solid var(--g);border-radius:12px;padding:10px 14px;cursor:pointer;box-shadow:0 0 10px #B2D23540}
+button:focus-visible,a:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+button:disabled{opacity:.45;box-shadow:none}
+button.ghost{color:var(--ink);border-color:var(--line);box-shadow:none}
+button.del{color:var(--err);border-color:var(--err);box-shadow:none}
+button.solid{background:var(--g);color:#071004}
+button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));background:var(--o);color:#1a0b00;border-color:var(--o);box-shadow:0 0 18px #F58220aa;border-radius:28px;padding:14px 20px}
+.empty{color:var(--mut);text-align:center;padding:32px 0}
+#dlg{position:fixed;inset:0;z-index:30;background:#000c;display:flex;align-items:center;justify-content:center;padding:20px}
+#dlg .box{background:var(--card);border:1px solid var(--g);box-shadow:0 0 22px #B2D23533;border-radius:16px;padding:18px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+#dlg h2{font-size:18px;color:var(--g);margin:0 0 10px}
+#dlg p{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-line}
+#dlgE{color:var(--err);min-height:1.2em;margin:0 0 8px;font-size:14px}
+
+.who{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.who b{font-size:17px;display:block}
+.tag{font-size:11px;font-weight:700;color:#071004;background:var(--g);border-radius:10px;padding:1px 8px;box-shadow:0 0 8px #B2D23599}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;color:var(--ink);text-decoration:none}
+.tile .ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;border:1.5px solid var(--g);color:var(--g);box-shadow:var(--glow);margin-bottom:10px;font-weight:800}
+.tile.o .ico{border-color:var(--o);color:var(--o);box-shadow:0 0 12px #F5822066}
+.tile b{font-size:16px;display:block}
+.tile small{color:var(--mut);font-size:12px;display:block}
+.feat{grid-column:1/-1;background:linear-gradient(160deg,#131d15,#0b110d);border:1px solid var(--g);box-shadow:0 0 22px #B2D23533, inset 0 0 30px #B2D2350d;padding:18px}
+.feat b{font-size:24px;color:var(--g);text-shadow:0 0 14px #B2D235aa}
+.feat small{color:#c9d8bf;font-size:14px}
+.feat .go{display:inline-block;margin-top:10px;color:var(--g);font-weight:700;font-size:14px}
+.feat.alert{border-color:var(--o);box-shadow:0 0 22px #F5822033}
+.feat.alert b{color:var(--o);text-shadow:0 0 14px #F58220aa}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header><div class="mark">T</div><div class="ttl"><h1>Admin Home</h1><small>CMCOOKING · เฉพาะผู้ดูแล</small></div><button id="out" class="exit" type="button">EXIT</button></header>
+<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
+<main>
+<p id="msg" role="alert"></p>
+<div class="who"><div class="ico-user mark">ADM</div><div><b id="cap"></b><span class="tag">ผู้ดูแล</span></div></div>
+<div class="grid">
+  <a class="tile feat" id="apTile" href="approve.html"><div class="ico">✓</div><b>อนุมัติคำขอลบ</b><small id="pendTxt">กำลังโหลด…</small><span class="go">เปิด →</span></a>
+  <a class="tile" href="pp.html"><div class="ico">≡</div><b>Pain Point</b><small>หมวกและตัวรอง</small></a>
+  <a class="tile" href="stats.html"><div class="ico">▥</div><b>Stats</b><small>สถิติรายเดือน</small></a>
+  <a class="tile o" href="users.html"><div class="ico">◉</div><b>Users</b><small>ผู้ใช้และสิทธิ์</small></a>
+  <a class="tile" href="index.html"><div class="ico">⟁</div><b>เครื่องมือช่าง</b><small>CMLIST / Barcode</small></a>
+</div>
+</main>
+<script>
+if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
+const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let token = null, me = null, pending = 0;   // อ่านจาก sessionStorage ของแท็บนี้ (ใช้ร่วมกับหน้าเข้าสู่ระบบ)
+try { token = sessionStorage.getItem('t'); me = JSON.parse(sessionStorage.getItem('u') || 'null'); } catch (e) { token = null; me = null; }
+if (!token || !me || me.role !== 'admin' || me.mustChange) { location.replace('index.html'); throw new Error('no-session'); }   // ต้องเข้าผ่านหน้าเข้าสู่ระบบก่อน
+function say(t, ok){ $('msg').textContent = t || ''; $('msg').className = ok ? 'ok' : ''; }
+function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์
+function endSession(m){ bye(); token = null; me = null; try { sessionStorage.clear(); if (m) sessionStorage.setItem('flash', m); } catch (e) {} location.replace('index.html'); }
+$('out').onclick = () => endSession('');
+function badge(n){ const b = $('apBadge'); if (b) { b.textContent = n; b.classList.toggle('hide', !n); } }
+(function markNav(){ const here = location.pathname.split('/').pop() || 'admin.html'; document.querySelectorAll('nav.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === here)); })();
+async function api(action, data = {}){
+  pending++; $('bar').classList.add('on');
+  try{
+    const r = await fetch(API, {method:'POST', body: JSON.stringify({action, token, ...data})});
+    const j = await r.json();
+    if (j.auth) endSession(j.error);
+    return j;
+  }catch(e){ return {ok:false, error:'เชื่อมต่อไม่ได้ ตรวจสอบสัญญาณแล้วลองใหม่'}; }
+  finally{ if (--pending <= 0) { pending = 0; $('bar').classList.remove('on'); } }
+}
+async function busy(b, txt, fn){
+  const old = b.textContent; b.disabled = true; b.textContent = txt;
+  try{ return await fn(); } finally { b.disabled = false; b.textContent = old; }
+}
+function pendingBadge(){ api('req_list').then(j => { if (j.ok) badge(j.items.length); }); }
+
+$('cap').textContent = 'เข้าสู่ระบบเป็น ' + me.name;
+api('req_list').then(j => {
+  if (!j.ok) return say(j.error);
+  const n = j.items.length;
+  badge(n);
+  $('pendTxt').textContent = n ? 'รอการอนุมัติ ' + n + ' รายการ' : 'ไม่มีคำขอรออนุมัติ';
+  $('apTile').classList.toggle('alert', n > 0);
+});
+</script>
+</body>
+</html>

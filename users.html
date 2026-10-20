@@ -7,71 +7,71 @@
 <meta name="theme-color" content="#0f3d3e">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
-<title>CMLTS Users</title>
+<title>CMCOOKING Users</title>
 <style>
-:root{--bg:#f3f6f5;--card:#fff;--ink:#14282a;--mut:#5d7274;--pri:#0f3d3e;--acc:#e8a317;--line:#d5e0de;--err:#b3261e;--ok:#1b6e3c}
-@media(prefers-color-scheme:dark){:root{--bg:#0d1a1b;--card:#15292a;--ink:#e6f0ee;--mut:#8fa8a6;--pri:#3ba99c;--acc:#f0b73a;--line:#264041;--err:#ff8a80;--ok:#7bd39a}}
+:root{--g:#B2D235;--o:#F58220;--bg:#07090a;--card:#0f1512;--ink:#e8f0e4;--mut:#8fa196;--line:#22302a;--soft:#16201b;--err:#ff5c5c;--glow:0 0 12px #B2D23566;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;background:var(--bg);color:var(--ink);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-#bar{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--acc),transparent) no-repeat;background-size:50% 100%;animation:slide 1s linear infinite;opacity:0;transition:opacity .15s;z-index:9;pointer-events:none}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+.hide{display:none!important}
+[hidden]{display:none!important}
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g),transparent) no-repeat;background-size:50% 100%;animation:slide 1s linear infinite;opacity:0;transition:opacity .15s;z-index:9;pointer-events:none}
 #bar.on{opacity:1}
 @keyframes slide{from{background-position:-50% 0}to{background-position:150% 0}}
-header{position:sticky;top:0;background:var(--pri);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:8px;z-index:2}
-@media(prefers-color-scheme:dark){header{color:#06201d}}
-header div{flex:1;line-height:1.2}
-header h1{font-size:19px;margin:0}
-header span{font-size:12px;opacity:.85}
-main{padding:12px 16px 90px;max-width:640px;margin:auto}
-.hide{display:none!important}
-input,select,button{font:inherit;color:inherit}
-input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--card);margin:4px 0 12px}
-input:focus,select:focus,button:focus-visible{outline:3px solid var(--acc);outline-offset:1px}
-label{font-size:14px;color:var(--mut)}
-button{border:0;border-radius:8px;padding:12px 16px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer}
-button:disabled{opacity:.6}
-@media(prefers-color-scheme:dark){button{color:#06201d}}
-button.ghost{background:transparent;color:var(--pri);border:1px solid var(--pri)}
-button.del{background:var(--err);color:#fff}
-header button{background:transparent;color:inherit;border:1px solid currentColor;padding:6px 12px}
-.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));background:var(--acc);color:#14282a;box-shadow:0 2px 8px #0004;padding:14px 20px;border-radius:28px}
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#060807;border-bottom:2px solid var(--g);box-shadow:0 2px 16px #B2D23540}
+.mark{width:36px;height:36px;flex:none;border-radius:10px;border:1.5px solid var(--g);box-shadow:var(--glow);display:grid;place-items:center;color:var(--g);font-weight:800}
+.ttl{flex:1;min-width:0}
+header h1{margin:0;font-size:19px;letter-spacing:1.5px;color:var(--g);text-shadow:0 0 10px #B2D235aa}
+header small{display:block;font-size:12px;color:var(--mut)}
+.exit{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;box-shadow:none}
+nav.nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line);background:#0a0e0c;scrollbar-width:none}
+nav.nav a{flex:none;display:inline-flex;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:10px;color:var(--mut);text-decoration:none;font-size:13px;font-weight:600}
+nav.nav a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 10px #B2D23540}
+.badge{display:inline-block;min-width:20px;text-align:center;margin-left:6px;padding:0 6px;border-radius:10px;background:var(--o);color:#1a0b00;font-size:12px;font-weight:800;box-shadow:0 0 8px #F5822099}
+main{max-width:720px;margin:auto;padding:14px 16px 90px}
+.hint{color:var(--mut);font-size:13px;margin:0 0 12px}
+#msg{color:var(--err);min-height:1.5em;margin:0 0 8px}
+#msg.ok{color:var(--g)}
+input,select{font:inherit;color:var(--ink);width:100%;padding:12px;background:#0a0f0c;border:1px solid var(--line);border-radius:10px;margin:4px 0 12px}
+input:focus,select:focus{outline:2px solid var(--o);outline-offset:1px}
+label{font-size:13px;color:var(--mut)}
+button{font:inherit;font-weight:700;color:var(--g);background:transparent;border:1.5px solid var(--g);border-radius:12px;padding:10px 14px;cursor:pointer;box-shadow:0 0 10px #B2D23540}
+button:focus-visible,a:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+button:disabled{opacity:.45;box-shadow:none}
+button.ghost{color:var(--ink);border-color:var(--line);box-shadow:none}
+button.del{color:var(--err);border-color:var(--err);box-shadow:none}
+button.solid{background:var(--g);color:#071004}
+button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.u{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:6px;margin:6px 0;padding:8px 10px}
-.u.off{border-left-color:var(--mut);opacity:.75}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));background:var(--o);color:#1a0b00;border-color:var(--o);box-shadow:0 0 18px #F58220aa;border-radius:28px;padding:14px 20px}
+.empty{color:var(--mut);text-align:center;padding:32px 0}
+#dlg{position:fixed;inset:0;z-index:30;background:#000c;display:flex;align-items:center;justify-content:center;padding:20px}
+#dlg .box{background:var(--card);border:1px solid var(--g);box-shadow:0 0 22px #B2D23533;border-radius:16px;padding:18px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+#dlg h2{font-size:18px;color:var(--g);margin:0 0 10px}
+#dlg p{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-line}
+#dlgE{color:var(--err);min-height:1.2em;margin:0 0 8px;font-size:14px}
+
+.u{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--g);border-radius:12px;margin:8px 0;padding:10px 12px}
+.u.off{border-left-color:var(--mut);opacity:.7}
 .u b{font-size:17px;margin-right:6px;overflow-wrap:anywhere}
-.tag{display:inline-block;padding:0 8px;border-radius:10px;background:var(--acc);color:#14282a;font-size:12px;font-weight:600;line-height:1.5;margin-right:4px}
-.tag.t{background:var(--line);color:var(--ink)}
+.tag{display:inline-block;padding:0 8px;border-radius:10px;background:var(--g);color:#071004;font-size:12px;font-weight:700;line-height:1.6;margin-right:4px}
+.tag.t{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
 .tag.x{background:var(--err);color:#fff}
 .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .acts button{flex:1;padding:6px 8px;font-size:13px;white-space:nowrap}
-.hint{color:var(--mut);font-size:13px;margin:0 0 10px}
-#msg{color:var(--err);min-height:1.5em;margin:0 0 8px}
-#msg.ok{color:var(--ok)}
-#dlg{position:fixed;inset:0;z-index:30;background:#000a;display:flex;align-items:center;justify-content:center;padding:20px}
-#dlg .box{background:var(--card);color:var(--ink);border-radius:12px;padding:18px;width:100%;max-width:360px;max-height:90vh;overflow:auto;box-shadow:0 8px 30px #0008}
-#dlg h2{font-size:18px;margin:0 0 10px}
-#dlg p{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-line}
-#dlgE{color:var(--err);min-height:1.2em;margin:0 0 8px;font-size:14px}
 .pinrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .pinrow button{margin-top:4px;padding:12px}
-.big{font:700 30px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:3px;text-align:center;background:var(--bg);border:1px dashed var(--acc);border-radius:8px;padding:12px;margin:0 0 12px;user-select:all}
-.empty{color:var(--mut);text-align:center;padding:32px 0}
+.pinshow{font:700 28px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:3px;text-align:center;background:var(--soft);border:1px dashed var(--g);border-radius:10px;padding:12px;margin:0 0 12px;user-select:all;color:var(--g)}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<header><div><h1>จัดการผู้ใช้</h1><span>CMLTS · เฉพาะผู้ดูแล</span></div><button id="out" class="hide">EXIT</button></header>
+<header><div class="mark">T</div><div class="ttl"><h1>Users</h1><small>CMCOOKING · เฉพาะผู้ดูแล</small></div><button id="out" class="exit" type="button">EXIT</button></header>
+<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
 <main>
 <p id="msg" role="alert"></p>
 
-<section id="vLogin">
-  <p class="hint">เข้าสู่ระบบด้วยบัญชีผู้ดูแล (admin) เท่านั้น</p>
-  <label for="u">NAME</label><input id="u" autocomplete="username" autocapitalize="none">
-  <label for="p">รหัสผ่าน</label><input id="p" type="password" autocomplete="current-password">
-  <button id="go" style="width:100%">GO</button>
-</section>
-
-<section id="vUsers" class="hide">
+<section id="vUsers">
   <p class="hint" id="cap"></p>
   <div id="list"></div>
   <button id="add" class="fab">+ เพิ่มผู้ใช้</button>
@@ -86,7 +86,7 @@ header button{background:transparent;color:inherit;border:1px solid currentColor
     <div id="fPin"><label for="pn">รหัสผ่าน (อย่างน้อย 8 ตัว)</label>
       <div class="pinrow"><input id="pn" maxlength="30" autocomplete="off"><button id="rnd" type="button" class="ghost">สุ่ม</button></div></div>
     <div id="fRole"><label for="rl">สิทธิ์</label><select id="rl"><option value="tech">ช่าง (tech)</option><option value="admin">ผู้ดูแล (admin)</option></select></div>
-    <div class="big hide" id="shown"></div>
+    <div class="pinshow hide" id="shown"></div>
     <p id="dlgE" role="alert"></p>
     <div class="two"><button id="dlgNo" class="ghost">ยกเลิก</button><button id="dlgYes">ตกลง</button></div>
   </div>
@@ -94,20 +94,24 @@ header button{background:transparent;color:inherit;border:1px solid currentColor
 
 <script>
 if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
-const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API (Phase 2)
+const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let token = null, me = null, users = [], pending = 0;   // token อยู่ในหน่วยความจำเท่านั้น (รีเฟรชหน้า = ต้องเข้าสู่ระบบใหม่)
-
+let token = null, me = null, pending = 0;   // อ่านจาก sessionStorage ของแท็บนี้ (ใช้ร่วมกับหน้าเข้าสู่ระบบ)
+try { token = sessionStorage.getItem('t'); me = JSON.parse(sessionStorage.getItem('u') || 'null'); } catch (e) { token = null; me = null; }
+if (!token || !me || me.role !== 'admin' || me.mustChange) { location.replace('index.html'); throw new Error('no-session'); }   // ต้องเข้าผ่านหน้าเข้าสู่ระบบก่อน
 function say(t, ok){ $('msg').textContent = t || ''; $('msg').className = ok ? 'ok' : ''; }
-function view(v){ $('vLogin').classList.toggle('hide', v !== 'vLogin'); $('vUsers').classList.toggle('hide', v !== 'vUsers'); $('out').classList.toggle('hide', v === 'vLogin'); }
-
+function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์
+function endSession(m){ bye(); token = null; me = null; try { sessionStorage.clear(); if (m) sessionStorage.setItem('flash', m); } catch (e) {} location.replace('index.html'); }
+$('out').onclick = () => endSession('');
+function badge(n){ const b = $('apBadge'); if (b) { b.textContent = n; b.classList.toggle('hide', !n); } }
+(function markNav(){ const here = location.pathname.split('/').pop() || 'admin.html'; document.querySelectorAll('nav.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === here)); })();
 async function api(action, data = {}){
   pending++; $('bar').classList.add('on');
   try{
     const r = await fetch(API, {method:'POST', body: JSON.stringify({action, token, ...data})});
     const j = await r.json();
-    if (j.auth) logout(j.error);
+    if (j.auth) endSession(j.error);
     return j;
   }catch(e){ return {ok:false, error:'เชื่อมต่อไม่ได้ ตรวจสอบสัญญาณแล้วลองใหม่'}; }
   finally{ if (--pending <= 0) { pending = 0; $('bar').classList.remove('on'); } }
@@ -116,20 +120,8 @@ async function busy(b, txt, fn){
   const old = b.textContent; b.disabled = true; b.textContent = txt;
   try{ return await fn(); } finally { b.disabled = false; b.textContent = old; }
 }
-function logout(m){ token = null; me = null; users = []; $('p').value = ''; $('list').innerHTML = ''; closeDlg(); view('vLogin'); say(m); }
-
-$('go').onclick = () => busy($('go'), 'กำลังเข้าสู่ระบบ…', async () => {
-  say();
-  const j = await api('login', {user: $('u').value, password: $('p').value});
-  $('p').value = '';
-  if (!j.ok) return say(j.error);
-  if (!j.user || j.user.role !== 'admin') { token = null; return say('บัญชีนี้ไม่ใช่ผู้ดูแลระบบ'); }
-  if (j.user.mustChange) { bye(); token = null; return say('ต้องตั้งรหัสผ่านใหม่ที่หน้าหลัก (CMLTS) ก่อน แล้วค่อยเข้าหน้านี้'); }
-  token = j.token; me = j.user; view('vUsers'); load();
-});
-$('p').addEventListener('keydown', e => { if (e.key === 'Enter') $('go').click(); });
-function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์ด้วย
-$('out').onclick = () => { bye(); logout(); };
+function pendingBadge(){ api('req_list').then(j => { if (j.ok) badge(j.items.length); }); }
+let users = [];
 
 async function load(){
   $('list').innerHTML = '<p class="empty">กำลังโหลด…</p>';
@@ -219,7 +211,7 @@ $('list').onclick = e => {
   });
 };
 
-view('vLogin');
+load(); pendingBadge();
 </script>
 </body>
 </html>

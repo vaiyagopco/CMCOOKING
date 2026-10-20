@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#060807">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<title>CMCOOKING Approve</title>
+<style>
+:root{--g:#B2D235;--o:#F58220;--bg:#07090a;--card:#0f1512;--ink:#e8f0e4;--mut:#8fa196;--line:#22302a;--soft:#16201b;--err:#ff5c5c;--glow:0 0 12px #B2D23566;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+.hide{display:none!important}
+[hidden]{display:none!important}
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g),transparent) no-repeat;background-size:50% 100%;animation:slide 1s linear infinite;opacity:0;transition:opacity .15s;z-index:9;pointer-events:none}
+#bar.on{opacity:1}
+@keyframes slide{from{background-position:-50% 0}to{background-position:150% 0}}
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#060807;border-bottom:2px solid var(--g);box-shadow:0 2px 16px #B2D23540}
+.mark{width:36px;height:36px;flex:none;border-radius:10px;border:1.5px solid var(--g);box-shadow:var(--glow);display:grid;place-items:center;color:var(--g);font-weight:800}
+.ttl{flex:1;min-width:0}
+header h1{margin:0;font-size:19px;letter-spacing:1.5px;color:var(--g);text-shadow:0 0 10px #B2D235aa}
+header small{display:block;font-size:12px;color:var(--mut)}
+.exit{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;box-shadow:none}
+nav.nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line);background:#0a0e0c;scrollbar-width:none}
+nav.nav a{flex:none;display:inline-flex;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:10px;color:var(--mut);text-decoration:none;font-size:13px;font-weight:600}
+nav.nav a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 10px #B2D23540}
+.badge{display:inline-block;min-width:20px;text-align:center;margin-left:6px;padding:0 6px;border-radius:10px;background:var(--o);color:#1a0b00;font-size:12px;font-weight:800;box-shadow:0 0 8px #F5822099}
+main{max-width:720px;margin:auto;padding:14px 16px 90px}
+.hint{color:var(--mut);font-size:13px;margin:0 0 12px}
+#msg{color:var(--err);min-height:1.5em;margin:0 0 8px}
+#msg.ok{color:var(--g)}
+input,select{font:inherit;color:var(--ink);width:100%;padding:12px;background:#0a0f0c;border:1px solid var(--line);border-radius:10px;margin:4px 0 12px}
+input:focus,select:focus{outline:2px solid var(--o);outline-offset:1px}
+label{font-size:13px;color:var(--mut)}
+button{font:inherit;font-weight:700;color:var(--g);background:transparent;border:1.5px solid var(--g);border-radius:12px;padding:10px 14px;cursor:pointer;box-shadow:0 0 10px #B2D23540}
+button:focus-visible,a:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+button:disabled{opacity:.45;box-shadow:none}
+button.ghost{color:var(--ink);border-color:var(--line);box-shadow:none}
+button.del{color:var(--err);border-color:var(--err);box-shadow:none}
+button.solid{background:var(--g);color:#071004}
+button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));background:var(--o);color:#1a0b00;border-color:var(--o);box-shadow:0 0 18px #F58220aa;border-radius:28px;padding:14px 20px}
+.empty{color:var(--mut);text-align:center;padding:32px 0}
+#dlg{position:fixed;inset:0;z-index:30;background:#000c;display:flex;align-items:center;justify-content:center;padding:20px}
+#dlg .box{background:var(--card);border:1px solid var(--g);box-shadow:0 0 22px #B2D23533;border-radius:16px;padding:18px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+#dlg h2{font-size:18px;color:var(--g);margin:0 0 10px}
+#dlg p{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-line}
+#dlgE{color:var(--err);min-height:1.2em;margin:0 0 8px;font-size:14px}
+
+.req{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--o);border-radius:14px;padding:14px;margin:12px 0;box-shadow:-4px 0 14px #F5822022}
+.req .sn{font:700 20px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.8px}
+.req .pn{font-size:14px;color:var(--mut);margin-top:3px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin:10px 0 0}
+.kv dt{font-size:11px;color:var(--mut)}
+.kv dd{margin:0;font-size:14px;overflow-wrap:anywhere}
+.dtl{margin:10px 0 0;padding:10px 12px;background:var(--soft);border-left:4px solid var(--g);border-radius:10px}
+.dtl small{display:block;font-size:11px;font-weight:700;color:var(--mut);letter-spacing:.5px;text-transform:uppercase}
+.dtl p{margin:4px 0 0;font-size:17px;font-weight:700;white-space:pre-wrap;overflow-wrap:anywhere}
+.warn{color:var(--o);font-size:13px;margin:10px 0 0}
+.row{display:flex;gap:8px;margin-top:12px}
+.row button{flex:1}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header><div class="mark">T</div><div class="ttl"><h1>อนุมัติคำขอลบ</h1><small>CMCOOKING · เฉพาะผู้ดูแล</small></div><button id="out" class="exit" type="button">EXIT</button></header>
+<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
+<main>
+<p id="msg" role="alert"></p>
+<p class="hint" id="cap">กำลังโหลด…</p>
+<div id="list"></div>
+</main>
+<div id="dlg" class="hide" role="dialog" aria-modal="true" aria-labelledby="dlgT"><div class="box"><h2 id="dlgT"></h2><p id="dlgM"></p><p id="dlgE" role="alert"></p><div class="two"><button id="dlgNo" class="ghost">ยกเลิก</button><button id="dlgYes" class="solid del">ยืนยัน</button></div></div></div>
+<script>
+if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
+const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let token = null, me = null, pending = 0;   // อ่านจาก sessionStorage ของแท็บนี้ (ใช้ร่วมกับหน้าเข้าสู่ระบบ)
+try { token = sessionStorage.getItem('t'); me = JSON.parse(sessionStorage.getItem('u') || 'null'); } catch (e) { token = null; me = null; }
+if (!token || !me || me.role !== 'admin' || me.mustChange) { location.replace('index.html'); throw new Error('no-session'); }   // ต้องเข้าผ่านหน้าเข้าสู่ระบบก่อน
+function say(t, ok){ $('msg').textContent = t || ''; $('msg').className = ok ? 'ok' : ''; }
+function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์
+function endSession(m){ bye(); token = null; me = null; try { sessionStorage.clear(); if (m) sessionStorage.setItem('flash', m); } catch (e) {} location.replace('index.html'); }
+$('out').onclick = () => endSession('');
+function badge(n){ const b = $('apBadge'); if (b) { b.textContent = n; b.classList.toggle('hide', !n); } }
+(function markNav(){ const here = location.pathname.split('/').pop() || 'admin.html'; document.querySelectorAll('nav.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === here)); })();
+async function api(action, data = {}){
+  pending++; $('bar').classList.add('on');
+  try{
+    const r = await fetch(API, {method:'POST', body: JSON.stringify({action, token, ...data})});
+    const j = await r.json();
+    if (j.auth) endSession(j.error);
+    return j;
+  }catch(e){ return {ok:false, error:'เชื่อมต่อไม่ได้ ตรวจสอบสัญญาณแล้วลองใหม่'}; }
+  finally{ if (--pending <= 0) { pending = 0; $('bar').classList.remove('on'); } }
+}
+async function busy(b, txt, fn){
+  const old = b.textContent; b.disabled = true; b.textContent = txt;
+  try{ return await fn(); } finally { b.disabled = false; b.textContent = old; }
+}
+function pendingBadge(){ api('req_list').then(j => { if (j.ok) badge(j.items.length); }); }
+
+let items = [];
+function ask(msg, yes){
+  return new Promise(res => {
+    $('dlgT').textContent = 'ยืนยันการลบ'; $('dlgM').textContent = msg; $('dlg').classList.remove('hide'); $('dlgNo').focus();
+    const done = v => { $('dlg').classList.add('hide'); $('dlgYes').onclick = $('dlgNo').onclick = $('dlg').onclick = null; res(v); };
+    $('dlgYes').textContent = yes; $('dlgYes').onclick = () => done(true); $('dlgNo').onclick = () => done(false);
+    $('dlg').onclick = e => { if (e.target === $('dlg')) done(false); };
+  });
+}
+function draw(){
+  $('cap').textContent = items.length ? 'คำขอรออนุมัติ ' + items.length + ' รายการ · ผู้ดูแล: ' + me.name : 'ไม่มีคำขอรออนุมัติ';
+  $('list').innerHTML = items.length ? items.map((r, i) => `<div class="req" data-i="${i}">
+      <div class="sn">${esc(r.net)}</div>
+      <div class="pn">${esc(r.pain || '-')}</div>
+      <dl class="kv"><div><dt>SP</dt><dd>${esc(r.sp || '-')}</dd></div><div><dt>ขอโดย</dt><dd>${esc(r.by || '-')}</dd></div><div><dt>เวลาที่ขอ</dt><dd>${esc(r.at || '-')}</dd></div><div><dt>บันทึกโดย</dt><dd>${esc(r.recBy || '-')}</dd></div></dl>
+      ${r.note ? `<div class="dtl"><small>Detail</small><p>${esc(r.note)}</p></div>` : ''}
+      ${r.gone ? '<p class="warn">รายการนี้ถูกลบไปแล้ว · กดปฏิเสธเพื่อปิดคำขอ</p>' : ''}
+      <div class="row">${r.gone ? '' : '<button class="solid del" data-a="ok">อนุมัติลบ</button>'}<button class="ghost" data-a="no">ปฏิเสธ</button></div>
+    </div>`).join('') : '<p class="empty">ไม่มีคำขอรออนุมัติ</p>';
+}
+async function load(){
+  $('list').innerHTML = '<p class="empty">กำลังโหลด…</p>';
+  const j = await api('req_list');
+  if (!j.ok) { $('list').innerHTML = ''; $('cap').textContent = ''; return say(j.error); }
+  items = j.items; draw(); badge(items.length);
+}
+$('list').onclick = async e => {
+  const b = e.target.closest('button[data-a]'); if (!b || b.disabled) return;
+  const r = items[+b.closest('.req').dataset.i]; if (!r) return;
+  const approve = b.dataset.a === 'ok';
+  if (approve) {
+    const ok = await ask('อนุมัติลบรายการ ' + r.net + ' ?\n\nรายการจะถูกลบถาวร กู้คืนไม่ได้', 'อนุมัติลบ');
+    if (!ok) return;
+  }
+  say();
+  await busy(b, '…', async () => {
+    const j = await api('req_decide', {id: r.id, approve});
+    if (!j.ok) { say(j.error); return load(); }
+    say(approve ? 'อนุมัติและลบรายการแล้ว' : 'ปฏิเสธคำขอแล้ว', true);
+    items = items.filter(x => x.id !== r.id); draw(); badge(items.length);
+  });
+};
+load();
+</script>
+</body>
+</html>

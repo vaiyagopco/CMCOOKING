@@ -8,11 +8,11 @@
 <meta name="referrer" content="no-referrer">
 <title>CMCOOKINGLIST</title>
 <style>
-/* ===== สีหลัก— แก้ที่นี่ที่เดียว ===== */
+/* ===== สีหลัก (โทนเขียวมะนาว AIS + ส้ม 3BB) — แก้ที่นี่ที่เดียว ===== */
 :root{
-  --g:#B2D235;      /* เขียว: พื้นปุ่มหลัก / จุดเน้น */
+  --g:#B2D235;      /* เขียว AIS: พื้นปุ่มหลัก / จุดเน้น */
   --gd:#4d7a05;     /* เขียวเข้ม: ตัวอักษร/ไอคอนบนพื้นขาว */
-  --o:#F58220;      /* ส้ม: ปุ่มสำคัญสุด (เพิ่มข้อมูล) */
+  --o:#F58220;      /* ส้ม 3BB: ปุ่มสำคัญสุด (เพิ่มข้อมูล) */
   --on-g:#17210d; --on-o:#2a1400;
   --dark:#1b2620;   /* หัวเว็บ */
   --bg:#f2f5ee; --card:#fff; --ink:#18221d; --mut:#5d6b61; --line:#dce4d2; --soft:#eef3e4;
@@ -123,6 +123,9 @@ button.big{width:100%;font-size:18px;padding:15px}
 .kv div{min-width:0}
 .kv dt{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
 .kv dd{margin:0;font-size:15px;overflow-wrap:anywhere}
+.dtl{margin:4px 0 12px;padding:12px 14px;background:var(--soft);border-left:5px solid var(--gd);border-radius:10px}
+.dtl small{display:block;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--mut);text-transform:uppercase}
+.dtl p{margin:4px 0 0;font-size:19px;font-weight:700;line-height:1.4;white-space:pre-wrap;word-break:break-word}
 .note{margin:0 0 10px;padding:10px 12px;background:var(--soft);border-radius:10px;white-space:pre-wrap;word-break:break-word}
 a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:var(--g);color:var(--on-g);font-weight:800;font-size:17px;padding:14px;border-radius:12px;margin-bottom:8px}
 .row{display:flex;gap:8px}
@@ -215,15 +218,17 @@ a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-dec
     <label for="u">NAME</label><input id="u" autocomplete="username" autocapitalize="none">
     <label for="p">PASS</label><input id="p" type="password" autocomplete="current-password">
     <button id="go" class="big">Order</button>
+    <button id="adm" class="ghost" type="button" style="width:100%;margin-top:10px">[For chefs only]</button>
   </div>
 </section>
 
 <section id="vHome" class="hide">
   <div class="who" id="who"><div class="av"><svg class="ic"><use href="#i-user"/></svg></div><div><b id="whoName"></b><span class="tag g" id="whoRole"></span></div></div>
   <div class="tools">
-    <button class="tool feat" id="toolList"><span class="tile"><svg class="ic"><use href="#i-list"/></svg></span><span><b>CMList</b><small>v2 · บันทึก / ค้นหา / แก้ไขงานซ่อม</small></span><span class="go">เปิด<svg class="ic"><use href="#i-arrow"/></svg></span></button>
+    <button class="tool feat" id="toolList"><span class="tile"><svg class="ic"><use href="#i-list"/></svg></span><span><b>(CM:MENU)V2.1</b><small>Save / Search / Edit</small></span><span class="go">เปิด<svg class="ic"><use href="#i-arrow"/></svg></span></button>
     <button class="tool sec" id="toolBar"><span class="tile"><svg class="ic"><use href="#i-bar"/></svg></span><span><b>Barcode</b><small>GenBC</small></span></button>
-    <a class="tool sec" id="toolSp" href="https://sptree.netlify.app/" target="_blank" rel="noopener noreferrer"><span class="tile o"><svg class="ic"><use href="#i-tree"/></svg></span><span><b>Splitter Tree</b><small>v1</small></span></a>
+    <button class="tool sec hide" id="toolAdm" type="button"><span class="tile o"><svg class="ic"><use href="#i-user"/></svg></span><span><b>ผู้ดูแลระบบ</b><small>Admin Home</small></span></button>
+    <a class="tool sec" id="toolSp" href="https://cmltoolbymm.netlify.app/" target="_blank" rel="noopener noreferrer"><span class="tile o"><svg class="ic"><use href="#i-tree"/></svg></span><span><b>Splitter Tree</b><small>SPFDV1</small></span></a>
   </div>
 </section>
 
@@ -389,6 +394,7 @@ function say(t){ $('msg').textContent = t || ''; }
 function goHome(){
   formSeq++; say(); closeBig();
   $('whoName').textContent = me ? me.name : ''; $('whoRole').textContent = me ? (me.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง') : '';
+  $('toolAdm').classList.toggle('hide', !(me && me.role === 'admin'));
   view('vHome');
 }
 
@@ -441,14 +447,22 @@ function loadPP(force){
   return ppBusy;
 }
 
+let adminEntry = false;
+$('adm').onclick = () => { adminEntry = true; say('ทางเข้าผู้ดูแล: กรอกชื่อและรหัสผ่าน แล้วกด Order'); $('u').focus(); };
 $('go').onclick = () => busy($('go'), 'กำลังเข้าสู่ระบบ…', async () => {
   say();
+  const wantAdmin = adminEntry; adminEntry = false;
   const j = await api('login', {user: $('u').value, password: $('p').value});
   $('p').value = '';
   if (!j.ok) return say(j.error);
+  if (wantAdmin && j.user.role !== 'admin') {
+    fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token: j.token})}).catch(() => {});
+    return say('ทางเข้านี้สำหรับผู้ดูแลเท่านั้น');
+  }
   token = j.token; me = j.user; rows = j.rows || []; loaded = true;
   sessionStorage.setItem('t', token); sessionStorage.setItem('u', JSON.stringify(me));
   if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); return; }
+  if (wantAdmin) { location.href = 'admin.html'; return; }
   goHome(); loadPP(true);
 });
 $('p').addEventListener('keydown', e => { if (e.key === 'Enter') $('go').click(); });
@@ -473,6 +487,7 @@ $('toolList').onclick = () => {
   if (loaded) { view('vList'); draw(); load(true); } else load();
   loadPP().then(() => { if (!$('vList').classList.contains('hide')) draw(); });
 };
+$('toolAdm').onclick = () => { location.href = 'admin.html'; };
 $('toolBar').onclick = () => { say(); view('vBar'); updBar(); $('bt').focus(); };
 
 /* ---------- เครื่องมือ Barcode ---------- */
@@ -556,7 +571,7 @@ function itemHtml(r){
   const m = mapLink(r.pin), d0 = fd(r.at), pc = ppColor(r.pid);
   const d1 = r.upAt ? 'แก้ไข: ' + ts(r.upAt, d0) + ' · ' + (r.upBy || '-')
     : 'บันทึก: ' + String(r.at || '').slice(11, 16) + ' · ' + (r.by || '-');
-  const canDel = me && (me.role === 'admin' || r.by === me.name);
+  const canDel = !!me && me.role === 'admin';
   const kv = (k, v) => `<div><dt>${k}</dt><dd>${esc(v) || '-'}</dd></div>`;
   return `<div class="item" data-id="${esc(r.id)}" style="--pc:${pc}">
       <div class="head" data-a="tog">
@@ -564,13 +579,13 @@ function itemHtml(r){
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('Drum', r.drum)}${kv('SP', r.sp)}${kv('Name Plate', r.plate)}</dl>
-        ${r.note ? `<p class="note">${esc(r.note)}</p>` : ''}
+        <dl class="kv">${kv('SP', r.sp)}</dl>
+        ${r.note ? `<div class="dtl"><small>Detail</small><p>${esc(r.note)}</p></div>` : ''}
         ${m ? `<a class="btn go" target="_blank" rel="noopener noreferrer" href="${m}">${ic('nav')}นำทาง</a>` : ''}
         <div class="row">
           <button class="ghost" data-a="edit">${ic('edit')}แก้ไข</button>
           <button class="ghost" data-a="again">${ic('plus')}รายการใหม่</button>
-          ${canDel ? `<button class="del" data-a="del" aria-label="ลบ">${ic('trash')}ลบ</button>` : ''}
+          ${canDel ? `<button class="del" data-a="del" aria-label="ลบ">${ic('trash')}ลบ</button>` : `<button class="ghost" data-a="req" aria-label="ขอลบ">${ic('trash')}ขอลบ</button>`}
         </div>
       </div></div>`;
 }
@@ -690,6 +705,15 @@ $('items').onclick = async e => {
     $('ppMain').focus();
     return;
   }
+  if (b.dataset.a === 'req') {
+    const ok = await ask('ส่งคำขอลบรายการ ' + r.net + ' ไปให้ผู้ดูแลอนุมัติ?\n\nเมื่อผู้ดูแลอนุมัติแล้วรายการจะถูกลบ');
+    if (!ok) return;
+    busy(b, 'กำลังส่ง…', async () => {
+      const j = await api('req_delete', {id});
+      say(j.ok ? 'ส่งคำขอลบแล้ว รอผู้ดูแลอนุมัติ' : j.error);
+    });
+    return;
+  }
   if (b.dataset.a === 'del') {
     const ok = await ask('ลบรายการ ' + r.net + '\nบันทึก ' + String(r.at || '') + ' โดย ' + (r.by || '-') + '\n\nลบแล้วกู้คืนไม่ได้ แน่ใจหรือไม่?');
     if (!ok) return;
@@ -765,6 +789,7 @@ $('save').onclick = () => busy($('save'), 'กำลังบันทึก…'
 });
 
 if (token && me) { if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); } else { goHome(); loadPP(); } } else view('vLogin');
+try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
 </script>
 </body>
 </html>
