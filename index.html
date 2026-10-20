@@ -71,6 +71,7 @@ button.big{width:100%;font-size:18px;padding:15px}
 .login .mark .ic{width:32px;height:32px}
 .login h2{margin:0 0 14px;text-align:center;font-size:20px}
 .login input{font-size:18px;padding:14px}
+#adm{display:block;margin:14px auto 0;padding:6px 4px;background:none;border:0;box-shadow:none;color:var(--gd);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- หน้าแรก ---------- */
 .who{display:flex;align-items:center;gap:10px;margin:2px 2px 14px;color:var(--mut)}
@@ -170,6 +171,7 @@ a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-dec
 .bigh{font-size:13px;color:#555;margin:12px 0 0}
 
 /* ---------- ป๊อปอัพ ---------- */
+#btBig{font-size:15px;padding:11px 12px}
 #dlg{position:fixed;inset:0;z-index:70;background:#000a;display:flex;align-items:center;justify-content:center;padding:20px}
 #dlg .box{background:var(--card);color:var(--ink);border-radius:18px;padding:20px;width:100%;max-width:340px;box-shadow:0 10px 36px #0009}
 #dlg b{font-size:19px;color:var(--err);display:flex;align-items:center;gap:8px}
@@ -199,6 +201,7 @@ a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-dec
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 3h7v7M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3l10 18H2zM12 10v5M12 18.5v.01"/></symbol>
+  <symbol id="i-chef" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="25" r="9"/><circle cx="32" cy="18" r="11"/><circle cx="43" cy="25" r="9"/><path d="M16 34v14h32V34"/><path d="M16 42h32"/></g></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
 </svg>
 <div id="bar"></div>
@@ -213,12 +216,12 @@ a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-dec
 
 <section id="vLogin">
   <div class="login">
-    <div class="mark"><svg class="ic"><use href="#i-tree"/></svg></div>
+    <div class="mark"><svg class="ic"><use href="#i-chef"/></svg></div>
     <h2>LOGIN</h2>
     <label for="u">NAME</label><input id="u" autocomplete="username" autocapitalize="none">
     <label for="p">PASS</label><input id="p" type="password" autocomplete="current-password">
     <button id="go" class="big">Order</button>
-    <button id="adm" class="ghost" type="button" style="width:100%;margin-top:10px">[For chefs only]</button>
+    <button id="adm" type="button">Chefs only</button>
   </div>
 </section>
 
@@ -239,7 +242,7 @@ a.btn.go{display:flex;align-items:center;justify-content:center;gap:8px;text-dec
     <div class="bc" id="btPrev" title="แตะเพื่อขยาย"></div>
     <p class="hint" id="btMsg"></p>
   </div>
-  <div class="two" style="margin-top:12px"><button id="btBig" class="ghost big" disabled><svg class="ic"><use href="#i-zoom"/></svg>Zoom</button><button id="btDl" class="big" disabled><svg class="ic"><use href="#i-dl"/></svg>Save to PNG</button></div>
+  <div class="two" style="margin-top:12px"><button id="btBig" class="ghost" disabled><svg class="ic"><use href="#i-zoom"/></svg>Zoom</button><button id="btDl" class="big" disabled><svg class="ic"><use href="#i-dl"/></svg>Save to PNG</button></div>
 </section>
 
 <section id="vList" class="hide">
