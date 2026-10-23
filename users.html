@@ -62,12 +62,77 @@ button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
 .pinrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .pinrow button{margin-top:4px;padding:12px}
 .pinshow{font:700 28px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:3px;text-align:center;background:var(--soft);border:1px dashed var(--g);border-radius:10px;padding:12px;margin:0 0 12px;user-select:all;color:var(--g)}
+
+/* ===== CMCS template: shared header + base ===== */
+header.cx{position:sticky;top:0;z-index:20;height:calc(56px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 0 0;margin:0;
+  display:flex;align-items:center;justify-content:center;gap:0;background:#B2D235;color:#1a1a1a;
+  border:0;border-bottom:1px solid rgba(0,0,0,.10);box-shadow:0 2px 4px rgba(0,0,0,.06)}
+header.cx .cx-title{display:flex;align-items:center;gap:8px;min-width:0}
+header.cx .cx-gear{width:22px;height:22px;flex:none}
+header.cx h1{margin:0;font-size:16px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;white-space:nowrap;text-shadow:none}
+header.cx .cx-btn{position:absolute;top:calc(50% + env(safe-area-inset-top) / 2);transform:translateY(-50%);width:38px;height:38px;margin:0;padding:0;
+  display:grid;place-items:center;background:transparent;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px;box-shadow:none;text-decoration:none;cursor:pointer}
+header.cx .cx-btn.l{left:12px} header.cx .cx-btn.r{right:12px}
+header.cx .cx-btn:active{background:#000;color:#fff}
+header.cx .cx-i{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#bar{background:linear-gradient(90deg,transparent,#000,transparent) no-repeat;background-size:50% 100%}
+.cx-ic{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* equal menu cards (same size as the COOK / CHEF cards) */
+.cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(78vw,320px);min-width:250px;margin:0 auto}
+.cx-card{position:relative;height:92px;margin:0;padding:6px;border:0;border-radius:10px;background:#fff;color:#1a1a1a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);cursor:pointer;font:inherit;transition:background .15s,color .15s,transform .1s}
+.cx-card:active{transform:scale(.97);background:#000;color:#fff}
+.cx-card b{display:block;font-size:13px;font-weight:700;letter-spacing:1.2px;line-height:1.15;text-transform:uppercase}
+.cx-card small{display:block;font-size:11px;font-weight:600;line-height:1.1;color:inherit;opacity:.7;margin-top:-4px}
+.cx-card.alert{background:#000;color:#fff}
+.cx-card.alert::after{content:"";position:absolute;top:9px;right:9px;width:9px;height:9px;border-radius:50%;background:#F58220}
+.cx-who{display:flex;flex-direction:column;align-items:center;gap:4px;margin:10px 0 22px;text-align:center}
+.cx-who b{font-size:17px;font-weight:600;color:#1a1a1a}
+
+/* ===== CMCS template: admin pages ===== */
+:root{--g:#1a1a1a;--o:#F58220;--bg:#B2D235;--card:#fff;--ink:#1a1a1a;--mut:#5b6152;--line:#d9dfcd;--soft:#f2f4ec;--err:#b3261e;--glow:none;color-scheme:light}
+*{text-shadow:none!important}
+body{background:#B2D235;color:#1a1a1a}
+nav.nav{background:#B2D235;border-bottom:0;padding:12px 16px 4px;justify-content:center;flex-wrap:wrap}
+nav.nav a{background:#fff;border:0;color:#1a1a1a;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+nav.nav a.on{background:#000;color:#fff;box-shadow:none}
+.badge{box-shadow:none}
+main{max-width:640px}
+#msg.ok{color:#1a1a1a}
+.hint,.empty{color:#3d4433}
+input,select{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid #000;outline-offset:1px}
+label{color:#3d4433}
+button{background:#000;color:#fff;border:1.5px solid #000;border-radius:10px;box-shadow:none}
+button.ghost{background:#fff;color:#1a1a1a;border-color:#1a1a1a}
+button.del{background:#fff;color:var(--err);border-color:var(--err)}
+button.solid{background:#000;color:#fff}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+button:disabled{opacity:.45}
+.fab{background:#000;color:#fff;border-color:#000;box-shadow:0 8px 16px -8px rgba(0,0,0,.6)}
+#dlg .box{background:#fff;border:0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+#dlg h2{color:#1a1a1a}
+.who{justify-content:center}
+.tag{box-shadow:none}
+.who .tag{background:#B2D235;color:#1a1a1a}
+/* page cards */
+.req,.g,.card,.u,.tiles .tile,.tile:not(.cx-card){border:0;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.req{border-left:5px solid var(--o)}
+.u{border-left:4px solid #B2D235}
+.u .tag:not(.t):not(.x){background:#B2D235;color:#1a1a1a}
+.gh{background:#f2f4ec}
+.sw button.on{border-color:#000}
+.pinshow{color:#1a1a1a;border-color:#1a1a1a}
+.days div{background:#1a1a1a}
+.u .un{font-size:12px;color:var(--mut);margin-top:2px}
+.acts button{flex:1 1 30%}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<header><div class="mark">T</div><div class="ttl"><h1>Users</h1><small>CMCOOKING · เฉพาะผู้ดูแล</small></div><button id="out" class="exit" type="button">EXIT</button></header>
-<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
+<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><h1>CMCOOKING SYSTEM</h1></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="onhand.html">On Hand</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
 <main>
 <p id="msg" role="alert"></p>
 
@@ -82,7 +147,8 @@ button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
   <div class="box">
     <h2 id="dlgT"></h2>
     <p id="dlgM"></p>
-    <div id="fName"><label for="nm">ชื่อผู้ใช้ (2-20 ตัว: ตัวอักษร ตัวเลข . _ -)</label><input id="nm" maxlength="20" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"></div>
+    <div id="fTeam"><label for="tm">Name (ชื่อทีม 1-30 ตัว · หลายคนใช้ทีมเดียวกันได้)</label><input id="tm" maxlength="30" list="teams" autocomplete="off"><datalist id="teams"></datalist></div>
+    <div id="fName"><label for="nm">Username (ใช้เข้าระบบ 2-20 ตัว: ตัวอักษร ตัวเลข . _ -)</label><input id="nm" maxlength="20" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"></div>
     <div id="fPin"><label for="pn">รหัสผ่าน (อย่างน้อย 8 ตัว)</label>
       <div class="pinrow"><input id="pn" maxlength="30" autocomplete="off"><button id="rnd" type="button" class="ghost">สุ่ม</button></div></div>
     <div id="fRole"><label for="rl">สิทธิ์</label><select id="rl"><option value="tech">ช่าง (tech)</option><option value="admin">ผู้ดูแล (admin)</option></select></div>
@@ -136,8 +202,11 @@ function draw(){
   $('list').innerHTML = users.length ? users.map((u, i) => {
     const self = u.name.toLowerCase() === me.name.toLowerCase();
     return `<div class="u ${u.active ? '' : 'off'}" data-i="${i}">
-      <b>${esc(u.name)}</b><span class="tag ${u.role === 'admin' ? '' : 't'}">${u.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง'}</span>${u.active ? '' : '<span class="tag x">ปิดใช้งาน</span>'}${self ? '<span class="tag t">คุณ</span>' : ''}
+      <b>${esc(u.team || '(ยังไม่มี Name)')}</b><span class="tag ${u.role === 'admin' ? '' : 't'}">${u.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง'}</span>${u.active ? '' : '<span class="tag x">ปิดใช้งาน</span>'}${self ? '<span class="tag t">คุณ</span>' : ''}
+      <div class="un">Username: ${esc(u.name)}</div>
       <div class="acts">
+        <button class="ghost" data-a="team">แก้ไข Name</button>
+        <button class="ghost" data-a="uname">แก้ไข Username</button>
         <button class="ghost" data-a="pin">ตั้งรหัสใหม่</button>
         <button class="ghost" data-a="role">เปลี่ยนสิทธิ์</button>
         ${self ? '' : `<button class="${u.active ? 'del' : 'ghost'}" data-a="act">${u.active ? 'ปิดใช้งาน' : 'เปิดใช้งาน'}</button>`}
@@ -147,7 +216,7 @@ function draw(){
 
 /* ---------- กล่องโต้ตอบ ---------- */
 let dlgSubmit = null;
-function closeDlg(){ $('dlg').classList.add('hide'); dlgSubmit = null; $('pn').value = ''; $('nm').value = ''; }
+function closeDlg(){ $('dlg').classList.add('hide'); dlgSubmit = null; $('pn').value = ''; $('nm').value = ''; $('tm').value = ''; }
 function pinRand(){                       // สร้างรหัสผ่านสุ่ม 12 ตัว (ไม่มีอักขระที่สับสนง่าย)
   const chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789';
   const a = new Uint32Array(12); crypto.getRandomValues(a);
@@ -157,24 +226,27 @@ function pinRand(){                       // สร้างรหัสผ่�
 /* cfg: {title, msg, name, pin, role, yes, danger, run(values) -> Promise<{ok,error}>, after(values)} */
 function dlg(cfg){
   $('dlgT').textContent = cfg.title; $('dlgM').textContent = cfg.msg || ''; $('dlgM').classList.toggle('hide', !cfg.msg);
+  $('fTeam').classList.toggle('hide', !cfg.team);
+  $('teams').innerHTML = [...new Set(users.map(u => u.team).filter(Boolean))].map(x => `<option value="${esc(x)}">`).join('');
   $('fName').classList.toggle('hide', !cfg.name); $('fPin').classList.toggle('hide', !cfg.pin); $('fRole').classList.toggle('hide', !cfg.role);
   $('shown').classList.add('hide'); $('dlgE').textContent = ''; $('dlgNo').classList.remove('hide');
-  $('nm').value = ''; $('pn').value = cfg.pin ? pinRand() : ''; $('rl').value = cfg.roleVal || 'tech';
+  $('nm').value = cfg.nameVal || ''; $('tm').value = cfg.teamVal || ''; $('pn').value = cfg.pin ? pinRand() : ''; $('rl').value = cfg.roleVal || 'tech';
   const y = $('dlgYes'); y.textContent = cfg.yes || 'ตกลง'; y.className = cfg.danger ? 'del' : ''; y.disabled = false;
   $('dlg').classList.remove('hide');
-  (cfg.name ? $('nm') : cfg.pin ? $('pn') : y).focus();
+  (cfg.team ? $('tm') : cfg.name ? $('nm') : cfg.pin ? $('pn') : y).focus();
   dlgSubmit = async () => {
-    const v = {name: $('nm').value.trim(), pin: $('pn').value.trim(), role: $('rl').value};
+    const v = {name: $('nm').value.trim(), team: $('tm').value.replace(/\s+/g, ' ').trim(), pin: $('pn').value.trim(), role: $('rl').value};
     $('dlgE').textContent = ''; y.disabled = true; const old = y.textContent; y.textContent = 'กำลังบันทึก…';
     const j = await cfg.run(v);
     y.disabled = false; y.textContent = old;
     if (!j.ok) { $('dlgE').textContent = j.error || 'ไม่สำเร็จ'; return; }
+    if (j.relogin) { endSession('เปลี่ยน Username แล้ว เข้าระบบใหม่ด้วย ' + j.newName); return; }
     users = j.users; draw();
     if (cfg.showPin) {      /* แสดงรหัสครั้งเดียว: ระบบเก็บเป็น hash ดูย้อนหลังไม่ได้ */
       $('dlgT').textContent = 'สำเร็จ · จดรหัสนี้ไว้';
       $('dlgM').textContent = 'ผู้ใช้: ' + (v.name || cfg.who) + '\nแจ้งให้เข้าระบบด้วยรหัสนี้ ระบบเก็บเป็นรหัสแบบเข้ารหัส ดูซ้ำไม่ได้ ให้ผู้ใช้เปลี่ยนรหัสเองตอนเข้าครั้งแรก';
       $('dlgM').classList.remove('hide');
-      ['fName','fPin','fRole'].forEach(x => $(x).classList.add('hide'));
+      ['fTeam','fName','fPin','fRole'].forEach(x => $(x).classList.add('hide'));
       $('shown').textContent = v.pin; $('shown').classList.remove('hide');
       $('dlgNo').classList.add('hide'); y.textContent = 'ปิด'; y.className = '';
       dlgSubmit = () => closeDlg();
@@ -187,13 +259,24 @@ $('rnd').onclick = () => { $('pn').value = pinRand(); };
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('dlg').classList.contains('hide') && $('shown').classList.contains('hide')) closeDlg(); });
 
 $('add').onclick = () => dlg({
-  title: 'เพิ่มผู้ใช้ใหม่', name: true, pin: true, role: true, yes: 'เพิ่มผู้ใช้', showPin: true,
-  run: v => api('user_add', {name: v.name, password: v.pin, role: v.role})
+  title: 'เพิ่มผู้ใช้ใหม่', team: true, name: true, pin: true, role: true, yes: 'เพิ่มผู้ใช้', showPin: true,
+  run: v => api('user_add', {team: v.team, name: v.name, password: v.pin, role: v.role})
 });
 
 $('list').onclick = e => {
   const b = e.target.closest('button[data-a]'); if (!b) return;
   const u = users[+b.closest('.u').dataset.i]; if (!u) return;
+  const self = u.name.toLowerCase() === me.name.toLowerCase();
+  if (b.dataset.a === 'team') dlg({
+    title: 'แก้ไข Name (ทีม)', msg: 'Username: ' + u.name + '\nงานที่บันทึกไปแล้วยังแสดง Name เดิม (Name ตอนบันทึก) งานใหม่จะใช้ Name นี้',
+    team: true, teamVal: u.team, yes: 'บันทึก',
+    run: v => v.team === u.team ? Promise.resolve({ok: false, error: 'Name เหมือนเดิม'}) : api('user_edit', {name: u.name, team: v.team})
+  });
+  if (b.dataset.a === 'uname') dlg({
+    title: 'แก้ไข Username', msg: 'Name: ' + (u.team || '-') + '\nใช้ Username ใหม่เข้าระบบ รหัสผ่านเดิมยังใช้ได้ ผู้ใช้จะถูกบังคับออกจากระบบ' + (self ? '\n\nนี่คือบัญชีของคุณ ต้องเข้าระบบใหม่หลังบันทึก' : ''),
+    name: true, nameVal: u.name, yes: 'บันทึก',
+    run: v => v.name === u.name ? Promise.resolve({ok: false, error: 'Username เหมือนเดิม'}) : api('user_edit', {name: u.name, newName: v.name})
+  });
   if (b.dataset.a === 'pin') dlg({
     title: 'ตั้งรหัสผ่านใหม่', msg: 'ผู้ใช้: ' + u.name + '\nรหัสเดิมจะใช้ไม่ได้ ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าระบบ และเซสชันเดิมจะถูกบังคับออก',
     pin: true, yes: 'ตั้งรหัส', showPin: true, who: u.name,

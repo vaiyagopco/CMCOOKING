@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#0f3d3e">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<title>CMCOOKING On Hand</title>
+<style>
+:root{--g:#B2D235;--o:#F58220;--bg:#07090a;--card:#0f1512;--ink:#e8f0e4;--mut:#8fa196;--line:#22302a;--soft:#16201b;--err:#ff5c5c;--glow:0 0 12px #B2D23566;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+.hide{display:none!important}
+[hidden]{display:none!important}
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g),transparent) no-repeat;background-size:50% 100%;animation:slide 1s linear infinite;opacity:0;transition:opacity .15s;z-index:9;pointer-events:none}
+#bar.on{opacity:1}
+@keyframes slide{from{background-position:-50% 0}to{background-position:150% 0}}
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#060807;border-bottom:2px solid var(--g);box-shadow:0 2px 16px #B2D23540}
+.mark{width:36px;height:36px;flex:none;border-radius:10px;border:1.5px solid var(--g);box-shadow:var(--glow);display:grid;place-items:center;color:var(--g);font-weight:800}
+.ttl{flex:1;min-width:0}
+header h1{margin:0;font-size:19px;letter-spacing:1.5px;color:var(--g);text-shadow:0 0 10px #B2D235aa}
+header small{display:block;font-size:12px;color:var(--mut)}
+.exit{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;box-shadow:none}
+nav.nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line);background:#0a0e0c;scrollbar-width:none}
+nav.nav a{flex:none;display:inline-flex;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:10px;color:var(--mut);text-decoration:none;font-size:13px;font-weight:600}
+nav.nav a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 10px #B2D23540}
+.badge{display:inline-block;min-width:20px;text-align:center;margin-left:6px;padding:0 6px;border-radius:10px;background:var(--o);color:#1a0b00;font-size:12px;font-weight:800;box-shadow:0 0 8px #F5822099}
+main{max-width:720px;margin:auto;padding:14px 16px 90px}
+.hint{color:var(--mut);font-size:13px;margin:0 0 12px}
+#msg{color:var(--err);min-height:1.5em;margin:0 0 8px}
+#msg.ok{color:var(--g)}
+input,select{font:inherit;color:var(--ink);width:100%;padding:12px;background:#0a0f0c;border:1px solid var(--line);border-radius:10px;margin:4px 0 12px}
+input:focus,select:focus{outline:2px solid var(--o);outline-offset:1px}
+label{font-size:13px;color:var(--mut)}
+button{font:inherit;font-weight:700;color:var(--g);background:transparent;border:1.5px solid var(--g);border-radius:12px;padding:10px 14px;cursor:pointer;box-shadow:0 0 10px #B2D23540}
+button:focus-visible,a:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+button:disabled{opacity:.45;box-shadow:none}
+button.ghost{color:var(--ink);border-color:var(--line);box-shadow:none}
+button.del{color:var(--err);border-color:var(--err);box-shadow:none}
+button.solid{background:var(--g);color:#071004}
+button.solid.del{background:var(--err);color:#1a0303;border-color:var(--err)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));background:var(--o);color:#1a0b00;border-color:var(--o);box-shadow:0 0 18px #F58220aa;border-radius:28px;padding:14px 20px}
+.empty{color:var(--mut);text-align:center;padding:32px 0}
+#dlg{position:fixed;inset:0;z-index:30;background:#000c;display:flex;align-items:center;justify-content:center;padding:20px}
+#dlg .box{background:var(--card);border:1px solid var(--g);box-shadow:0 0 22px #B2D23533;border-radius:16px;padding:18px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+#dlg h2{font-size:18px;color:var(--g);margin:0 0 10px}
+#dlg p{margin:0 0 12px;overflow-wrap:anywhere;white-space:pre-line}
+#dlgE{color:var(--err);min-height:1.2em;margin:0 0 8px;font-size:14px}
+
+.u{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--g);border-radius:12px;margin:8px 0;padding:10px 12px}
+.u.off{border-left-color:var(--mut);opacity:.7}
+.u b{font-size:17px;margin-right:6px;overflow-wrap:anywhere}
+.tag{display:inline-block;padding:0 8px;border-radius:10px;background:var(--g);color:#071004;font-size:12px;font-weight:700;line-height:1.6;margin-right:4px}
+.tag.t{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.tag.x{background:var(--err);color:#fff}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.acts button{flex:1;padding:6px 8px;font-size:13px;white-space:nowrap}
+.pinrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.pinrow button{margin-top:4px;padding:12px}
+.pinshow{font:700 28px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:3px;text-align:center;background:var(--soft);border:1px dashed var(--g);border-radius:10px;padding:12px;margin:0 0 12px;user-select:all;color:var(--g)}
+
+/* ===== CMCS template: shared header + base ===== */
+header.cx{position:sticky;top:0;z-index:20;height:calc(56px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 0 0;margin:0;
+  display:flex;align-items:center;justify-content:center;gap:0;background:#B2D235;color:#1a1a1a;
+  border:0;border-bottom:1px solid rgba(0,0,0,.10);box-shadow:0 2px 4px rgba(0,0,0,.06)}
+header.cx .cx-title{display:flex;align-items:center;gap:8px;min-width:0}
+header.cx .cx-gear{width:22px;height:22px;flex:none}
+header.cx h1{margin:0;font-size:16px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;white-space:nowrap;text-shadow:none}
+header.cx .cx-btn{position:absolute;top:calc(50% + env(safe-area-inset-top) / 2);transform:translateY(-50%);width:38px;height:38px;margin:0;padding:0;
+  display:grid;place-items:center;background:transparent;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px;box-shadow:none;text-decoration:none;cursor:pointer}
+header.cx .cx-btn.l{left:12px} header.cx .cx-btn.r{right:12px}
+header.cx .cx-btn:active{background:#000;color:#fff}
+header.cx .cx-i{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#bar{background:linear-gradient(90deg,transparent,#000,transparent) no-repeat;background-size:50% 100%}
+.cx-ic{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* equal menu cards (same size as the COOK / CHEF cards) */
+.cx-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(78vw,320px);min-width:250px;margin:0 auto}
+.cx-card{position:relative;height:92px;margin:0;padding:6px;border:0;border-radius:10px;background:#fff;color:#1a1a1a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);cursor:pointer;font:inherit;transition:background .15s,color .15s,transform .1s}
+.cx-card:active{transform:scale(.97);background:#000;color:#fff}
+.cx-card b{display:block;font-size:13px;font-weight:700;letter-spacing:1.2px;line-height:1.15;text-transform:uppercase}
+.cx-card small{display:block;font-size:11px;font-weight:600;line-height:1.1;color:inherit;opacity:.7;margin-top:-4px}
+.cx-card.alert{background:#000;color:#fff}
+.cx-card.alert::after{content:"";position:absolute;top:9px;right:9px;width:9px;height:9px;border-radius:50%;background:#F58220}
+.cx-who{display:flex;flex-direction:column;align-items:center;gap:4px;margin:10px 0 22px;text-align:center}
+.cx-who b{font-size:17px;font-weight:600;color:#1a1a1a}
+
+/* ===== CMCS template: admin pages ===== */
+:root{--g:#1a1a1a;--o:#F58220;--bg:#B2D235;--card:#fff;--ink:#1a1a1a;--mut:#5b6152;--line:#d9dfcd;--soft:#f2f4ec;--err:#b3261e;--glow:none;color-scheme:light}
+*{text-shadow:none!important}
+body{background:#B2D235;color:#1a1a1a}
+nav.nav{background:#B2D235;border-bottom:0;padding:12px 16px 4px;justify-content:center;flex-wrap:wrap}
+nav.nav a{background:#fff;border:0;color:#1a1a1a;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+nav.nav a.on{background:#000;color:#fff;box-shadow:none}
+.badge{box-shadow:none}
+main{max-width:640px}
+#msg.ok{color:#1a1a1a}
+.hint,.empty{color:#3d4433}
+input,select{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid #000;outline-offset:1px}
+label{color:#3d4433}
+button{background:#000;color:#fff;border:1.5px solid #000;border-radius:10px;box-shadow:none}
+button.ghost{background:#fff;color:#1a1a1a;border-color:#1a1a1a}
+button.del{background:#fff;color:var(--err);border-color:var(--err)}
+button.solid{background:#000;color:#fff}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+button:disabled{opacity:.45}
+.fab{background:#000;color:#fff;border-color:#000;box-shadow:0 8px 16px -8px rgba(0,0,0,.6)}
+#dlg .box{background:#fff;border:0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+#dlg h2{color:#1a1a1a}
+.who{justify-content:center}
+.tag{box-shadow:none}
+.who .tag{background:#B2D235;color:#1a1a1a}
+/* page cards */
+.req,.g,.card,.u,.tiles .tile,.tile:not(.cx-card){border:0;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.req{border-left:5px solid var(--o)}
+.u{border-left:4px solid #B2D235}
+.u .tag:not(.t):not(.x){background:#B2D235;color:#1a1a1a}
+.gh{background:#f2f4ec}
+.sw button.on{border-color:#000}
+.pinshow{color:#1a1a1a;border-color:#1a1a1a}
+.days div{background:#1a1a1a}
+.u .un{font-size:12px;color:var(--mut);margin-top:2px}
+.acts button{flex:1 1 30%}
+</style>
+<style>
+.oh-teams{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.oh-team{background:#fff;border:0;border-radius:10px;padding:10px 12px;text-align:left;color:#1a1a1a;box-shadow:0 2px 6px rgba(0,0,0,.08);cursor:pointer;font:inherit}
+.oh-team.on{background:#000;color:#fff}
+.oh-team b{display:block;font-size:15px}
+.oh-team span{font-size:12px;opacity:.75}
+.oh-filter{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.oh-filter input{grid-column:1/-1}
+.oh-filter select,.oh-filter input{margin:0 0 8px}
+.dv{background:#fff;border-radius:10px;margin:8px 0;padding:10px 12px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:4px solid #B2D235}
+.dv.ins{border-left-color:#1a1a1a;opacity:.85}
+.dv .sn{font:700 17px/1.3 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.5px;overflow-wrap:anywhere}
+.dv .meta{font-size:12px;color:#5b6152;margin-top:2px}
+.dv .tag{display:inline-block;padding:0 8px;border-radius:10px;font-size:11px;font-weight:700;line-height:1.7;margin-left:6px;vertical-align:middle}
+.tag.st{background:#B2D235;color:#1a1a1a}.tag.in{background:#1a1a1a;color:#fff}.tag.tm{background:#f2f4ec;color:#1a1a1a}
+.dv .acts{display:flex;gap:6px;margin-top:8px}.dv .acts button{flex:1;padding:6px 8px;font-size:13px}
+#ohSns{width:100%;min-height:150px;font:600 15px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:10px;border:1.5px solid #1a1a1a;border-radius:10px;margin:4px 0 4px;resize:vertical}
+#ohCount{font-size:12px;color:#5b6152;margin:0 0 12px}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><h1>CMCOOKING SYSTEM</h1></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="onhand.html">On Hand</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
+<main>
+<p id="msg" role="alert"></p>
+<p class="hint" id="cap">กำลังโหลด…</p>
+<div class="oh-teams" id="teams"></div>
+<div class="oh-filter">
+  <select id="fTeamSel" aria-label="ทีม"><option value="">ทุกทีม</option></select>
+  <select id="fStatus" aria-label="สถานะ"><option value="">ทุกสถานะ</option><option value="stock">ในคลัง</option><option value="installed">ติดตั้งแล้ว</option></select>
+  <input id="fQ" placeholder="ค้นหา SN" autocomplete="off" autocapitalize="characters" spellcheck="false">
+</div>
+<div id="list"></div>
+<button id="add" class="fab">+ รับเข้าคลัง</button>
+</main>
+
+<div id="dlg" class="hide" role="dialog" aria-modal="true" aria-labelledby="dlgT">
+  <div class="box">
+    <h2 id="dlgT"></h2>
+    <p id="dlgM"></p>
+    <div id="fTeam"><label for="tm">ทีม (Name)</label><input id="tm" maxlength="30" list="teamList" autocomplete="off"><datalist id="teamList"></datalist></div>
+    <div id="fModel"><label for="md">รุ่น / ประเภท (ไม่บังคับ)</label><input id="md" maxlength="40" autocomplete="off" placeholder="เช่น ONU"></div>
+    <div id="fSns"><label for="ohSns">SN (บรรทัดละ 1 SN · วางหลายบรรทัดได้)</label><textarea id="ohSns" autocapitalize="characters" spellcheck="false"></textarea><p id="ohCount"></p></div>
+    <p id="dlgE" role="alert"></p>
+    <div class="two"><button id="dlgNo" class="ghost">ยกเลิก</button><button id="dlgYes">ตกลง</button></div>
+  </div>
+</div>
+
+<script>
+if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
+const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let token = null, me = null, pending = 0;   // อ่านจาก sessionStorage ของแท็บนี้ (ใช้ร่วมกับหน้าเข้าสู่ระบบ)
+try { token = sessionStorage.getItem('t'); me = JSON.parse(sessionStorage.getItem('u') || 'null'); } catch (e) { token = null; me = null; }
+if (!token || !me || me.role !== 'admin' || me.mustChange) { location.replace('index.html'); throw new Error('no-session'); }   // ต้องเข้าผ่านหน้าเข้าสู่ระบบก่อน
+function say(t, ok){ $('msg').textContent = t || ''; $('msg').className = ok ? 'ok' : ''; }
+function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์
+function endSession(m){ bye(); token = null; me = null; try { sessionStorage.clear(); if (m) sessionStorage.setItem('flash', m); } catch (e) {} location.replace('index.html'); }
+$('out').onclick = () => endSession('');
+function badge(n){ const b = $('apBadge'); if (b) { b.textContent = n; b.classList.toggle('hide', !n); } }
+(function markNav(){ const here = location.pathname.split('/').pop() || 'admin.html'; document.querySelectorAll('nav.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === here)); })();
+async function api(action, data = {}){
+  pending++; $('bar').classList.add('on');
+  try{
+    const r = await fetch(API, {method:'POST', body: JSON.stringify({action, token, ...data})});
+    const j = await r.json();
+    if (j.auth) endSession(j.error);
+    return j;
+  }catch(e){ return {ok:false, error:'เชื่อมต่อไม่ได้ ตรวจสอบสัญญาณแล้วลองใหม่'}; }
+  finally{ if (--pending <= 0) { pending = 0; $('bar').classList.remove('on'); } }
+}
+async function busy(b, txt, fn){
+  const old = b.textContent; b.disabled = true; b.textContent = txt;
+  try{ return await fn(); } finally { b.disabled = false; b.textContent = old; }
+}
+function pendingBadge(){ api('req_list').then(j => { if (j.ok) badge(j.items.length); }); }
+let data = {devices: [], teams: [], userTeams: []}, timer = null;
+async function load(){
+  const j = await api('oh_list', {team: $('fTeamSel').value, status: $('fStatus').value, q: $('fQ').value.trim()});
+  if (!j.ok) { $('list').innerHTML = ''; return say(j.error); }
+  data = j; draw();
+}
+function allTeams(){ return [...new Set([...(data.userTeams || []), ...data.teams.map(t => t.team)])].sort(); }
+function draw(){
+  const tot = data.teams.reduce((a, t) => a + t.stock, 0), ins = data.teams.reduce((a, t) => a + t.installed, 0);
+  $('cap').textContent = 'ในคลังทั้งหมด ' + tot + ' เครื่อง · ติดตั้งแล้ว ' + ins + ' เครื่อง';
+  const cur = $('fTeamSel').value;
+  $('teams').innerHTML = data.teams.map(t => `<button type="button" class="oh-team ${t.team === cur ? 'on' : ''}" data-team="${esc(t.team)}"><b>${esc(t.team)}</b><span>ในคลัง ${t.stock} · ติดตั้ง ${t.installed}</span></button>`).join('');
+  const sel = $('fTeamSel'), keep = sel.value;
+  sel.innerHTML = '<option value="">ทุกทีม</option>' + allTeams().map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
+  sel.value = keep;
+  $('list').innerHTML = data.devices.length ? data.devices.map((d, i) => `<div class="dv ${d.status === 'installed' ? 'ins' : ''}" data-i="${i}">
+      <div><span class="sn">${esc(d.sn)}</span><span class="tag ${d.status === 'stock' ? 'st' : 'in'}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span><span class="tag tm">${esc(d.team)}</span></div>
+      <div class="meta">${d.model ? esc(d.model) + ' · ' : ''}${d.status === 'stock' ? 'รับเข้า ' + esc(d.at) + ' · ' + esc(d.by) : 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')}</div>
+      ${d.status === 'stock' ? '<div class="acts"><button class="ghost" data-a="move">ย้ายทีม</button><button class="del" data-a="del">ลบออกจากคลัง</button></div>' : ''}
+    </div>`).join('') : '<p class="empty">ไม่มีรายการ</p>';
+}
+$('teams').onclick = e => { const b = e.target.closest('[data-team]'); if (!b) return; $('fTeamSel').value = $('fTeamSel').value === b.dataset.team ? '' : b.dataset.team; load(); };
+$('fTeamSel').onchange = load; $('fStatus').onchange = load;
+$('fQ').oninput = () => { clearTimeout(timer); timer = setTimeout(load, 350); };
+
+/* ---------- dialog ---------- */
+let dlgSubmit = null;
+const snLines = () => $('ohSns').value.split(/[\r\n,]+/).map(s => s.trim()).filter(Boolean);
+$('ohSns').oninput = () => { const n = new Set(snLines().map(s => s.toLowerCase())).size; $('ohCount').textContent = n ? n + ' SN' : ''; };
+function closeDlg(){ $('dlg').classList.add('hide'); dlgSubmit = null; }
+function dlg(cfg){
+  $('dlgT').textContent = cfg.title; $('dlgM').textContent = cfg.msg || ''; $('dlgM').classList.toggle('hide', !cfg.msg);
+  ['fTeam','fModel','fSns'].forEach(x => $(x).classList.toggle('hide', !cfg[x]));
+  $('teamList').innerHTML = allTeams().map(t => `<option value="${esc(t)}">`).join('');
+  $('tm').value = cfg.teamVal || ''; $('md').value = ''; $('ohSns').value = ''; $('ohCount').textContent = ''; $('dlgE').textContent = '';
+  const y = $('dlgYes'); y.textContent = cfg.yes; y.className = cfg.danger ? 'del solid' : ''; y.disabled = false; $('dlgNo').classList.remove('hide');
+  $('dlg').classList.remove('hide');
+  (cfg.fTeam ? $('tm') : y).focus();
+  dlgSubmit = async () => {
+    $('dlgE').textContent = ''; y.disabled = true;
+    const j = await cfg.run();
+    y.disabled = false;
+    if (!j.ok) { $('dlgE').textContent = j.error || 'ไม่สำเร็จ'; return; }
+    if (cfg.after) cfg.after(j); else closeDlg();
+    load();
+  };
+}
+$('dlgYes').onclick = () => dlgSubmit && dlgSubmit();
+$('dlgNo').onclick = closeDlg;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('dlg').classList.contains('hide')) closeDlg(); });
+
+$('add').onclick = () => dlg({
+  title: 'รับเข้าคลัง', fTeam: true, fModel: true, fSns: true, teamVal: $('fTeamSel').value, yes: 'รับเข้า',
+  run: () => api('oh_add', {team: $('tm').value.trim(), model: $('md').value.trim(), sns: snLines()}),
+  after: j => {
+    $('dlgT').textContent = 'รับเข้าแล้ว ' + j.added.length + ' SN';
+    $('dlgM').textContent = j.dup.length ? 'มีอยู่แล้ว (ข้าม) ' + j.dup.length + ' SN:\n' + j.dup.join('\n') : 'ไม่มี SN ซ้ำ';
+    $('dlgM').classList.remove('hide'); ['fTeam','fModel','fSns'].forEach(x => $(x).classList.add('hide'));
+    $('dlgNo').classList.add('hide'); $('dlgYes').textContent = 'ปิด'; dlgSubmit = () => closeDlg();
+  }
+});
+$('list').onclick = e => {
+  const b = e.target.closest('button[data-a]'); if (!b) return;
+  const d = data.devices[+b.closest('.dv').dataset.i]; if (!d) return;
+  if (b.dataset.a === 'move') dlg({
+    title: 'ย้ายทีม', msg: 'SN: ' + d.sn + '\nทีมปัจจุบัน: ' + d.team, fTeam: true, yes: 'ย้าย',
+    run: () => api('oh_move', {sn: d.sn, team: $('tm').value.trim()})
+  });
+  if (b.dataset.a === 'del') dlg({
+    title: 'ลบออกจากคลัง?', msg: 'SN: ' + d.sn + ' (' + d.team + ')\nใช้เมื่อรับเข้าผิดเท่านั้น ลบแล้วต้องรับเข้าใหม่', yes: 'ลบ', danger: true,
+    run: () => api('oh_remove', {sn: d.sn})
+  });
+};
+
+load(); pendingBadge();
+</script>
+</body>
+</html>
