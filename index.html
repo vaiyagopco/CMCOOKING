@@ -223,6 +223,9 @@ header.cx{position:sticky;top:0;z-index:20;height:calc(56px + env(safe-area-inse
   border:0;border-bottom:1px solid rgba(0,0,0,.10);box-shadow:0 2px 4px rgba(0,0,0,.06)}
 header.cx .cx-title{display:flex;align-items:center;gap:8px;min-width:0}
 header.cx .cx-gear{width:22px;height:22px;flex:none}
+header.cx .cx-tt{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+header.cx .cx-sub{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;opacity:.7;text-transform:uppercase}
+header.cx .cx-sub:empty{display:none}
 header.cx h1{margin:0;font-size:16px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;white-space:nowrap;text-shadow:none}
 header.cx .cx-btn{position:absolute;top:calc(50% + env(safe-area-inset-top) / 2);transform:translateY(-50%);width:38px;height:38px;margin:0;padding:0;
   display:grid;place-items:center;background:transparent;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px;box-shadow:none;text-decoration:none;cursor:pointer}
@@ -281,6 +284,20 @@ a.btn.go{background:#000;color:#fff}
 #exHint{font-size:12px;margin:4px 0 12px}
 .pn.pnx{font-size:12px;font-weight:500;color:var(--mut);margin:0 0 1px}
 .pn.pnx .dot{width:8px;height:8px}
+@keyframes cxInF{from{opacity:0;left:26px}to{opacity:1;left:0}}
+@keyframes cxInB{from{opacity:0;left:-26px}to{opacity:1;left:0}}
+main > section{position:relative}
+main > section.cx-in-f{animation:cxInF .2s ease-out}
+main > section.cx-in-b{animation:cxInB .2s ease-out}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,16px);z-index:80;max-width:86vw;background:#000;color:#fff;padding:10px 18px;border-radius:22px;font-weight:700;font-size:14px;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px -8px rgba(0,0,0,.6)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#toast.bad{background:#9b0018}
+@keyframes cxFlash{0%{box-shadow:0 0 0 3px #000}100%{box-shadow:0 0 0 0 transparent}}
+.item.flash{animation:cxFlash 1.8s ease-out}
+.snbtn{padding:0;margin:0;background:none;color:#1a1a1a;border:0;text-decoration:underline;text-underline-offset:3px;font-size:15px;font-weight:700}
+.item.ohjob{cursor:pointer}
+.item.ohjob .dt::after{content:"  · เปิดงาน ›";font-weight:700;color:#1a1a1a}
+@media(prefers-reduced-motion:reduce){main > section{animation:none!important}}
 </style>
 </head>
 <body>
@@ -309,7 +326,7 @@ a.btn.go{background:#000;color:#fff}
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
 </svg>
 <div id="bar"></div>
-<header class="cx"><button id="home" class="hide cx-btn l" type="button" aria-label="KITCHEN" title="KITCHEN"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><h1>CMCOOKING SYSTEM</h1></div><button id="out" class="hide cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<header class="cx"><button id="home" class="hide cx-btn l" type="button" aria-label="KITCHEN" title="KITCHEN"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><div class="cx-tt"><h1>CMCOOKING SYSTEM</h1><small class="cx-sub" id="cxSub"></small></div></div><button id="out" class="hide cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
 <main>
 <p id="msg" role="alert"></p>
 
@@ -464,6 +481,7 @@ a.btn.go{background:#000;color:#fff}
 </main>
 
 <div id="dlg" class="hide" role="dialog" aria-modal="true" aria-labelledby="dlgT"><div class="box"><b id="dlgT"><svg class="ic"><use href="#i-warn"/></svg>ยืนยันการลบ</b><p id="dlgM"></p><div class="two"><button id="dlgNo" class="ghost">ยกเลิก</button><button id="dlgYes" class="del solid">ลบถาวร</button></div></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <div id="big" class="hide"><div id="bigBox"></div></div>
 
 <script>
@@ -525,17 +543,79 @@ let PP = [], PPMAP = {}, ppAt = 0, ppBusy = null, legacy = '', fromForm = false;
 const SLOW = 'กำลังเชื่อมต่อ… ครั้งแรกอาจใช้เวลาสักครู่';
 
 const VIEWS = ['vLogin','vHome','vBar','vList','vStart','vForm','vChg','vOh'];
-function view(v){
+/* ---------- นำทาง: ปุ่ม Back ของมือถือ/เบราว์เซอร์ ย้อนทีละหน้า ---------- */
+const NAV_VIEWS = ['vHome','vList','vBar','vOh','vStart','vForm'];
+const TITLES = {vList: 'CM:MENU', vBar: 'Barcode', vOh: 'On Hand', vStart: 'เพิ่มงาน', vChg: 'ตั้งรหัสผ่าน'};
+let NAV = [], navI = -1, navMute = 0, curView = '';
+function show(v, dir){
   VIEWS.forEach(x => $(x).classList.toggle('hide', x !== v));
   $('out').classList.toggle('hide', v === 'vLogin');
   $('home').classList.toggle('hide', !(v === 'vList' || v === 'vBar' || v === 'vOh'));
+  $('cxSub').textContent = v === 'vForm' ? ($('id').value ? 'แก้ไขงาน' : 'เพิ่มงาน') : (TITLES[v] || '');
+  if (dir && v !== curView) { const el = $(v); el.classList.remove('cx-in-f', 'cx-in-b'); void el.offsetWidth; el.classList.add(dir === 'back' ? 'cx-in-b' : 'cx-in-f'); }
+  curView = v;
+}
+/* ฐานของประวัติ = "ทางออก": กด Back มาถึง → ช่างถามออกจากระบบ / Chef กลับหน้าก่อนหน้า (เช่น Admin) */
+function navBase(){ NAV = ['exit']; navI = 0; history.replaceState({cm: 0}, ''); }
+function view(v){
+  if (!NAV_VIEWS.includes(v)) { NAV = []; navI = -1; try { history.replaceState({cm: -1}, ''); } catch (e) {} return show(v); }
+  if (NAV[navI] === v) return show(v);
+  if (navI < 0) navBase();
+  NAV = NAV.slice(0, navI + 1); NAV.push(v); navI++;
+  history.pushState({cm: navI}, ''); show(v, 'fwd');
+}
+function backTo(v){ const j = NAV.lastIndexOf(v, navI - 1); if (j > 0) history.go(j - navI); else view(v); }
+window.addEventListener('popstate', async e => {
+  if (navMute) { navMute--; return; }
+  const s = e.state;
+  if (!s || typeof s.cm !== 'number' || s.cm < 0 || navI < 0 || !token) return;
+  const to = s.cm;
+  if (to < navI && curView === 'vForm' && formDirty()) {          // ออกจากฟอร์มที่ยังไม่บันทึก: กลับไปที่ฟอร์มก่อนแล้วถาม
+    navMute++; history.go(navI - to);
+    if (!(await ask('ข้อมูลที่กรอกไว้จะหายไป', 'ออกโดยไม่บันทึก', 'ออกจากหน้านี้?'))) return;
+    formClean(); formSeq++; history.go(to - navI); return;
+  }
+  if (NAV[to] === 'exit') {
+    if (me && me.role === 'admin') { history.back(); return; }
+    navMute++; history.go(1);
+    if (await ask('ต้องเข้าสู่ระบบใหม่เมื่อกลับมาใช้งาน', 'ออกจากระบบ', 'ออกจากระบบ?')) { bye(); logout(); }
+    return;
+  }
+  const dir = to < navI ? 'back' : 'fwd';
+  navI = to;
+  if (NAV[to]) show(NAV[to], dir);
+});
+
+/* ฟอร์มมีการแก้ไขที่ยังไม่บันทึกหรือไม่ */
+let formSnap0 = '';
+function formSnap(){
+  return JSON.stringify([F.map(k => $(k).value), $('ppSub').value,
+    exRows().map(r => r.dataset.kept || (r.querySelector('.exSub') || {}).value || ''),
+    $('snBox').classList.contains('hide'), $('sn').value, $('snOld').value, $('lineBox').classList.contains('hide')]);
+}
+function formClean(){ formSnap0 = formSnap(); }
+function formDirty(){ return curView === 'vForm' && formSnap() !== formSnap0; }
+
+/* แจ้งผลสั้นๆ + สั่นเบาๆ (Android) */
+function buzz(bad){ try { if (navigator.vibrate) navigator.vibrate(bad ? [30, 50, 30] : 15); } catch (e) {} }
+function toast(t, bad){
+  const el = $('toast'); el.textContent = t; el.className = 'show' + (bad ? ' bad' : '');
+  clearTimeout(toast.t); toast.t = setTimeout(() => { el.className = ''; }, 2400); buzz(bad);
+}
+function flashItem(id){
+  requestAnimationFrame(() => {
+    const el = [...$('items').querySelectorAll('.item')].find(x => x.dataset.id === id);
+    if (!el) return;
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    el.scrollIntoView({block: 'center', behavior: 'smooth'});
+  });
 }
 function say(t){ $('msg').textContent = t || ''; $('lgMsg').textContent = t || ''; }
 function goHome(){
   formSeq++; say(); closeBig();
   $('whoName').textContent = me ? (me.team || me.name) : ''; $('whoRole').textContent = me ? (me.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง') + ' · ' + me.name : '';
   $('toolAdm').classList.toggle('hide', !(me && me.role === 'admin'));
-  view('vHome');
+  if (NAV.lastIndexOf('vHome', navI - 1) > 0) backTo('vHome'); else view('vHome');
 }
 
 async function api(action, data = {}){
@@ -634,7 +714,7 @@ $('cGo').onclick = () => busy($('cGo'), 'กำลังบันทึก…', 
   $('cOld').value = $('cNew').value = $('cNew2').value = '';
   if (!j.ok) return say(j.error);
   me = Object.assign({}, me, {mustChange: false}); sessionStorage.setItem('u', JSON.stringify(me));
-  say('เปลี่ยนรหัสผ่านแล้ว', false); goHome(); loadPP(true);
+  say(); goHome(); loadPP(true); toast('เปลี่ยนรหัสผ่านแล้ว ✓');
 });
 function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์ด้วย
 $('out').onclick = () => { bye(); logout(); };
@@ -681,8 +761,10 @@ function closeBig(){ $('big').classList.add('hide'); $('bigBox').innerHTML = '';
 $('big').onclick = closeBig;
 
 /* ป๊อปอัพยืนยัน (ของเราเอง ไม่ใช้ confirm ของเบราว์เซอร์) */
-function ask(msg, yes){
+const DLG_T = $('dlgT').innerHTML;
+function ask(msg, yes, title){
   return new Promise(res => {
+    $('dlgT').innerHTML = title ? ic('warn') + esc(title) : DLG_T;
     $('dlgM').textContent = msg; $('dlgYes').textContent = yes || 'ลบถาวร'; $('dlg').classList.remove('hide'); $('dlgNo').focus();
     const done = v => { $('dlg').classList.add('hide'); $('dlgYes').onclick = $('dlgNo').onclick = $('dlg').onclick = null; res(v); };
     $('dlgYes').onclick = () => done(true); $('dlgNo').onclick = () => done(false);
@@ -737,7 +819,7 @@ function itemHtml(r){
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('SP', r.sp)}${r.sn ? kv('SN ใหม่', r.sn) : ''}${r.snOld ? kv('SN เก่า', r.snOld) : ''}</dl>
+        <dl class="kv">${kv('SP', r.sp)}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button></dd></div>` : ''}${r.snOld ? kv('SN เก่า', r.snOld) : ''}</dl>
         ${r.note ? `<div class="dtl"><small>Detail</small><p>${esc(r.note)}</p></div>` : ''}
         ${m ? `<a class="btn go" target="_blank" rel="noopener noreferrer" href="${m}">${ic('nav')}นำทาง</a>` : ''}
         <div class="row">
@@ -762,6 +844,7 @@ function draw(){
   }).join('') : '<div class="empty">' + ic('list', 'xl') + '<p>' + (qv() ? 'ไม่พบข้อมูล' : hist ? 'ยังไม่มีข้อมูล' : 'วันนี้ยังไม่มีรายการ<br>กด “+ เพิ่มข้อมูล” หรือ “ดูทั้งหมด”') + '</p></div>';
 }
 
+const _draw = draw; draw = function(){ _draw(); openPending(); };
 function setOpen(el, on){
   el.classList.toggle('open', on);
   el.querySelector('.head button').setAttribute('aria-expanded', on);
@@ -887,7 +970,8 @@ function fillSnSel(cur){
   const isAdm = me && me.role === 'admin';
   sel.length = 0; sel.add(new Option(STOCK.length ? '— เลือก SN จาก On Hand —' : '— ไม่มี SN ในคลัง —', ''));
   if (keep && !STOCK.some(d => d.sn.toLowerCase() === keep.toLowerCase())) sel.add(new Option(keep + ' (SN ปัจจุบันของงานนี้)', keep));
-  STOCK.forEach(d => sel.add(new Option(d.sn + (isAdm ? ' · ' + d.team : '') + (d.model ? ' · ' + d.model : ''), d.sn)));
+  const groups = {}; STOCK.forEach(d => { const k = d.type || '-'; (groups[k] = groups[k] || []).push(d); });
+  Object.keys(groups).sort().forEach(k => { const g = document.createElement('optgroup'); g.label = k + ' (' + groups[k].length + ')'; groups[k].forEach(d => g.appendChild(new Option(d.sn + (isAdm ? ' · ' + d.team : ''), d.sn))); sel.appendChild(g); });
   sel.value = keep || '';
   $('snFrom').textContent = isAdm ? '(On Hand ทุกทีม)' : '(On Hand ' + (me && me.team ? me.team : 'ทีมของคุณ') + ')';
   $('snHint').textContent = STOCK.length ? 'ในคลัง ' + STOCK.length + ' เครื่อง' : 'คลังทีมว่าง แจ้ง Chef ให้รับเครื่องเข้าคลัง';
@@ -897,6 +981,22 @@ $('snAdd').onclick = () => { setSn(true); loadStock(true).then(() => fillSnSel()
 $('snDel').onclick = () => { $('sn').value = ''; $('snOld').value = ''; setSn(false); };
 $('toolOh').onclick = () => { say(); view('vOh'); $('ohQ').value = ''; drawOh(true); };
 $('ohQ').oninput = () => drawOh(false);
+$('ohList').onclick = e => { const it = e.target.closest('.item.ohjob'); if (it) openJob(it.dataset.sn, it.dataset.job); };
+
+/* เปิดงานที่ผูกกับ SN: ค้นหาด้วย SN แล้วกางงานนั้น */
+let pendingOpen = null;
+function openJob(sn, id, replace){
+  pendingOpen = id || ''; hist = false;
+  if (replace) { NAV[navI] = 'vList'; history.replaceState({cm: navI}, '', location.pathname + location.search); show('vList'); }   // เปิดจากลิงก์: Back กลับหน้าที่กดมา
+  else view('vList');
+  $('q').value = sn; load();
+}
+function openPending(){
+  if (pendingOpen === null || !loaded || !qv()) return;
+  const el = [...$('items').querySelectorAll('.item')].find(x => !pendingOpen || x.dataset.id === pendingOpen);
+  pendingOpen = null;
+  if (el) { setOpen(el, true); el.classList.add('flash'); el.scrollIntoView({block: 'center'}); }
+}
 let OH = null;
 async function drawOh(reload){
   if (reload || !OH) { $('ohList').innerHTML = '<p class="empty">กำลังโหลด…</p>'; const j = await api('oh_list', {}); if (!j.ok) { $('ohList').innerHTML = ''; return say(j.error); } OH = j; }
@@ -906,9 +1006,9 @@ async function drawOh(reload){
   $('ohSum').textContent = 'ในคลัง ' + st + ' เครื่อง';
   const q = $('ohQ').value.trim().toLowerCase();
   const list = OH.devices.filter(d => !q || d.sn.toLowerCase().includes(q));
-  $('ohList').innerHTML = list.length ? list.map(d => `<div class="item" style="--pc:${d.status === 'stock' ? '#B2D235' : '#1a1a1a'}"><div class="head"><div class="hl">
+  $('ohList').innerHTML = list.length ? list.map(d => `<div class="item ${d.cid ? 'ohjob' : ''}" data-sn="${esc(d.sn)}" data-job="${esc(d.cid || '')}" style="--pc:${d.status === 'stock' ? '#B2D235' : '#1a1a1a'}"><div class="head"><div class="hl">
       <div class="l1"><b style="font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace">${esc(d.sn)}</b><span class="tag ${d.status === 'stock' ? 'g' : ''}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span></div>
-      <span class="dt">${isAdm ? esc(d.team) + ' · ' : ''}${d.model ? esc(d.model) + ' · ' : ''}${d.status === 'stock' ? 'รับเข้า ' + esc(d.at) : 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')}</span>
+      <span class="dt">${isAdm ? esc(d.team) + ' · ' : ''}${d.type ? esc(d.type) + ' · ' : ''}${d.status === 'stock' ? 'รับเข้า ' + esc(d.at) : 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')}</span>
     </div></div></div>`).join('') : '<p class="empty">ไม่มี SN</p>';
 }
 
@@ -923,6 +1023,7 @@ function fill(r){
   keepSn = r.sn || ''; $('snOld').value = r.snOld || ''; setSn(!!(r.sn || r.snOld)); fillSnSel(keepSn);
   setPain(r); setLine(!!r.drum); sync('drumChips', 'drum');
   setExtra(r.extra || []);
+  formClean();
 }
 
 /* mode: 'new' (มาจากขั้นที่ 1) | 'again' (คัดลอกลูกค้าจากรายการเดิม) | 'edit' (แก้ไขรายการเดิม) */
@@ -941,14 +1042,18 @@ function openForm(mode, id){
 
 $('items').onclick = async e => {
   const b = e.target.closest('[data-a]'); if (!b) return;
-  const el = b.closest('.item'), id = el.dataset.id, r = rows.find(x => x.id === id); if (!r) return;
+  const el = b.closest('.item'), id = el.dataset.id, r = [...rows, ...found, ...(allRows || [])].find(x => x.id === id); if (!r) return;
   if (b.dataset.a === 'tog') return toggle(el);
+  if (b.dataset.a === 'sn') {
+    if (me && me.role === 'admin') { location.href = 'onhand.html#q=' + encodeURIComponent(r.sn); return; }
+    view('vOh'); $('ohQ').value = r.sn; drawOh(true); return;
+  }
   if (b.dataset.a === 'edit') {
     openForm('edit', id); const my = formSeq;
     lock(true); say('กำลังโหลดข้อมูล…');
     const [j] = await Promise.all([api('get', {id}), loadPP()]);
     if (my !== formSeq) return;
-    if (!j.ok) { view('vList'); return say(j.error); }
+    if (!j.ok) { backTo('vList'); return say(j.error); }
     fill(j.rec); lock(false); say();
     return;
   }
@@ -957,7 +1062,7 @@ $('items').onclick = async e => {
     lock(true); say('กำลังโหลดข้อมูล…');
     const [j] = await Promise.all([api('get', {id}), loadPP()]);
     if (my !== formSeq) return;
-    if (!j.ok) { view('vList'); return say(j.error); }
+    if (!j.ok) { backTo('vList'); return say(j.error); }
     const c = j.rec; fill({net: c.net, pin: c.pin, drum: c.drum, sp: c.sp, plate: c.plate}); lock(false); say();
     $('ppMain').focus();
     return;
@@ -967,7 +1072,7 @@ $('items').onclick = async e => {
     if (!ok) return;
     busy(b, 'กำลังส่ง…', async () => {
       const j = await api('req_delete', {id});
-      say(j.ok ? 'ส่งคำขอลบแล้ว รอผู้ดูแลอนุมัติ' : j.error);
+      if (j.ok) toast('ส่งคำขอลบแล้ว รอผู้ดูแลอนุมัติ'); else say(j.error);
     });
     return;
   }
@@ -976,7 +1081,7 @@ $('items').onclick = async e => {
     if (!ok) return;
     busy(b, 'กำลังลบ…', async () => {
       const j = await api('remove', {id});
-      if (j.ok) { const f = x => x.id !== id; rows = rows.filter(f); found = found.filter(f); if (allRows) allRows = allRows.filter(f); draw(); } else say(j.error);
+      if (j.ok) { const f = x => x.id !== id; rows = rows.filter(f); found = found.filter(f); if (allRows) allRows = allRows.filter(f); draw(); toast('ลบแล้ว'); } else say(j.error);
     });
   }
 };
@@ -995,8 +1100,8 @@ function startGo(){
   const n = $('net0').value.trim();
   if (!/^(888|880)\d{7}$/.test(n)) return say('Internet No. ต้องเป็นตัวเลข 10 หลัก ขึ้นต้นด้วย 888 หรือ 880');
   say();
-  if (fromForm) { $('net').value = n; fromForm = false; view('vForm'); return; }     // เปลี่ยนเลขระหว่างกรอก: คงข้อมูลที่กรอกไว้
-  openForm('new'); $('net').value = n; $('ppMain').focus();
+  if (fromForm) { $('net').value = n; fromForm = false; history.back(); return; }     // เปลี่ยนเลขระหว่างกรอก: คงข้อมูลที่กรอกไว้
+  openForm('new'); $('net').value = n; formClean(); $('ppMain').focus();
 }
 $('add').onclick = () => { say(); fromForm = false; $('net0').value = ''; $('net0Hint').textContent = ''; view('vStart'); $('net0').focus(); };
 $('start').onclick = startGo;
@@ -1006,12 +1111,15 @@ $('net0').oninput = () => {
   if (v !== $('net0').value) $('net0').value = v;
   $('net0Hint').textContent = v ? 'กรอกแล้ว ' + v.length + '/10 หลัก' : '';
 };
-$('startNo').onclick = () => { say(); if (fromForm) { fromForm = false; view('vForm'); } else view('vList'); };
+$('startNo').onclick = () => { say(); if (fromForm) { fromForm = false; history.back(); } else backTo('vList'); };
 $('chgNet').onclick = () => {
   fromForm = true; say(); $('net0').value = String($('net').value).replace(/\D/g, '').slice(0, 10); $('net0').oninput();
   view('vStart'); $('net0').focus();
 };
-$('cancel').onclick = () => { formSeq++; say(); view('vList'); };
+$('cancel').onclick = async () => {
+  if (formDirty() && !(await ask('ข้อมูลที่กรอกไว้จะหายไป', 'ออกโดยไม่บันทึก', 'ยกเลิกการแก้ไข?'))) return;
+  formClean(); formSeq++; say(); backTo('vList');
+};
 
 $('gps').onclick = () => {
   if (!navigator.geolocation) return say('เครื่องนี้ไม่รองรับ GPS');
@@ -1047,11 +1155,12 @@ $('save').onclick = () => busy($('save'), 'กำลังบันทึก…'
   if (sub && ex.includes(sub)) return say('ตัวรองเพิ่มเติมซ้ำกับตัวแรก');
   rec.extra = ex;
   const j = await api('save', {rec});
-  if (!j.ok) return say(j.error);
-  upsert(j.item); formSeq++; view('vList'); draw(); window.scrollTo(0, 0);
+  if (!j.ok) { buzz(true); return say(j.error); }
+  formClean(); upsert(j.item); formSeq++; backTo('vList'); draw(); flashItem(j.item.id); toast(rec.id ? 'แก้ไขแล้ว ✓' : 'บันทึกแล้ว ✓');
 });
 
 if (token && me) { if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); } else { goHome(); loadPP(); } } else view('vLogin');
+try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && !me.mustChange && h.get('sn')) openJob(h.get('sn'), h.get('job'), true); } catch (e) {}
 try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
 </script>
 </body>

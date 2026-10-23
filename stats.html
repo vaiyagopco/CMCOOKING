@@ -82,6 +82,9 @@ header.cx{position:sticky;top:0;z-index:20;height:calc(56px + env(safe-area-inse
   border:0;border-bottom:1px solid rgba(0,0,0,.10);box-shadow:0 2px 4px rgba(0,0,0,.06)}
 header.cx .cx-title{display:flex;align-items:center;gap:8px;min-width:0}
 header.cx .cx-gear{width:22px;height:22px;flex:none}
+header.cx .cx-tt{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+header.cx .cx-sub{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;opacity:.7;text-transform:uppercase}
+header.cx .cx-sub:empty{display:none}
 header.cx h1{margin:0;font-size:16px;font-weight:700;letter-spacing:1.5px;color:#1a1a1a;white-space:nowrap;text-shadow:none}
 header.cx .cx-btn{position:absolute;top:calc(50% + env(safe-area-inset-top) / 2);transform:translateY(-50%);width:38px;height:38px;margin:0;padding:0;
   display:grid;place-items:center;background:transparent;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px;box-shadow:none;text-decoration:none;cursor:pointer}
@@ -111,7 +114,9 @@ nav.nav{background:#B2D235;border-bottom:0;padding:12px 16px 4px;justify-content
 nav.nav a{background:#fff;border:0;color:#1a1a1a;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
 nav.nav a.on{background:#000;color:#fff;box-shadow:none}
 .badge{box-shadow:none}
-main{max-width:640px}
+main{max-width:640px;animation:cxFade .22s ease-out}
+@keyframes cxFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){main{animation:none}}
 #msg.ok{color:#1a1a1a}
 .hint,.empty{color:#3d4433}
 input,select{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a;border-radius:10px}
@@ -142,7 +147,7 @@ button:disabled{opacity:.45}
 </head>
 <body>
 <div id="bar"></div>
-<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><h1>CMCOOKING SYSTEM</h1></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><div class="cx-tt"><h1>CMCOOKING SYSTEM</h1><small class="cx-sub" id="cxSub">Stats</small></div></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
 <nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="onhand.html">On Hand</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
 <main>
 <p id="msg" role="alert"></p>
