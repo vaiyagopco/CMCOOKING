@@ -133,6 +133,41 @@ button:disabled{opacity:.45}
 .sw button.on{border-color:#000}
 .pinshow{color:#1a1a1a;border-color:#1a1a1a}
 .days div{background:#1a1a1a}
+
+/* ===== CMCS minimal: one standard for every page ===== */
+body{font-size:15px;line-height:1.45}
+button{min-height:36px;padding:0 12px;font-size:13px;font-weight:600;border-radius:8px;gap:6px;letter-spacing:0;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+button .ic,.mi{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+button.ghost{background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.2)}
+button.del{background:#fff;color:var(--err);border:1px solid rgba(155,0,24,.4)}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+input,select,textarea{font-size:15px;padding:9px 11px;border:1px solid rgba(0,0,0,.3);border-radius:8px;margin:3px 0 12px}
+label{font-size:12px;font-weight:600}
+.fab{min-height:44px;padding:0 18px;border-radius:22px;font-size:14px;gap:6px}
+.tag{font-size:11px;padding:0 7px;line-height:1.6}
+#dlg .box{border-radius:14px;padding:18px}
+#dlg button{min-height:40px;font-size:14px}
+
+main{padding:12px 12px 90px}
+nav.nav{flex-wrap:wrap;justify-content:center;gap:4px;padding:10px 8px 2px}
+nav.nav a{padding:4px 7px;font-size:11.5px;border-radius:8px}
+.oh-team{display:block;min-height:0;padding:10px 12px;text-align:left;font-weight:400}
+.s{flex-wrap:nowrap;gap:5px;padding:7px 10px}
+.sn{min-width:0;font-size:14px}
+.acts{gap:4px}
+.acts button,.acts a{padding:0 8px}
+.u .acts{display:grid;grid-template-columns:repeat(5,1fr)}
+.u .acts button{padding:0 4px}
+.hint{font-size:12px}
+.u,.req,.g,.dv{border-radius:10px}
+.u{padding:10px 12px}
+.u b{font-size:15px}
+.u .un{font-size:11px}
+.acts{gap:6px;margin-top:8px;flex-wrap:wrap}
+.acts button,.acts a{flex:0 0 auto;min-height:30px;padding:0 10px;font-size:12px}
+button.sm{min-height:30px;padding:0 10px;font-size:12px}
+button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
+.fab .mi{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -145,7 +180,7 @@ button:disabled{opacity:.45}
 <section id="vPP">
   <p class="hint" id="cap"></p>
   <div id="list"></div>
-  <button id="add" class="fab">+ เพิ่มหมวกหลัก</button>
+  <button id="add" class="fab"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>หมวกหลัก</button>
 </section>
 </main>
 
@@ -215,14 +250,14 @@ function draw(){
     <div class="gh"><b>${esc(g.main)}</b>
       <button class="ghost mv" data-a="gup" data-g="${gi}" title="เลื่อนหมวกขึ้น" ${gi === 0 ? 'disabled' : ''}>▲</button>
       <button class="ghost mv" data-a="gdn" data-g="${gi}" title="เลื่อนหมวกลง" ${gi === groups.length - 1 ? 'disabled' : ''}>▼</button>
-      <button class="ghost sm" data-a="ren" data-g="${gi}">เปลี่ยนชื่อ</button>
+      <button class="ghost sm" data-a="ren" data-g="${gi}"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>ชื่อ</button>
       <button class="sm" data-a="sub" data-g="${gi}">+ ตัวรอง</button></div>
     ${g.subs.map((i, si) => { const p = items[i]; return `<div class="s ${p.active ? '' : 'off'}">
       <span class="dot" style="background:${HEX.test(p.color) ? p.color : '#8A8F98'}"></span>
       <span class="sn">${esc(p.sub)}${p.active ? '' : '<span class="tag">ปิดใช้งาน</span>'}</span>
       <button class="ghost mv" data-a="up" data-i="${i}" title="เลื่อนขึ้น" ${si === 0 ? 'disabled' : ''}>▲</button>
       <button class="ghost mv" data-a="dn" data-i="${i}" title="เลื่อนลง" ${si === g.subs.length - 1 ? 'disabled' : ''}>▼</button>
-      <button class="ghost sm" data-a="ed" data-i="${i}">แก้ไข</button>
+      <button class="ghost sm" data-a="ed" data-i="${i}"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>แก้ไข</button>
       <button class="${p.active ? 'del' : 'ghost'} sm" data-a="act" data-i="${i}">${p.active ? 'ปิด' : 'เปิด'}</button></div>`; }).join('')}
   </div>`).join('') : '<p class="empty">ยังไม่มี Pain Point · กด “+ เพิ่มหมวกหลัก”</p>';
 }

@@ -298,6 +298,95 @@ main > section.cx-in-b{animation:cxInB .2s ease-out}
 .item.ohjob{cursor:pointer}
 .item.ohjob .dt::after{content:"  · เปิดงาน ›";font-weight:700;color:#1a1a1a}
 @media(prefers-reduced-motion:reduce){main > section{animation:none!important}}
+.hint.sp-fmt{margin:4px 0 6px;font-size:13px;overflow-wrap:anywhere}
+.hint.sp-fmt:empty{min-height:0;margin:0}
+.sp-old{border-left:3px solid #1a1a1a;padding-left:10px;margin:0 0 10px}
+#spOldAdd{margin:0 0 12px}
+
+/* ===== CMCS minimal: one standard for every page ===== */
+body{font-size:15px;line-height:1.45}
+button{min-height:36px;padding:0 12px;font-size:13px;font-weight:600;border-radius:8px;gap:6px;letter-spacing:0;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+button .ic,.mi{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+button.ghost{background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.2)}
+button.del{background:#fff;color:var(--err);border:1px solid rgba(155,0,24,.4)}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+input,select,textarea{font-size:15px;padding:9px 11px;border:1px solid rgba(0,0,0,.3);border-radius:8px;margin:3px 0 12px}
+label{font-size:12px;font-weight:600}
+.fab{min-height:44px;padding:0 18px;border-radius:22px;font-size:14px;gap:6px}
+.tag{font-size:11px;padding:0 7px;line-height:1.6}
+#dlg .box{border-radius:14px;padding:18px}
+#dlg button{min-height:40px;font-size:14px}
+
+main{padding:12px 12px 96px}
+.hint{font-size:12px;margin:2px 0 10px}
+.sticky{margin:-12px -12px 2px;padding:10px 12px 6px}
+.search{border:1px solid rgba(0,0,0,.25);border-radius:10px;padding:0 10px;background:#fff}
+.search input{padding:9px 0;font-size:14px}
+.search .ic{width:17px;height:17px}
+.lbar{margin:6px 0 0}.lbar span{font-size:12px}
+.lbar button{min-height:28px;padding:0 10px;font-size:12px}
+.dh{margin:10px 2px 4px;font-size:11px;letter-spacing:.3px}
+.item{border:0;border-left:4px solid var(--pc,#8A8F98);border-radius:10px;margin:5px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.item.open{outline:0;box-shadow:0 4px 12px rgba(0,0,0,.14)}
+.head{padding:8px 8px 8px 12px;gap:6px}
+.l1{flex-wrap:nowrap;justify-content:space-between;gap:8px}
+.l1 b{font-size:16px;line-height:1.3;letter-spacing:.3px}
+.l1 time{font-size:12px;color:var(--mut);white-space:nowrap;font-variant-numeric:tabular-nums}
+.hl > .pn{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;font-weight:500;line-height:1.35;margin:1px 0 0;color:#1a1a1a}
+.hl > .pn .x,.hl > .pn .tm{color:var(--mut)}
+.dot{width:8px;height:8px;margin-right:6px;vertical-align:1px}
+.dt{font-size:12px}
+.chev{width:28px;height:28px;min-height:0;padding:0;background:transparent!important}
+.chev .ic{width:18px;height:18px}
+.detail{padding:0 12px 10px}
+.kv{gap:6px 12px;margin:8px 0}
+.kv .full{grid-column:1/-1}
+.kv dt{font-size:10px;letter-spacing:.4px}
+.kv dd{font-size:13px}
+.kv dd .pn.pnx{font-size:13px;color:#1a1a1a;margin:0}
+.kv a.lnk{color:#1a1a1a;text-underline-offset:3px}
+.dtl{margin:2px 0 8px;padding:8px 10px;border-left:3px solid #1a1a1a;border-radius:8px}
+.dtl small{display:none}
+.dtl p{margin:0;font-size:14px;font-weight:500;line-height:1.45}
+.meta{font-size:11px;color:var(--mut);margin:0 0 8px}
+.row{gap:6px}
+.row>*{flex:1;min-height:34px;padding:0 4px;font-size:12px}
+.row>[data-a=again]{flex:1}
+.row a.btn.go{margin:0;font-size:12px;font-weight:600;padding:0 4px;border-radius:8px;gap:6px}
+.row a.btn.go .ic{width:16px;height:16px}
+.empty{padding:32px 0;font-size:14px}
+.empty .ic.xl{width:36px;height:36px}
+.fab{right:14px}
+.fab .ic{width:18px;height:18px}
+.fmode{font-size:11px;padding:3px 10px;margin:0 0 10px}
+.fs{padding:12px 12px 2px;margin:0 0 10px;border-radius:12px}
+.fs h3{font-size:11px;margin:0 0 6px;letter-spacing:.6px}
+.fs h3 .ic{width:14px;height:14px}
+#net0{font-size:22px;padding:10px 12px}
+#net{font-size:17px}
+.inrow{display:flex;gap:6px;align-items:flex-start}
+.inrow input,.inrow select{flex:1;min-width:0}
+.inrow > button,#gps,#ppGps{margin:3px 0 0!important;width:42px!important;min-height:41px;padding:0;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+button.big{width:100%;min-height:36px;font-size:13px;padding:0 12px;border-style:dashed;margin:0 0 12px}
+.exadd{min-height:32px;border-style:dashed}
+#exHint{font-size:11px;margin:0 0 10px}
+#chgNet{min-height:30px;font-size:12px;margin:-6px 0 12px;padding:0 10px}
+#lineDel,#snDel,#spOldDel{width:auto;min-height:30px;font-size:12px;margin:-4px 0 12px;padding:0 10px}
+#spNearBtn{width:auto!important;min-height:30px;font-size:12px;margin:-6px 0 10px!important;padding:0 10px}
+.actions{gap:8px;padding:10px 0 calc(8px + env(safe-area-inset-bottom))}
+.actions button{font-size:15px;min-height:46px;padding:0 12px}
+.selrow .dot{width:12px;height:12px;margin:0 0 9px}
+textarea{min-height:88px}
+.chips{margin:-6px 0 12px}
+.chips button{min-height:30px;padding:0 10px;font-size:12px}
+.exrow{padding:8px 8px 0}
+.exdel{width:30px;height:30px;min-height:0}
+#bt{font-size:18px;padding:10px}
+.cx-who{margin:6px 0 16px}.cx-who b{font-size:16px}
+.snbtn{min-height:0;font-size:13px}
+#toast{font-size:13px;padding:8px 14px}
+.sp-name{font-size:20px}
 </style>
 </head>
 <body>
@@ -321,6 +410,7 @@ main > section.cx-in-b{animation:cxInB .2s ease-out}
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 3h7v7M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3l10 18H2zM12 10v5M12 18.5v.01"/></symbol>
   <symbol id="i-chef" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="25" r="9"/><circle cx="32" cy="18" r="11"/><circle cx="43" cy="25" r="9"/><path d="M16 34v14h32V34"/><path d="M16 42h32"/></g></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
@@ -386,19 +476,19 @@ main > section.cx-in-b{animation:cxInB .2s ease-out}
 
 <section id="vList" class="hide">
   <div class="sticky">
-    <label class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ค้นหา Internet No. (เลขเต็ม/4 ตัวท้าย) / Drum / SP / Pain point" aria-label="ค้นหา"></label>
+    <label class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ค้นหา เลข 4 ตัวท้าย · SP · SN · Detail" aria-label="ค้นหา"></label>
     <div class="lbar"><span id="lcap"></span><button id="hist" type="button" class="ghost"></button></div>
   </div>
   <div id="items"></div>
-  <button id="add" class="fab"><svg class="ic"><use href="#i-plus"/></svg>เพิ่มข้อมูล</button>
+  <button id="add" class="fab"><svg class="ic"><use href="#i-plus"/></svg>เพิ่ม</button>
 </section>
 
 <!-- ขั้นที่ 1: กรอก Internet No. แล้วกด "เริ่ม" -->
 <section id="vStart" class="hide">
-  <p class="fmode">เพิ่มรายการใหม่ · ขั้นที่ 1 จาก 2</p>
+  <p class="fmode">งานใหม่ · 1/2</p>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-user"/></svg>Internet No.</h3>
-    <label for="net0">Internet No. <i>*</i> (10 หลัก ขึ้นต้น 888 หรือ 880)</label>
+    <label for="net0">Internet No. <i>*</i> 10 หลัก · 888/880</label>
     <input id="net0" inputmode="numeric" maxlength="10" autocomplete="off">
     <p class="hint" id="net0Hint"></p>
   </div>
@@ -412,7 +502,12 @@ main > section.cx-in-b{animation:cxInB .2s ease-out}
   <div class="fs">
     <h3><svg class="ic"><use href="#i-user"/></svg>Internet No.</h3>
     <input id="net" inputmode="numeric" maxlength="10" autocomplete="off" aria-label="Internet No.">
-    <button id="chgNet" type="button" class="ghost hide">เปลี่ยนเลข Internet No.</button>
+    <button id="chgNet" type="button" class="ghost hide"><svg class="ic"><use href="#i-edit"/></svg>เปลี่ยนเลข</button>
+  </div>
+  <div class="fs">
+    <h3><svg class="ic"><use href="#i-pin"/></svg>Place</h3>
+    <label for="pin">Home Pin</label>
+    <div class="inrow"><input id="pin" inputmode="text" placeholder="lat,lng" autocomplete="off"><button id="gps" type="button" class="ghost" aria-label="พิกัดปัจจุบัน" title="พิกัดปัจจุบัน"><svg class="ic"><use href="#i-gps"/></svg></button></div>
   </div>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-list"/></svg>Pain Point</h3>
@@ -422,48 +517,58 @@ main > section.cx-in-b{animation:cxInB .2s ease-out}
     <div class="selrow"><i class="dot" id="ppDot"></i><select id="ppSub" disabled></select></div>
     <p class="hint" id="ppOld"></p>
     <div id="exBox"></div>
-    <button id="exAdd" type="button" class="ghost exadd"><svg class="ic"><use href="#i-plus"/></svg>เพิ่มตัวรอง (ไม่บังคับ)</button>
-    <p class="hint" id="exHint">ตัวรองเพิ่มเติมไม่นับในสถิติ สถิตินับเฉพาะตัวแรก</p>
+    <button id="exAdd" type="button" class="ghost exadd"><svg class="ic"><use href="#i-plus"/></svg>ตัวรอง</button>
+    <p class="hint" id="exHint">ตัวรองเพิ่มเติมไม่นับในสถิติ</p>
     <p class="hint bad" id="ppMsg"></p>
   </div>
   <div class="fs">
-    <h3><svg class="ic"><use href="#i-bar"/></svg>อุปกรณ์ (เคลม ONU)</h3>
-    <button id="snAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>เพิ่ม SN (เคลม ONU)</button>
-    <div id="snBox" class="hide">
-      <label for="sn">SN เครื่องใหม่ <span id="snFrom"></span></label>
-      <select id="sn"></select>
-      <p class="hint" id="snHint"></p>
-      <label for="snOld">SN เครื่องเก่าที่ถอดออก</label>
-      <input id="snOld" maxlength="40" autocomplete="off" autocapitalize="characters" spellcheck="false">
-      <button id="snDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบข้อมูล SN</button>
+    <h3><svg class="ic"><use href="#i-tree"/></svg>SP &amp; Detail</h3>
+    <label for="sp">SP Code</label><input id="sp" maxlength="60" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="2805_155_00/01_SP011_3291608/3">
+    <p class="hint sp-fmt" id="spFmt"></p>
+    <button id="spOldAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>SP เดิม (ย้าย SP)</button>
+    <div id="spOldBox" class="hide sp-old">
+      <label for="spOld">SP เดิม (ก่อนย้าย)</label><input id="spOld" maxlength="60" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="SP ก่อนเปลี่ยน">
+      <p class="hint sp-fmt" id="spOldFmt"></p>
+      <button id="spOldDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ SP เดิม</button>
     </div>
+    <label for="note">Detail</label>
+    <textarea id="note" rows="4" maxlength="2000"></textarea>
   </div>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-ext"/></svg>Line Type</h3>
-    <button id="lineAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>เพิ่ม Line Type (วัดระยะสาย)</button>
+    <button id="lineAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>Line Type</button>
     <div id="lineBox" class="hide">
-      <label for="drum">Drum No. (Line Type)</label>
+      <label for="drum">Drum No.</label>
       <input id="drum" maxlength="60" autocomplete="off">
       <div class="chips" id="drumChips"></div>
       <button id="lineDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ Line Type</button>
     </div>
   </div>
   <div class="fs">
-    <h3><svg class="ic"><use href="#i-pin"/></svg>Place</h3>
-    <label for="pin">Home Pin (จับพิกัดหรือวาง lat,lng)</label>
-    <input id="pin" inputmode="text" placeholder="13.756331,100.501762" autocomplete="off">
-    <button id="gps" type="button" class="ghost"><svg class="ic"><use href="#i-gps"/></svg>พิกัดปัจจุบัน</button>
+    <h3><svg class="ic"><use href="#i-ruler"/></svg>Range</h3>
+    <div class="grid2"><div><label for="range">ระยะยิงสาย DW (ม.)</label><input id="range" inputmode="numeric" maxlength="4" placeholder="เช่น 120" autocomplete="off"></div>
+    <div><label for="rangeFrom">ยิงจาก</label><select id="rangeFrom"><option value="">—</option><option value="router">เร้าเตอร์</option><option value="sp">SP</option><option value="other">อื่นๆ</option></select></div></div>
   </div>
   <div class="fs">
-    <h3><svg class="ic"><use href="#i-tree"/></svg>SP &amp; Detail</h3>
-    <label for="sp">SP Code (Splitter Alias)</label><input id="sp" maxlength="60" autocomplete="off">
-    <label for="note">Detail (หมายเหตุ)</label>
-    <textarea id="note" rows="6" maxlength="2000"></textarea>
+    <h3><svg class="ic"><use href="#i-pin"/></svg>Pain Point Pin</h3>
+    <label for="ppPin">พิกัดจุดที่เกิดปัญหา</label>
+    <div class="inrow"><input id="ppPin" inputmode="text" placeholder="lat,lng" autocomplete="off"><button id="ppGps" type="button" class="ghost" aria-label="จับพิกัดจุดปัญหา" title="จับพิกัดตรงนี้"><svg class="ic"><use href="#i-gps"/></svg></button></div>
   </div>
   <div class="fs">
-    <h3><svg class="ic"><use href="#i-user"/></svg>ข้อมูลเพิ่มเติม (ไม่บังคับ)</h3>
-    <label for="plate">Name Plate</label>
-    <select id="plate"><option value="">ไม่ระบุ</option><option value="มี">มี</option><option value="ไม่มี">ไม่มี</option></select>
+    <h3><svg class="ic"><use href="#i-bar"/></svg>เคลม ONU</h3>
+    <button id="snAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>มีการเคลม ONU</button>
+    <div id="snBox" class="hide">
+      <label for="sn">SN เครื่องใหม่ <span id="snFrom"></span></label>
+      <select id="sn"></select>
+      <p class="hint" id="snHint"></p>
+      <label for="snOld">SN เครื่องเก่าที่ถอดออก</label>
+      <input id="snOld" maxlength="40" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      <button id="snDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ SN</button>
+    </div>
+  </div>
+  <div class="fs">
+    <h3><svg class="ic"><use href="#i-user"/></svg>Name Plate</h3>
+        <select id="plate"><option value="">ไม่ระบุ</option><option value="มี">มี</option><option value="ไม่มี">ไม่มี</option></select>
   </div>
   <div class="actions"><button id="cancel" class="ghost"><svg class="ic"><use href="#i-x"/></svg>ยกเลิก</button><button id="save"><svg class="ic"><use href="#i-check"/></svg>บันทึก</button></div>
 </section>
@@ -591,7 +696,7 @@ let formSnap0 = '';
 function formSnap(){
   return JSON.stringify([F.map(k => $(k).value), $('ppSub').value,
     exRows().map(r => r.dataset.kept || (r.querySelector('.exSub') || {}).value || ''),
-    $('snBox').classList.contains('hide'), $('sn').value, $('snOld').value, $('lineBox').classList.contains('hide')]);
+    $('snBox').classList.contains('hide'), $('sn').value, $('snOld').value, $('lineBox').classList.contains('hide'), $('spOld').value, $('spOldBox').classList.contains('hide')]);
 }
 function formClean(){ formSnap0 = formSnap(); }
 function formDirty(){ return curView === 'vForm' && formSnap() !== formSnap0; }
@@ -807,24 +912,30 @@ function shown(){
 }
 
 const ic = (n, c) => `<svg class="ic${c ? ' ' + c : ''}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const RANGE_FROM = {router: 'จากเร้าเตอร์', sp: 'จาก SP', other: 'อื่นๆ'};
 function itemHtml(r){
   const m = mapLink(r.pin), d0 = fd(r.at), pc = ppColor(r.pid);
-  const d1 = r.upAt ? 'แก้ไข: ' + ts(r.upAt, d0) + ' · ' + (r.upTeam || r.upBy || '-')
-    : 'บันทึก: ' + String(r.at || '').slice(11, 16) + ' · ' + (r.team || r.by || '-');
+  const p = String(r.pain || ''), cut = p.indexOf(' - '), sub = cut > 0 ? p.slice(cut + 3) : (p || '-');
+  const ex = r.extra || [], who = r.upAt ? (r.upTeam || r.upBy || '') : (r.team || r.by || '');
+  const tm = r.upAt ? '✎ ' + ts(r.upAt, d0) : String(r.at || '').slice(11, 16);
   const canDel = !!me && me.role === 'admin';
-  const kv = (k, v) => `<div><dt>${k}</dt><dd>${esc(v) || '-'}</dd></div>`;
+  const kv = (k, v, c) => v || v === 0 ? `<div${c ? ' class="' + c + '"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>` : '';
+  const pp = r.ppPin ? mapLink(r.ppPin) : '';
+  const rg = r.range !== '' && r.range != null ? r.range + ' ม. · ' + (RANGE_FROM[r.rangeFrom] || '-') : '';
   return `<div class="item" data-id="${esc(r.id)}" style="--pc:${pc}">
       <div class="head" data-a="tog">
-        <div class="hl"><div class="l1"><b>${esc(r.net)}</b></div>${r.pain ? `<span class="pn"><i class="dot"></i>${esc(r.pain)}</span>` : ''}${(r.extra || []).map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}<span class="dt">${esc(d1)}</span></div>
+        <div class="hl"><div class="l1"><b>${esc(r.net)}</b><time>${esc(tm)}</time></div>
+          <div class="pn"><i class="dot"></i>${esc(sub)}${ex.length ? ` <span class="x">+${ex.length}</span>` : ''}${who ? ` <span class="tm">· ${esc(who)}</span>` : ''}</div></div>
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('SP', r.sp)}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button></dd></div>` : ''}${r.snOld ? kv('SN เก่า', r.snOld) : ''}</dl>
-        ${r.note ? `<div class="dtl"><small>Detail</small><p>${esc(r.note)}</p></div>` : ''}
-        ${m ? `<a class="btn go" target="_blank" rel="noopener noreferrer" href="${m}">${ic('nav')}นำทาง</a>` : ''}
+        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button></dd></div>` : ''}${kv('SN เก่า', r.snOld)}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
+        ${r.note ? `<div class="dtl"><p>${esc(r.note)}</p></div>` : ''}
+        <p class="meta">บันทึก ${esc(String(r.at || '').slice(0, 16))} · ${esc(r.team || r.by || '-')}${r.upAt ? ' · แก้ไข ' + esc(ts(r.upAt, d0)) + ' · ' + esc(r.upTeam || r.upBy || '-') : ''}</p>
         <div class="row">
+          ${m ? `<a class="btn go" target="_blank" rel="noopener noreferrer" href="${m}">${ic('nav')}นำทาง</a>` : ''}
           <button class="ghost" data-a="edit">${ic('edit')}แก้ไข</button>
-          <button class="ghost" data-a="again">${ic('plus')}รายการใหม่</button>
+          <button class="ghost" data-a="again">${ic('plus')}งานใหม่</button>
           ${canDel ? `<button class="del" data-a="del" aria-label="ลบ">${ic('trash')}ลบ</button>` : `<button class="ghost" data-a="req" aria-label="ขอลบ">${ic('trash')}ขอลบ</button>`}
         </div>
       </div></div>`;
@@ -835,13 +946,13 @@ function draw(){
   s.list.forEach(r => { const d = fd(r.at); cnt[d] = (cnt[d] || 0) + 1; });
   $('lcap').textContent = s.cap;
   $('hist').classList.toggle('hide', !!qv());
-  $('hist').textContent = hist ? 'เฉพาะวันนี้' : 'ดูทั้งหมด';
+  $('hist').textContent = hist ? 'วันนี้' : 'ทั้งหมด';
   let last = null;
   $('items').innerHTML = s.list.length ? s.list.map(r => {
     const d = fd(r.at); let h = '';
     if (s.grp && d !== last) { last = d; h = `<div class="dh">${esc(d)} · ${cnt[d]} รายการ</div>`; }
     return h + itemHtml(r);
-  }).join('') : '<div class="empty">' + ic('list', 'xl') + '<p>' + (qv() ? 'ไม่พบข้อมูล' : hist ? 'ยังไม่มีข้อมูล' : 'วันนี้ยังไม่มีรายการ<br>กด “+ เพิ่มข้อมูล” หรือ “ดูทั้งหมด”') + '</p></div>';
+  }).join('') : '<div class="empty">' + ic('list', 'xl') + '<p>' + (qv() ? 'ไม่พบข้อมูล' : hist ? 'ยังไม่มีข้อมูล' : 'วันนี้ยังไม่มีรายการ<br>กด “+ เพิ่ม” หรือ “ทั้งหมด”') + '</p></div>';
 }
 
 const _draw = draw; draw = function(){ _draw(); openPending(); };
@@ -856,13 +967,13 @@ function toggle(el){
 }
 
 /* ---------- ฟอร์ม ---------- */
-const F = ['net','pin','drum','sp','plate','note'];
+const F = ['net','pin','drum','sp','plate','note','range','rangeFrom','ppPin'];
 function lock(on){
   F.forEach(k => $(k).disabled = on);
   $('ppMain').disabled = on; $('ppSub').disabled = on || !$('ppMain').value;
   $('lineAdd').disabled = on; $('lineDel').disabled = on; $('chgNet').disabled = on;
-  $('save').disabled = on; $('gps').disabled = on;
-  $('exAdd').disabled = on; ['sn','snOld','snAdd','snDel'].forEach(k => $(k).disabled = on); $('exBox').querySelectorAll('select,button').forEach(el => el.disabled = on);
+  $('save').disabled = on; $('gps').disabled = on; $('ppGps').disabled = on;
+  $('exAdd').disabled = on; ['sn','snOld','snAdd','snDel','spOld','spOldAdd','spOldDel'].forEach(k => $(k).disabled = on); $('exBox').querySelectorAll('select,button').forEach(el => el.disabled = on);
 }
 
 /* Pain Point: หมวกหลัก → ตัวรอง */
@@ -1022,7 +1133,8 @@ function fill(r){
   F.forEach(k => $(k).value = r[k] ?? '');
   keepSn = r.sn || ''; $('snOld').value = r.snOld || ''; setSn(!!(r.sn || r.snOld)); fillSnSel(keepSn);
   setPain(r); setLine(!!r.drum); sync('drumChips', 'drum');
-  setExtra(r.extra || []);
+  setExtra(r.extra || []); spFmtShow();
+  spBase = r.sp || ''; spOldNo = false; $('spOld').value = r.spOld || ''; setSpOld(!!r.spOld); spFmtShow('spOld', 'spOldFmt');
   formClean();
 }
 
@@ -1030,9 +1142,9 @@ function fill(r){
 function openForm(mode, id){
   const p = loadPP(); loadStock(true).then(() => fillSnSel());
   say(); formSeq++; $('id').value = id || '';
-  $('fmode').textContent = mode === 'edit' ? 'แก้ไขรายการเดิม'
-    : mode === 'again' ? 'เพิ่มรายการใหม่ของวันนี้ · ขั้นที่ 2 จาก 2 (คัดข้อมูลลูกค้าจากรายการเดิม ไม่ทับรายการเดิม)'
-    : 'เพิ่มรายการใหม่ · ขั้นที่ 2 จาก 2';
+  $('fmode').textContent = mode === 'edit' ? 'แก้ไขงานเดิม'
+    : mode === 'again' ? 'งานใหม่ · คัดลอกข้อมูลลูกค้า (งานเดิมไม่ถูกทับ)'
+    : 'งานใหม่ · 2/2';
   const isNew = mode !== 'edit';
   $('net').readOnly = isNew; $('net').maxLength = isNew ? 10 : 30;
   $('chgNet').classList.toggle('hide', !isNew);
@@ -1123,7 +1235,7 @@ $('cancel').onclick = async () => {
 
 $('gps').onclick = () => {
   if (!navigator.geolocation) return say('เครื่องนี้ไม่รองรับ GPS');
-  const b = $('gps'), old = b.innerHTML; b.disabled = true; b.textContent = 'กำลังจับพิกัด…'; say();
+  const b = $('gps'), old = b.innerHTML; b.disabled = true; b.textContent = '…'; say();
   navigator.geolocation.getCurrentPosition(p => {
     b.disabled = false; b.innerHTML = old;
     $('pin').value = p.coords.latitude.toFixed(6) + ',' + p.coords.longitude.toFixed(6);
@@ -1140,12 +1252,79 @@ function upsert(item){
   });
 }
 
+/* SP Code มาตรฐาน: [HF/FF]2805_155_00/01_SP011 (SP Alias) _3291608 (SP Code) /3 (พอร์ต) · RET คงรูปเดิม พอร์ตใช้ / */
+function spNorm(v){
+  const s = String(v == null ? '' : v).trim().replace(/\s+/g, ' ');
+  if (!s) return {v: '', k: ''};
+  let m = s.match(/^(?:(HF|FF)\s*[-_]?\s*)?(\d{4})[\s_-]+(\d{1,3})[\s_]+(\d{2})\s*\/\s*(\d{2})[\s_]+SP\s*(\d{1,4})(?:[\s_]+(\d{6,8})\s*(?:[:\/]\s*(\d*))?)?$/i);
+  if (m) {
+    const alias = (m[1] ? m[1].toUpperCase() : '') + m[2] + '_' + m[3].padStart(3, '0') + '_' + m[4] + '/' + m[5] + '_SP' + m[6].padStart(3, '0');
+    return {v: alias + (m[7] ? '_' + m[7] + (m[8] ? '/' + m[8] : '') : ''), k: m[7] ? (m[7].length === 7 ? 'std' : 'len') : 'alias'};
+  }
+  m = s.match(/^RET\s*(\d+)\s*-\s*(\d+)\s*(?:[:\/]\s*(\d*))?$/i);
+  if (m) return {v: 'RET' + m[1] + '-' + m[2] + (m[3] ? '/' + m[3] : ''), k: 'ret'};
+  return {v: s, k: 'other'};
+}
+function spFmtShow(i, h){
+  i = i || 'sp'; h = h || 'spFmt';
+  const raw = $(i).value, r = spNorm(raw), el = $(h);
+  el.className = 'hint sp-fmt'; el.textContent = '';
+  if (!r.k) return;
+  const same = r.v === raw.trim();
+  if (r.k === 'std' || r.k === 'ret') el.textContent = same ? '✓ รูปแบบมาตรฐาน' : 'จะบันทึกเป็น: ' + r.v;
+  else {
+    el.className = 'hint sp-fmt bad';
+    el.textContent = r.k === 'alias' ? '⚠ ยังไม่มี SP Code (เลข 7 หลัก) ต่อท้าย · จะบันทึกเป็น: ' + r.v
+      : r.k === 'len' ? '⚠ SP Code ปกติมี 7 หลัก ตรวจอีกครั้ง · จะบันทึกเป็น: ' + r.v
+      : '⚠ ไม่ใช่รูปแบบมาตรฐาน (บันทึกได้) เช่น 2805_155_00/01_SP011_3291608/3';
+  }
+}
+$('sp').addEventListener('input', () => spFmtShow());
+$('sp').addEventListener('blur', () => { const r = spNorm($('sp').value); if (r.k && r.k !== 'other' && r.v !== $('sp').value) { $('sp').value = r.v; spFmtShow(); } });
+
+/* SP เดิม: เก็บ SP ก่อนย้าย · เปลี่ยน SP จากค่าตอนเปิดฟอร์ม (แก้ไข/รายการใหม่) → ใส่ SP เดิมให้อัตโนมัติ แก้หรือลบได้ */
+let spBase = '', spOldNo = false;
+const spKey = v => spNorm(v).v.toUpperCase();
+function setSpOld(on){
+  $('spOldBox').classList.toggle('hide', !on); $('spOldAdd').classList.toggle('hide', on);
+  document.querySelector('label[for=sp]').textContent = on ? 'SP Code ใหม่' : 'SP Code';
+}
+function spOldAuto(){
+  if (!spBase) return;
+  const a = spKey($('sp').value), b = spKey(spBase), o = spKey($('spOld').value);
+  if (a && a !== b && !o && !spOldNo) { $('spOld').value = spNorm(spBase).v; setSpOld(true); spFmtShow('spOld', 'spOldFmt'); }
+  else if (a === b && o === b) { $('spOld').value = ''; setSpOld(false); spFmtShow('spOld', 'spOldFmt'); }
+}
+$('sp').addEventListener('blur', spOldAuto);
+$('sp').addEventListener('change', spOldAuto);
+$('spOldAdd').onclick = () => { spOldNo = false; setSpOld(true); $('spOld').focus(); };
+$('spOldDel').onclick = () => { $('spOld').value = ''; spFmtShow('spOld', 'spOldFmt'); setSpOld(false); spOldNo = true; };
+$('spOld').addEventListener('input', () => spFmtShow('spOld', 'spOldFmt'));
+$('spOld').addEventListener('blur', () => { const r = spNorm($('spOld').value); if (r.k && r.k !== 'other' && r.v !== $('spOld').value) { $('spOld').value = r.v; spFmtShow('spOld', 'spOldFmt'); } });
+$('range').addEventListener('input', () => { $('range').value = $('range').value.replace(/\D/g, '').slice(0, 4); });
+$('ppGps').onclick = async () => {
+  const b = $('ppGps'), old = b.innerHTML; b.disabled = true; b.textContent = '…'; say();
+  const geo = () => new Promise((res, rej) => {
+    if (!navigator.geolocation) return rej(new Error('เครื่องนี้ไม่รองรับ GPS'));
+    navigator.geolocation.getCurrentPosition(q => res({lat: q.coords.latitude, lng: q.coords.longitude, acc: q.coords.accuracy}),
+      () => rej(new Error('จับพิกัดไม่ได้ เปิด GPS และอนุญาตตำแหน่ง')), {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000});
+  });
+  try { const p = await geo(); $('ppPin').value = p.lat.toFixed(6) + ',' + p.lng.toFixed(6); if (p.acc > 50) say('ความแม่นยำ ±' + Math.round(p.acc) + ' ม. ลองจับใหม่กลางแจ้ง'); }
+  catch (e) { say(e.message); }
+  b.disabled = false; b.innerHTML = old;
+};
 $('save').onclick = () => busy($('save'), 'กำลังบันทึก…', async () => {
-  say();
+  say(); spOldAuto();
   const snOn = !$('snBox').classList.contains('hide');
   const rec = {id: $('id').value, sn: snOn ? $('sn').value : '', snOld: snOn ? $('snOld').value.trim() : ''};
   if (snOn && !rec.sn && !rec.snOld) return say('เลือก SN เครื่องใหม่ หรือกรอก SN เครื่องเก่า หรือกด ลบข้อมูล SN'); F.forEach(k => rec[k] = $(k).value.trim());
   if (!(rec.id ? /^(888|880)\d+$/ : /^(888|880)\d{7}$/).test(rec.net)) return say('Internet No. ต้องเป็นตัวเลข 10 หลัก ขึ้นต้นด้วย 888 หรือ 880');
+  rec.spOld = $('spOldBox').classList.contains('hide') ? '' : $('spOld').value.trim();
+  if (rec.spOld && !rec.sp) return say('กรอก SP ใหม่ด้วย เมื่อมี SP เดิม');
+  if (rec.spOld && spKey(rec.spOld) === spKey(rec.sp)) return say('SP เดิมกับ SP ใหม่เหมือนกัน ถ้าไม่ได้ย้าย SP ให้กด ลบ SP เดิม');
+  if (rec.range && !/^\d{1,4}$/.test(rec.range)) return say('Range ต้องเป็นตัวเลข (เมตร)');
+  if (rec.range && !rec.rangeFrom) return say('เลือกว่ายิงสายจาก เร้าเตอร์ / SP / อื่นๆ');
+  if (!rec.range && rec.rangeFrom) return say('กรอกระยะ Range (เมตร)');
   const sub = $('ppSub').value;
   if (sub) rec.painId = sub;                       // เลือกจากรายการ: เซิร์ฟเวอร์ตรวจและสร้างข้อความ Pain Point เอง
   else if (legacy) rec.pain = legacy;              // รายการเก่า (ข้อความอิสระ / ตัวเลือกที่ถูกปิดแล้ว) แก้ช่องอื่นได้โดยคงค่าเดิม

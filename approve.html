@@ -131,6 +131,41 @@ button:disabled{opacity:.45}
 .sw button.on{border-color:#000}
 .pinshow{color:#1a1a1a;border-color:#1a1a1a}
 .days div{background:#1a1a1a}
+
+/* ===== CMCS minimal: one standard for every page ===== */
+body{font-size:15px;line-height:1.45}
+button{min-height:36px;padding:0 12px;font-size:13px;font-weight:600;border-radius:8px;gap:6px;letter-spacing:0;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+button .ic,.mi{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+button.ghost{background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.2)}
+button.del{background:#fff;color:var(--err);border:1px solid rgba(155,0,24,.4)}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+input,select,textarea{font-size:15px;padding:9px 11px;border:1px solid rgba(0,0,0,.3);border-radius:8px;margin:3px 0 12px}
+label{font-size:12px;font-weight:600}
+.fab{min-height:44px;padding:0 18px;border-radius:22px;font-size:14px;gap:6px}
+.tag{font-size:11px;padding:0 7px;line-height:1.6}
+#dlg .box{border-radius:14px;padding:18px}
+#dlg button{min-height:40px;font-size:14px}
+
+main{padding:12px 12px 90px}
+nav.nav{flex-wrap:wrap;justify-content:center;gap:4px;padding:10px 8px 2px}
+nav.nav a{padding:4px 7px;font-size:11.5px;border-radius:8px}
+.oh-team{display:block;min-height:0;padding:10px 12px;text-align:left;font-weight:400}
+.s{flex-wrap:nowrap;gap:5px;padding:7px 10px}
+.sn{min-width:0;font-size:14px}
+.acts{gap:4px}
+.acts button,.acts a{padding:0 8px}
+.u .acts{display:grid;grid-template-columns:repeat(5,1fr)}
+.u .acts button{padding:0 4px}
+.hint{font-size:12px}
+.u,.req,.g,.dv{border-radius:10px}
+.u{padding:10px 12px}
+.u b{font-size:15px}
+.u .un{font-size:11px}
+.acts{gap:6px;margin-top:8px;flex-wrap:wrap}
+.acts button,.acts a{flex:0 0 auto;min-height:30px;padding:0 10px;font-size:12px}
+button.sm{min-height:30px;padding:0 10px;font-size:12px}
+button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
+.fab .mi{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -190,7 +225,7 @@ function draw(){
       <dl class="kv"><div><dt>SP</dt><dd>${esc(r.sp || '-')}</dd></div><div><dt>ขอโดย</dt><dd>${esc(r.by || '-')}</dd></div><div><dt>เวลาที่ขอ</dt><dd>${esc(r.at || '-')}</dd></div><div><dt>บันทึกโดย</dt><dd>${esc(r.recBy || '-')}</dd></div></dl>
       ${r.note ? `<div class="dtl"><small>Detail</small><p>${esc(r.note)}</p></div>` : ''}
       ${r.gone ? '<p class="warn">รายการนี้ถูกลบไปแล้ว · กดปฏิเสธเพื่อปิดคำขอ</p>' : ''}
-      <div class="row">${r.gone ? '' : '<button class="solid del" data-a="ok">อนุมัติลบ</button>'}<button class="ghost" data-a="no">ปฏิเสธ</button></div>
+      <div class="row">${r.gone ? '' : '<button class="solid del" data-a="ok"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>อนุมัติลบ</button>'}<button class="ghost" data-a="no"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>ปฏิเสธ</button></div>
     </div>`).join('') : '<p class="empty">ไม่มีคำขอรออนุมัติ</p>';
 }
 async function load(){

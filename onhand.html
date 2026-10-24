@@ -162,6 +162,41 @@ button:disabled{opacity:.45}
 .ty-row.off b{opacity:.5;text-decoration:line-through}
 .ty-row button{padding:5px 10px;font-size:12px}
 .ty-add{display:flex;gap:6px;margin-top:10px}.ty-add input{margin:0}.ty-add button{flex:none;padding:0 14px}
+
+/* ===== CMCS minimal: one standard for every page ===== */
+body{font-size:15px;line-height:1.45}
+button{min-height:36px;padding:0 12px;font-size:13px;font-weight:600;border-radius:8px;gap:6px;letter-spacing:0;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+button .ic,.mi{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+button.ghost{background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.2)}
+button.del{background:#fff;color:var(--err);border:1px solid rgba(155,0,24,.4)}
+button.solid.del{background:var(--err);color:#fff;border-color:var(--err)}
+input,select,textarea{font-size:15px;padding:9px 11px;border:1px solid rgba(0,0,0,.3);border-radius:8px;margin:3px 0 12px}
+label{font-size:12px;font-weight:600}
+.fab{min-height:44px;padding:0 18px;border-radius:22px;font-size:14px;gap:6px}
+.tag{font-size:11px;padding:0 7px;line-height:1.6}
+#dlg .box{border-radius:14px;padding:18px}
+#dlg button{min-height:40px;font-size:14px}
+
+main{padding:12px 12px 90px}
+nav.nav{flex-wrap:wrap;justify-content:center;gap:4px;padding:10px 8px 2px}
+nav.nav a{padding:4px 7px;font-size:11.5px;border-radius:8px}
+.oh-team{display:block;min-height:0;padding:10px 12px;text-align:left;font-weight:400}
+.s{flex-wrap:nowrap;gap:5px;padding:7px 10px}
+.sn{min-width:0;font-size:14px}
+.acts{gap:4px}
+.acts button,.acts a{padding:0 8px}
+.u .acts{display:grid;grid-template-columns:repeat(5,1fr)}
+.u .acts button{padding:0 4px}
+.hint{font-size:12px}
+.u,.req,.g,.dv{border-radius:10px}
+.u{padding:10px 12px}
+.u b{font-size:15px}
+.u .un{font-size:11px}
+.acts{gap:6px;margin-top:8px;flex-wrap:wrap}
+.acts button,.acts a{flex:0 0 auto;min-height:30px;padding:0 10px;font-size:12px}
+button.sm{min-height:30px;padding:0 10px;font-size:12px}
+button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
+.fab .mi{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -172,7 +207,7 @@ button:disabled{opacity:.45}
 <p id="msg" role="alert"></p>
 <p class="hint" id="cap">กำลังโหลด…</p>
 <div class="oh-teams" id="teams"></div>
-<div class="oh-bar"><button id="types" class="ghost" type="button">จัดการ Type</button></div>
+<div class="oh-bar"><button id="types" class="ghost" type="button"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Type</button></div>
 <div class="oh-filter">
   <select id="fTeamSel" aria-label="ทีม"><option value="">ทุกทีม</option></select>
   <select id="fType" aria-label="Type"><option value="">ทุก Type</option></select>
@@ -180,7 +215,7 @@ button:disabled{opacity:.45}
   <input id="fQ" placeholder="ค้นหา SN" autocomplete="off" autocapitalize="characters" spellcheck="false">
 </div>
 <div id="list"></div>
-<button id="add" class="fab">+ รับเข้าคลัง</button>
+<button id="add" class="fab"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>รับเข้า</button>
 </main>
 
 <div id="dlg" class="hide" role="dialog" aria-modal="true" aria-labelledby="dlgT">
@@ -247,9 +282,9 @@ function draw(){
     const meta = d.status === 'stock' ? 'รับเข้า ' + esc(d.at) + ' · ' + esc(d.by)
       : d.status === 'installed' ? 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')
       : 'ลบ ' + esc(d.remAt) + ' · ' + esc(d.remBy);
-    const acts = d.status === 'stock' ? '<button class="ghost" data-a="move">ย้ายทีม</button><button class="del" data-a="del">ลบออกจากคลัง</button>'
+    const acts = d.status === 'stock' ? '<button class="ghost" data-a="move"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>ย้ายทีม</button><button class="del" data-a="del"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>ลบ</button>'
       : d.status === 'installed' && d.cid ? `<a class="job" href="index.html#sn=${encodeURIComponent(d.sn)}&job=${encodeURIComponent(d.cid)}">เปิดงาน ${esc(d.net)} →</a>`
-      : d.status === 'removed' ? '<button class="ghost" data-a="restore">กู้คืนเข้าคลัง</button>' : '';
+      : d.status === 'removed' ? '<button class="ghost" data-a="restore"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg>กู้คืน</button>' : '';
     return `<div class="dv ${st[2]}" data-i="${i}">
       <div><span class="sn">${esc(d.sn)}</span><span class="tag ${st[0]}">${st[1]}</span><span class="tag ty">${esc(d.type || '-')}</span><span class="tag tm">${esc(d.team)}</span></div>
       <div class="meta">${meta}</div>
