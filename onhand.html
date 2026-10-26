@@ -197,6 +197,8 @@ nav.nav a{padding:4px 7px;font-size:11.5px;border-radius:8px}
 button.sm{min-height:30px;padding:0 10px;font-size:12px}
 button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
 .fab .mi{width:18px;height:18px}
+
+.dv .acts a.bcl{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:30px;padding:0 10px;border:1px solid rgba(0,0,0,.2);border-radius:8px;background:#fff;color:#1a1a1a;text-decoration:none;font-size:12px;font-weight:600;flex:0 0 auto}
 </style>
 </head>
 <body>
@@ -289,7 +291,7 @@ function draw(){
       <div><span class="sn">${esc(d.sn)}</span><span class="tag ${st[0]}">${st[1]}</span><span class="tag ty">${esc(d.type || '-')}</span><span class="tag tm">${esc(d.team)}</span></div>
       <div class="meta">${meta}</div>
       ${d.status === 'removed' ? `<div class="why">เหตุผล: ${esc(d.reason)}${d.note ? ' · ' + esc(d.note) : ''}</div>` : ''}
-      ${acts ? '<div class="acts">' + acts + '</div>' : ''}
+      <div class="acts"><a class="bcl" href="index.html#bar=${encodeURIComponent(d.sn)}"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5v14M7.5 5v14M11 5v14M15 5v14M18.5 5v14M21 5v14"/></svg>Barcode</a>${acts}</div>
     </div>`;
   }).join('') : '<p class="empty">ไม่มีรายการ</p>';
 }

@@ -387,6 +387,11 @@ textarea{min-height:88px}
 .snbtn{min-height:0;font-size:13px}
 #toast{font-size:13px;padding:8px 14px}
 .sp-name{font-size:20px}
+
+.bcbtn{min-height:0;width:28px;height:26px;padding:0;margin-left:6px;vertical-align:middle;background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.2);border-radius:6px}
+.bcbtn .ic{width:15px;height:15px}
+.l1 .bcbtn{margin-left:auto;flex:none}
+.sno{font-size:13px}
 </style>
 </head>
 <body>
@@ -831,6 +836,12 @@ $('toolList').onclick = () => {
   loadPP().then(() => { if (!$('vList').classList.contains('hide')) draw(); });
 };
 $('toolAdm').onclick = () => { location.href = 'admin.html'; };
+function openBar(sn, replace){
+  say();
+  if (replace) { NAV[navI] = 'vBar'; history.replaceState({cm: navI}, '', location.pathname + location.search); show('vBar'); }   // เปิดจากลิงก์: Back กลับหน้าที่กดมา
+  else view('vBar');
+  $('bt').value = String(sn || '').trim(); updBar(); window.scrollTo(0, 0);
+}
 $('toolBar').onclick = () => { say(); view('vBar'); updBar(); $('bt').focus(); };
 
 /* ---------- เครื่องมือ Barcode ---------- */
@@ -929,7 +940,7 @@ function itemHtml(r){
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button></dd></div>` : ''}${kv('SN เก่า', r.snOld)}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
+        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
         ${r.note ? `<div class="dtl"><p>${esc(r.note)}</p></div>` : ''}
         <p class="meta">บันทึก ${esc(String(r.at || '').slice(0, 16))} · ${esc(r.team || r.by || '-')}${r.upAt ? ' · แก้ไข ' + esc(ts(r.upAt, d0)) + ' · ' + esc(r.upTeam || r.upBy || '-') : ''}</p>
         <div class="row">
@@ -1092,7 +1103,7 @@ $('snAdd').onclick = () => { setSn(true); loadStock(true).then(() => fillSnSel()
 $('snDel').onclick = () => { $('sn').value = ''; $('snOld').value = ''; setSn(false); };
 $('toolOh').onclick = () => { say(); view('vOh'); $('ohQ').value = ''; drawOh(true); };
 $('ohQ').oninput = () => drawOh(false);
-$('ohList').onclick = e => { const it = e.target.closest('.item.ohjob'); if (it) openJob(it.dataset.sn, it.dataset.job); };
+$('ohList').onclick = e => { const bc = e.target.closest('[data-bc]'); if (bc) return openBar(bc.dataset.bc); const it = e.target.closest('.item.ohjob'); if (it) openJob(it.dataset.sn, it.dataset.job); };
 
 /* เปิดงานที่ผูกกับ SN: ค้นหาด้วย SN แล้วกางงานนั้น */
 let pendingOpen = null;
@@ -1118,7 +1129,7 @@ async function drawOh(reload){
   const q = $('ohQ').value.trim().toLowerCase();
   const list = OH.devices.filter(d => !q || d.sn.toLowerCase().includes(q));
   $('ohList').innerHTML = list.length ? list.map(d => `<div class="item ${d.cid ? 'ohjob' : ''}" data-sn="${esc(d.sn)}" data-job="${esc(d.cid || '')}" style="--pc:${d.status === 'stock' ? '#B2D235' : '#1a1a1a'}"><div class="head"><div class="hl">
-      <div class="l1"><b style="font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace">${esc(d.sn)}</b><span class="tag ${d.status === 'stock' ? 'g' : ''}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span></div>
+      <div class="l1"><b style="font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace">${esc(d.sn)}</b><span class="tag ${d.status === 'stock' ? 'g' : ''}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span><button type="button" class="bcbtn" data-bc="${esc(d.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></div>
       <span class="dt">${isAdm ? esc(d.team) + ' · ' : ''}${d.type ? esc(d.type) + ' · ' : ''}${d.status === 'stock' ? 'รับเข้า ' + esc(d.at) : 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')}</span>
     </div></div></div>`).join('') : '<p class="empty">ไม่มี SN</p>';
 }
@@ -1156,6 +1167,7 @@ $('items').onclick = async e => {
   const b = e.target.closest('[data-a]'); if (!b) return;
   const el = b.closest('.item'), id = el.dataset.id, r = [...rows, ...found, ...(allRows || [])].find(x => x.id === id); if (!r) return;
   if (b.dataset.a === 'tog') return toggle(el);
+  if (b.dataset.a === 'bc') return openBar(b.dataset.sn);
   if (b.dataset.a === 'sn') {
     if (me && me.role === 'admin') { location.href = 'onhand.html#q=' + encodeURIComponent(r.sn); return; }
     view('vOh'); $('ohQ').value = r.sn; drawOh(true); return;
@@ -1339,7 +1351,8 @@ $('save').onclick = () => busy($('save'), 'กำลังบันทึก…'
 });
 
 if (token && me) { if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); } else { goHome(); loadPP(); } } else view('vLogin');
-try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && !me.mustChange && h.get('sn')) openJob(h.get('sn'), h.get('job'), true); } catch (e) {}
+try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && !me.mustChange && h.get('sn')) openJob(h.get('sn'), h.get('job'), true);
+  else if (token && me && !me.mustChange && h.get('bar')) openBar(h.get('bar'), true); } catch (e) {}
 try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
 </script>
 </body>
