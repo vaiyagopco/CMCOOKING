@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; img-src https://tile.openstreetmap.org https://server.arcgisonline.com; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#1b2620">
 <meta name="referrer" content="no-referrer">
 <title>CMCOOKINGLIST</title>
@@ -392,6 +392,48 @@ textarea{min-height:88px}
 .bcbtn .ic{width:15px;height:15px}
 .l1 .bcbtn{margin-left:auto;flex:none}
 .sno{font-size:13px}
+
+/* SP Finder v2 */
+.sp-menu{margin:8px auto 10px}
+.sp-note{text-align:center;max-width:320px;margin:4px auto 0}
+.sp-sel{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+.sp-sel select{margin:3px 0 8px;font-size:14px}
+.sp-near{width:100%;margin:0 0 6px}
+.sp-map{position:relative;height:56vh;min-height:300px;border-radius:12px;overflow:hidden;background:#e8ecdf;touch-action:none;user-select:none;-webkit-user-select:none;margin:0 0 10px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.mp-tiles,.mp-pins,.mp-lines{position:absolute;inset:0}
+.mp-tiles img{position:absolute;left:0;top:0;max-width:none;image-rendering:auto;pointer-events:none}
+.mp-tiles img.bad{visibility:hidden}
+.mp-lines{pointer-events:none;overflow:visible}
+.mp-lines line{stroke:#1a1a1a;stroke-width:1.5}
+.mp-lines .mp-dot{fill:#1a1a1a}
+.mp-pin{position:absolute;transform:translate(-50%,-50%);background:#1a1a1a;color:#fff;font:700 11px/1 ui-monospace,Menlo,Consolas,monospace;padding:4px 5px;border-radius:6px;white-space:nowrap;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);cursor:pointer}
+.mp-pin.b{background:#F58220;color:#1a1a1a}
+.mp-pin.sel{background:#B2D235;color:#1a1a1a;border-color:#1a1a1a;z-index:2;transform:translate(-50%,-50%) scale(1.15)}
+.mp-mepos{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#1a73e8;border:2.5px solid #fff;box-shadow:0 0 0 6px rgba(26,115,232,.2)}
+.mp-ctl{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:4px}
+.mp-ctl button,.mp-base,.mp-me{min-height:34px;width:34px;padding:0;background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.25);border-radius:8px;font-size:18px;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.mp-base{position:absolute;left:8px;top:8px;width:auto;padding:0 10px;font-size:12px}
+.mp-me{position:absolute;right:8px;bottom:22px}
+.mp-att{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.8);font-size:10px;padding:1px 5px;color:#333;pointer-events:none}
+.sp-card{padding:12px}
+.sp-name{font:800 18px/1.25 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;overflow-wrap:anywhere}
+.sp-code{font:700 13px ui-monospace,Menlo,Consolas,monospace;background:#f2f4ec;border-radius:8px;padding:8px 10px;margin:8px 0;overflow-wrap:anywhere;user-select:all}
+.sp-card .row,.sp-top .row{margin-top:8px}
+.sp-path{list-style:none;margin:6px 0 4px;padding:0 0 0 14px;border-left:3px solid #1a1a1a}
+.sp-path li{position:relative;padding:0 0 4px 10px}
+.sp-path li::before{content:"";position:absolute;left:-21px;top:5px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid #1a1a1a}
+.sp-path li.me::before{background:#B2D235}
+.sp-path .pt b{font-weight:700}.sp-path .pt small{margin-left:6px;color:var(--mut);font-size:12px}
+.sp-path .cab{font-size:12px;color:var(--mut);padding:2px 0 6px}
+.sp-path .cab b{color:#1a1a1a}
+.kid{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-top:1px solid var(--line);cursor:pointer}
+.kid span{color:var(--mut);font-size:13px;text-align:right}
+.spb-pin{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.spb-pin small{display:block;font-size:11px;color:var(--mut)}
+.spb-pin.off a{color:var(--mut);text-decoration:line-through}
+.spb-act{display:flex;gap:4px;flex:none}
+.spb-act button{min-height:28px;padding:0 8px;font-size:12px}
+#spFixClr{min-height:30px;font-size:12px;margin:0 0 10px}
 </style>
 </head>
 <body>
@@ -457,7 +499,7 @@ textarea{min-height:88px}
   <div class="tools cx-cards">
     <button class="tool cx-card" id="toolList" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1zM8 6H6a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-2M9 12h6M9 16h6"/></svg><b>CM:MENU</b></button>
     <button class="tool cx-card" id="toolBar" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5v14M7.5 5v14M11 5v14M15 5v14M18.5 5v14M21 5v14"/></svg><b>BARCODE</b></button>
-    <a class="tool cx-card" id="toolSp" href="https://sptree.netlify.app/" target="_blank" rel="noopener noreferrer"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.3"/><circle cx="5" cy="19" r="2.3"/><circle cx="19" cy="19" r="2.3"/><path d="M12 7.3V12M12 12l-5.3 5M12 12l5.3 5"/></svg><b>SPTREE</b></a>
+    <button class="tool cx-card" id="toolSp" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.3"/><circle cx="5" cy="19" r="2.3"/><circle cx="19" cy="19" r="2.3"/><path d="M12 7.3V12M12 12l-5.3 5M12 12l5.3 5"/></svg><b>SP FINDER</b></button>
     <button class="tool cx-card" id="toolOh" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></svg><b>ON HAND</b></button>
     <button class="tool cx-card hide" id="toolAdm" type="button"><svg class="cx-ic" viewBox="6 2 36 36" aria-hidden="true"><rect x="8" y="5" width="32" height="21.5" rx="2.5"/><path d="M24 26.5 v6 M17 33.5 h14"/><circle cx="24" cy="15.5" r="4.5"/></svg><b>CHEF</b></button>
   </div>
@@ -478,6 +520,30 @@ textarea{min-height:88px}
   <div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="ohQ" placeholder="ค้นหา SN" autocomplete="off" spellcheck="false"></div>
   <div id="ohList"></div>
 </section>
+
+<section id="vSp" class="hide">
+  <div class="cx-cards sp-menu">
+    <button class="cx-card" id="spGoK" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.3"/><circle cx="5" cy="19" r="2.3"/><circle cx="19" cy="19" r="2.3"/><path d="M12 7.3V12M12 12l-5.3 5M12 12l5.3 5"/></svg><b>SP TREE</b><small>งานกองทุน 08/2023</small></button>
+    <button class="cx-card" id="spGoB" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><b>SP TREE</b><small>Beta · ทีมบันทึก</small></button>
+  </div>
+  <p class="hint sp-note">งานกองทุน = ไฟล์ KMZ อ้างอิง ไม่เปลี่ยน · Beta = SP และพิกัดที่ทีมกรอกในงาน CM:MENU</p>
+</section>
+
+<section id="vSpT" class="hide">
+  <p class="fmode" id="spSrc"></p>
+  <div class="sp-sel">
+    <select id="spL1" aria-label="กลุ่ม"></select>
+    <select id="spL2" aria-label="Site" class="hide"></select>
+    <select id="spL3" aria-label="PON" class="hide"></select>
+    <select id="spL4" aria-label="SP" class="hide"></select>
+  </div>
+  <button id="spNear" class="ghost sp-near" type="button"><svg class="ic"><use href="#i-gps"/></svg>SP ใกล้ฉัน</button>
+  <p class="hint" id="spHint"></p>
+  <div class="sp-map hide" id="spMap"></div>
+  <div id="spPick"></div>
+</section>
+
+<section id="vSpD" class="hide"><div id="spD"></div></section>
 
 <section id="vList" class="hide">
   <div class="sticky">
@@ -530,6 +596,8 @@ textarea{min-height:88px}
     <h3><svg class="ic"><use href="#i-tree"/></svg>SP &amp; Detail</h3>
     <label for="sp">SP Code</label><input id="sp" maxlength="60" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="2805_155_00/01_SP011_3291608/3">
     <p class="hint sp-fmt" id="spFmt"></p>
+    <label for="spPin">พิกัด SP</label>
+    <div class="inrow"><input id="spPin" inputmode="text" placeholder="lat,lng (ยืนที่ SP แล้วกดปุ่ม)" autocomplete="off"><button id="spGps" type="button" class="ghost" aria-label="จับพิกัด SP" title="จับพิกัดตรงนี้"><svg class="ic"><use href="#i-gps"/></svg></button></div>
     <button id="spOldAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>SP เดิม (ย้าย SP)</button>
     <div id="spOldBox" class="hide sp-old">
       <label for="spOld">SP เดิม (ก่อนย้าย)</label><input id="spOld" maxlength="60" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="SP ก่อนเปลี่ยน">
@@ -652,15 +720,15 @@ let rows = [], allRows = null, found = [], hist = false, seq = 0, timer, pending
 let PP = [], PPMAP = {}, ppAt = 0, ppBusy = null, legacy = '', fromForm = false;
 const SLOW = 'กำลังเชื่อมต่อ… ครั้งแรกอาจใช้เวลาสักครู่';
 
-const VIEWS = ['vLogin','vHome','vBar','vList','vStart','vForm','vChg','vOh'];
+const VIEWS = ['vSpD','vSpT','vSp','vLogin','vHome','vBar','vList','vStart','vForm','vChg','vOh'];
 /* ---------- นำทาง: ปุ่ม Back ของมือถือ/เบราว์เซอร์ ย้อนทีละหน้า ---------- */
-const NAV_VIEWS = ['vHome','vList','vBar','vOh','vStart','vForm'];
-const TITLES = {vList: 'CM:MENU', vBar: 'Barcode', vOh: 'On Hand', vStart: 'เพิ่มงาน', vChg: 'ตั้งรหัสผ่าน'};
+const NAV_VIEWS = ['vSpD','vSpT','vSp','vHome','vList','vBar','vOh','vStart','vForm'];
+const TITLES = {vSpD: 'SP TREE', vSpT: 'SP TREE', vSp: 'SP Finder', vList: 'CM:MENU', vBar: 'Barcode', vOh: 'On Hand', vStart: 'เพิ่มงาน', vChg: 'ตั้งรหัสผ่าน'};
 let NAV = [], navI = -1, navMute = 0, curView = '';
 function show(v, dir){
   VIEWS.forEach(x => $(x).classList.toggle('hide', x !== v));
   $('out').classList.toggle('hide', v === 'vLogin');
-  $('home').classList.toggle('hide', !(v === 'vList' || v === 'vBar' || v === 'vOh'));
+  $('home').classList.toggle('hide', !['vSpD', 'vSpT', 'vSp', 'vList', 'vBar', 'vOh'].includes(v));
   $('cxSub').textContent = v === 'vForm' ? ($('id').value ? 'แก้ไขงาน' : 'เพิ่มงาน') : (TITLES[v] || '');
   if (dir && v !== curView) { const el = $(v); el.classList.remove('cx-in-f', 'cx-in-b'); void el.offsetWidth; el.classList.add(dir === 'back' ? 'cx-in-b' : 'cx-in-f'); }
   curView = v;
@@ -940,7 +1008,7 @@ function itemHtml(r){
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
+        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.spPin ? `<div><dt>พิกัด SP</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${mapLink(r.spPin)}">${esc(r.spPin)}</a></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
         ${r.note ? `<div class="dtl"><p>${esc(r.note)}</p></div>` : ''}
         <p class="meta">บันทึก ${esc(String(r.at || '').slice(0, 16))} · ${esc(r.team || r.by || '-')}${r.upAt ? ' · แก้ไข ' + esc(ts(r.upAt, d0)) + ' · ' + esc(r.upTeam || r.upBy || '-') : ''}</p>
         <div class="row">
@@ -978,12 +1046,12 @@ function toggle(el){
 }
 
 /* ---------- ฟอร์ม ---------- */
-const F = ['net','pin','drum','sp','plate','note','range','rangeFrom','ppPin'];
+const F = ['net','pin','drum','sp','plate','note','range','rangeFrom','ppPin','spPin'];
 function lock(on){
   F.forEach(k => $(k).disabled = on);
   $('ppMain').disabled = on; $('ppSub').disabled = on || !$('ppMain').value;
   $('lineAdd').disabled = on; $('lineDel').disabled = on; $('chgNet').disabled = on;
-  $('save').disabled = on; $('gps').disabled = on; $('ppGps').disabled = on;
+  $('save').disabled = on; $('gps').disabled = on; $('ppGps').disabled = on; $('spGps').disabled = on;
   $('exAdd').disabled = on; ['sn','snOld','snAdd','snDel','spOld','spOldAdd','spOldDel'].forEach(k => $(k).disabled = on); $('exBox').querySelectorAll('select,button').forEach(el => el.disabled = on);
 }
 
@@ -1134,6 +1202,253 @@ async function drawOh(reload){
     </div></div></div>`).join('') : '<p class="empty">ไม่มี SN</p>';
 }
 
+/* ---------- แผนที่ (เขียนเอง ไม่โหลดสคริปต์ภายนอก): ภาพแผนที่ OpenStreetMap / ภาพดาวเทียม Esri ---------- */
+function cmMap(el){
+  const TS = 256, MINZ = 5, MAXZ = 19;
+  const BASES = {
+    street: {url: (z, x, y) => 'https://tile.openstreetmap.org/' + z + '/' + x + '/' + y + '.png', att: '© OpenStreetMap'},
+    sat: {url: (z, x, y) => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/' + z + '/' + y + '/' + x, att: 'ภาพ © Esri'},
+  };
+  let base = 'street', z = 16, clat = 15, clng = 104, marks = [], selId = null, meAt = null, pickFn = () => {}, raf = 0;
+  el.innerHTML = '<div class="mp-tiles"></div><svg class="mp-lines"></svg><div class="mp-pins"></div>'
+    + '<div class="mp-ctl"><button type="button" data-z="1" aria-label="ซูมเข้า">+</button><button type="button" data-z="-1" aria-label="ซูมออก">−</button></div>'
+    + '<button type="button" class="mp-base">ดาวเทียม</button><button type="button" class="mp-me" aria-label="ตำแหน่งฉัน"><svg class="ic"><use href="#i-gps"/></svg></button><div class="mp-att"></div>';
+  const tl = el.querySelector('.mp-tiles'), ln = el.querySelector('.mp-lines'), pn = el.querySelector('.mp-pins'), att = el.querySelector('.mp-att');
+  const tcache = new Map();
+  const proj = (lat, lng, zz) => { const s = TS * Math.pow(2, zz), r = Math.sin(lat * Math.PI / 180); return [(lng + 180) / 360 * s, (0.5 - Math.log((1 + r) / (1 - r)) / (4 * Math.PI)) * s]; };
+  const unproj = (x, y, zz) => { const s = TS * Math.pow(2, zz), n = Math.PI - 2 * Math.PI * y / s; return [180 / Math.PI * Math.atan(Math.sinh(n)), x / s * 360 - 180]; };
+  const W = () => el.clientWidth, H = () => el.clientHeight;
+  const toScreen = (lat, lng) => { const [x, y] = proj(lat, lng, z), [cx, cy] = proj(clat, clng, z); return [x - cx + W() / 2, y - cy + H() / 2]; };
+  const toGeo = (sx, sy) => { const [cx, cy] = proj(clat, clng, z); return unproj(cx + sx - W() / 2, cy + sy - H() / 2, z); };
+  function draw(){
+    raf = 0;
+    const w = W(), h = H(); if (!w || !h) return;
+    const tz = Math.max(MINZ, Math.min(MAXZ, Math.round(z))), sc = Math.pow(2, z - tz), ts = TS * sc, n = Math.pow(2, tz);
+    const [px, py] = proj(clat, clng, tz), left = px * sc - w / 2, top = py * sc - h / 2;
+    const used = new Set();
+    for (let x = Math.floor(left / ts); x <= Math.floor((left + w) / ts); x++) for (let y = Math.floor(top / ts); y <= Math.floor((top + h) / ts); y++) {
+      if (y < 0 || y >= n) continue;
+      const k = base + '/' + tz + '/' + x + '/' + y; used.add(k);
+      let im = tcache.get(k);
+      if (!im) {
+        im = document.createElement('img'); im.alt = ''; im.draggable = false; im.decoding = 'async'; im.referrerPolicy = 'strict-origin';
+        im.onerror = () => im.classList.add('bad'); im.src = BASES[base].url(tz, ((x % n) + n) % n, y);
+        tcache.set(k, im); tl.appendChild(im);
+      }
+      im.style.width = im.style.height = (ts + 0.5) + 'px';
+      im.style.transform = 'translate(' + (x * ts - left) + 'px,' + (y * ts - top) + 'px)';
+    }
+    for (const [k, im] of tcache) if (!used.has(k)) { im.remove(); tcache.delete(k); }
+    // หมุด: จุดที่ทับกันบนจอ (ห่างไม่ถึง 18px) กระจายเป็นวง + เส้นชี้ตำแหน่งจริง
+    const pts = marks.map(m => ({m, p: toScreen(m.lat, m.lng)})).filter(o => o.p[0] > -60 && o.p[1] > -60 && o.p[0] < w + 60 && o.p[1] < h + 60);
+    const groups = [];
+    for (const o of pts) { const g = groups.find(g => Math.hypot(g.p[0] - o.p[0], g.p[1] - o.p[1]) < 18); if (g) g.list.push(o); else groups.push({p: o.p, list: [o]}); }
+    let svg = '', html = '';
+    for (const g of groups) {
+      const k = g.list.length, R = k > 1 ? Math.max(26, k * 7) : 0;
+      if (k > 1) svg += '<circle cx="' + g.p[0] + '" cy="' + g.p[1] + '" r="3.5" class="mp-dot"/>';
+      g.list.forEach((o, i) => {
+        const a = -Math.PI / 2 + 2 * Math.PI * i / k, x = g.p[0] + R * Math.cos(a), y = g.p[1] + R * Math.sin(a);
+        if (k > 1) svg += '<line x1="' + g.p[0] + '" y1="' + g.p[1] + '" x2="' + x + '" y2="' + y + '"/>';
+        html += '<div class="mp-pin ' + (o.m.cls || '') + (o.m.id === selId ? ' sel' : '') + '" data-id="' + esc(o.m.id) + '" style="left:' + x + 'px;top:' + y + 'px">' + esc(o.m.label) + '</div>';
+      });
+    }
+    if (meAt) { const p = toScreen(meAt.lat, meAt.lng); html += '<div class="mp-mepos" style="left:' + p[0] + 'px;top:' + p[1] + 'px"></div>'; }
+    ln.setAttribute('width', w); ln.setAttribute('height', h); ln.innerHTML = svg; pn.innerHTML = html;
+    att.textContent = BASES[base].att;
+  }
+  const redraw = () => { if (!raf) raf = requestAnimationFrame(draw); };
+  function zoomAt(nz, sx, sy){
+    nz = Math.max(MINZ, Math.min(MAXZ + 1, nz));
+    const g = toGeo(sx, sy); z = nz;
+    const [gx, gy] = proj(g[0], g[1], z); [clat, clng] = unproj(gx - sx + W() / 2, gy - sy + H() / 2, z); redraw();
+  }
+  // ลาก / หยิก / ล้อเมาส์ / แตะหมุด
+  const ptr = new Map(); let pinch = null, moved = 0, downAt = 0;
+  el.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    el.setPointerCapture(e.pointerId); ptr.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptr.size === 1) { moved = 0; downAt = Date.now(); }
+    if (ptr.size === 2) { const [a, b] = [...ptr.values()], r = el.getBoundingClientRect(); pinch = {d: Math.hypot(a[0] - b[0], a[1] - b[1]), z, mx: (a[0] + b[0]) / 2 - r.left, my: (a[1] + b[1]) / 2 - r.top}; }
+  });
+  el.addEventListener('pointermove', e => {
+    if (!ptr.has(e.pointerId)) return;
+    const old = ptr.get(e.pointerId); ptr.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptr.size === 2 && pinch) { const [a, b] = [...ptr.values()]; zoomAt(pinch.z + Math.log2(Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch.d), pinch.mx, pinch.my); moved = 99; return; }
+    const dx = e.clientX - old[0], dy = e.clientY - old[1]; moved += Math.abs(dx) + Math.abs(dy);
+    const [cx, cy] = proj(clat, clng, z); [clat, clng] = unproj(cx - dx, cy - dy, z); redraw();
+  });
+  const up = e => {
+    if (!ptr.has(e.pointerId)) return;
+    ptr.delete(e.pointerId); if (ptr.size < 2) pinch = null;
+    if (ptr.size === 0 && moved < 8 && Date.now() - downAt < 600) {
+      const hit = document.elementFromPoint(e.clientX, e.clientY), pin = hit && hit.closest('.mp-pin');
+      if (pin) { const m = marks.find(x => x.id === pin.dataset.id); if (m) pickFn(m); }
+    }
+  };
+  el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+  el.addEventListener('wheel', e => { e.preventDefault(); const r = el.getBoundingClientRect(); zoomAt(z - e.deltaY * 0.0025, e.clientX - r.left, e.clientY - r.top); }, {passive: false});
+  el.addEventListener('dblclick', e => { const r = el.getBoundingClientRect(); zoomAt(Math.round(z) + 1, e.clientX - r.left, e.clientY - r.top); });
+  el.querySelector('.mp-ctl').onclick = e => { const b = e.target.closest('[data-z]'); if (b) zoomAt(Math.round(z) + Number(b.dataset.z), W() / 2, H() / 2); };
+  el.querySelector('.mp-base').onclick = e => { base = base === 'street' ? 'sat' : 'street'; e.target.textContent = base === 'street' ? 'ดาวเทียม' : 'แผนที่'; redraw(); };
+  el.querySelector('.mp-me').onclick = () => { if (meAt) api_.setView(meAt.lat, meAt.lng, Math.max(z, 17)); else api_.onMe(); };
+  window.addEventListener('resize', redraw);
+  const api_ = {
+    setView(lat, lng, zz){ clat = lat; clng = lng; if (zz != null) z = zz; redraw(); },
+    fit(list, maxZ){
+      const p = list.filter(m => m.lat != null);
+      if (!p.length) return;
+      let la0 = 90, la1 = -90, lo0 = 180, lo1 = -180;
+      p.forEach(m => { la0 = Math.min(la0, m.lat); la1 = Math.max(la1, m.lat); lo0 = Math.min(lo0, m.lng); lo1 = Math.max(lo1, m.lng); });
+      clat = (la0 + la1) / 2; clng = (lo0 + lo1) / 2;
+      let zz = maxZ || 18;
+      while (zz > MINZ) { const a = proj(la1, lo0, zz), b = proj(la0, lo1, zz); if (b[0] - a[0] < W() - 70 && b[1] - a[1] < H() - 70) break; zz--; }
+      z = zz; redraw();
+    },
+    setMarks(list){ marks = list.filter(m => m.lat != null); redraw(); },
+    select(id){ selId = id; redraw(); },
+    setMe(p){ meAt = p; redraw(); },
+    onPick(fn){ pickFn = fn; },
+    onMe: () => {},
+    redraw,
+    state: () => ({z, lat: clat, lng: clng, base}),
+  };
+  return api_;
+}
+function geoNow(){
+  return new Promise((res, rej) => {
+    if (!navigator.geolocation) return rej(new Error('เครื่องนี้ไม่รองรับ GPS'));
+    navigator.geolocation.getCurrentPosition(p => res({lat: p.coords.latitude, lng: p.coords.longitude, acc: p.coords.accuracy}),
+      () => rej(new Error('จับพิกัดไม่ได้ เปิด GPS และอนุญาตตำแหน่ง')), {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000});
+  });
+}
+
+/* ---------- SP FINDER v2: SP TREE (งานกองทุน 08/2023) / SP TREE (Beta) ---------- */
+const SP_SRC = {k: 'งานกองทุน 08/2023 · ไฟล์อ้างอิง', b: 'Beta · SP ที่ทีมบันทึก'};
+const mdist = m => m == null ? '' : m >= 1000 ? (m / 1000).toFixed(m >= 10000 ? 0 : 1) + ' กม.' : m + ' ม.';
+const navUrl = (la, lo) => 'https://www.google.com/maps/dir/?api=1&destination=' + la + ',' + lo;
+let spSrc = 'k', spMapO = null, spItems = [], spSelId = null, spMe = null, spSeq = 0;
+const spSels = ['spL1', 'spL2', 'spL3', 'spL4'];
+function spMapGet(){
+  if (!spMapO) { spMapO = cmMap($('spMap')); spMapO.onPick(m => spPick(m.id)); spMapO.onMe = () => spNearMe(); }
+  $('spMap').classList.remove('hide'); spMapO.redraw(); return spMapO;
+}
+function spMarks(){
+  return spItems.filter(x => x.lat != null).map(x => ({id: x.id || x.key || x.v, lat: x.lat, lng: x.lng, label: x.name || x.label, cls: spSrc === 'b' ? 'b' : ''}));
+}
+function spOpenTree(src){
+  spSrc = src; spItems = []; spSelId = null; say();
+  view('vSpT'); $('spSrc').textContent = SP_SRC[src];
+  spSels.forEach((s, i) => { $(s).innerHTML = ''; $(s).classList.toggle('hide', i > 0); });
+  $('spHint').textContent = ''; $('spPick').innerHTML = ''; $('spMap').classList.add('hide');
+  if (spMapO) { spMapO.setMarks([]); spMapO.select(null); }
+  spLoad({});
+}
+async function spLoad(q){
+  const my = ++spSeq;
+  const j = await api('sp_tree', {src: spSrc, ...q});
+  if (my !== spSeq) return;
+  if (!j.ok) return say(j.error);
+  const lv = j.level, sel = $(spSels[lv - 1]);
+  const ph = ['— เลือกกลุ่ม —', '— เลือก Site —', '— เลือก PON —', '— เลือก SP —'][lv - 1];
+  sel.innerHTML = '<option value="">' + ph + ' (' + j.items.length + ')</option>' + j.items.map(x => '<option value="' + esc(x.v) + '">' + esc(x.label) + (x.count != null ? ' · ' + x.count : '') + '</option>').join('');
+  sel.classList.remove('hide');
+  for (let i = lv; i < 4; i++) { $(spSels[i]).classList.add('hide'); $(spSels[i]).innerHTML = ''; }
+  if (lv === 4) {
+    spItems = j.items.map(x => ({...x, id: x.id || x.key}));
+    const withLoc = spItems.filter(x => x.lat != null);
+    $('spHint').textContent = spItems.length + ' SP' + (spSrc === 'b' ? ' · มีพิกัด ' + withLoc.length : '') + ' · แตะหมุดหรือเลือกจากรายการ';
+    if (withLoc.length) { const m = spMapGet(); m.setMarks(spMarks()); m.select(null); m.fit(withLoc, 18); } else $('spMap').classList.add('hide');
+    $('spPick').innerHTML = '';
+  }
+}
+function spLevelParams(n){
+  const v = spSels.map(s => $(s).value);
+  return [{}, {d: v[0]}, {d: v[0], site: v[1]}, {d: v[0], site: v[1], pon: v[2]}][n];
+}
+spSels.slice(0, 3).forEach((s, i) => { $(s).onchange = () => {
+  for (let k = i + 1; k < 4; k++) { $(spSels[k]).classList.add('hide'); $(spSels[k]).innerHTML = ''; }
+  $('spPick').innerHTML = '';
+  if ($(s).value) spLoad(spLevelParams(i + 1)); else $('spHint').textContent = '';
+}; });
+$('spL4').onchange = () => { if ($('spL4').value) spPick($('spL4').value, true); };
+function spPick(id, center){
+  const x = spItems.find(i => (i.id || i.key || i.v) === id); if (!x) return;
+  spSelId = id;
+  if (x.lat != null) { const m = spMapGet(); m.select(id); if (center) m.setView(x.lat, x.lng, Math.max(m.state().z, 17)); }
+  const d = spMe && x.lat != null ? Math.round(spDist(spMe.lat, spMe.lng, x.lat, x.lng)) : x.dist;
+  $('spPick').innerHTML = '<div class="fs sp-card"><div class="sp-name">' + esc(x.name || x.label) + '</div>'
+    + '<div class="dt">' + esc(x.code || '') + (x.ratio ? ' · ' + esc(x.ratio) : '') + (x.pon ? ' · PON ' + esc(x.pon) : '') + (d != null ? ' · <b>' + mdist(d) + '</b>' : '') + (x.lat == null ? ' · ยังไม่มีพิกัด' : '') + '</div>'
+    + '<div class="row">' + (x.lat != null ? '<a class="btn go" target="_blank" rel="noopener noreferrer" href="' + navUrl(x.lat, x.lng) + '">' + ic('nav') + 'นำทาง</a>' : '')
+    + '<button type="button" class="ghost" id="spMore">' + ic('list') + 'รายละเอียด</button></div></div>';
+  $('spMore').onclick = () => spDetail(id);
+}
+function spDist(a, b, c, d){ const R = 6371000, t = Math.PI / 180, x = Math.sin((c - a) * t / 2) ** 2 + Math.cos(a * t) * Math.cos(c * t) * Math.sin((d - b) * t / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); }
+async function spNearMe(){
+  say(); $('spHint').textContent = 'กำลังจับพิกัด…'; $('spPick').innerHTML = '';
+  let g; try { g = await geoNow(); } catch (e) { $('spHint').textContent = ''; return say(e.message); }
+  spMe = g;
+  const j = await api('sp_near', {src: spSrc, lat: g.lat, lng: g.lng});
+  if (!j.ok) { $('spHint').textContent = ''; return say(j.error); }
+  spItems = j.items.map(x => ({...x, id: x.id || x.key}));
+  spSels.forEach((s, i) => { if (i > 0) { $(s).classList.add('hide'); $(s).innerHTML = ''; } }); $('spL1').value = '';
+  $('spHint').textContent = spItems.length ? 'SP ในรัศมี 900 ม. · ' + spItems.length + ' จุด · ใกล้สุด ' + mdist(spItems[0].dist) + (g.acc > 50 ? ' · GPS ±' + Math.round(g.acc) + ' ม.' : '') : 'ไม่พบ SP ในรัศมี 900 ม.';
+  const m = spMapGet(); m.setMe(g); m.setMarks(spMarks()); m.select(null); if (spItems.length) m.fit([g, ...spItems.slice(0, 12)], 18); else m.setView(g.lat, g.lng, 16);
+  if (spItems.length) spPick(spItems[0].id);
+}
+$('spNear').onclick = spNearMe;
+$('toolSp').onclick = () => { say(); view('vSp'); };
+$('spGoK').onclick = () => spOpenTree('k');
+$('spGoB').onclick = () => spOpenTree('b');
+
+async function spDetail(id){
+  view('vSpD'); $('spD').innerHTML = '<p class="empty">กำลังโหลด…</p>';
+  const j = await api('sp_get', spSrc === 'b' ? {src: 'b', key: id} : {src: 'k', id});
+  if (!j.ok) { $('spD').innerHTML = ''; return say(j.error); }
+  if (j.src === 'b') return spDetailB(j);
+  const n = j.node;
+  const step = (s, last) => '<li class="' + (last ? 'me' : '') + '"><div class="pt"><b>' + esc(s.name) + '</b><small>' + esc(s.kind === 'SP' || s.kind === 'FT' ? (s.pon ? 'PON ' + s.pon : '') : s.kind) + '</small></div>'
+    + (!last ? '<div class="cab">' + (s.lenToNext ? '<b>' + mdist(Math.round(s.lenToNext)) + '</b> ' : '') + esc(s.cableToNext === 'จุดเดียวกัน' ? 'อยู่จุดเดียวกัน' : s.cableToNext || '') + '</div>' : '') + '</li>';
+  $('spD').innerHTML = '<div class="fs sp-top"><div class="sp-name">' + esc(n.name) + '</div>'
+    + '<div class="dt">' + esc(n.siteCode) + ' ' + esc((n.siteName || '').replace(/^FTTx\s*/i, '')) + (n.pon ? ' · PON ' + esc(n.pon) : '') + (n.ratio ? ' · ' + esc(n.ratio) : '') + '</div>'
+    + '<div class="sp-code" id="spCode">' + esc(n.code) + '</div>'
+    + '<div class="row"><a class="btn go" target="_blank" rel="noopener noreferrer" href="' + navUrl(n.lat, n.lng) + '">' + ic('nav') + 'นำทาง</a><button type="button" class="ghost" id="spCopy">' + ic('list') + 'คัดลอกรหัส</button></div>'
+    + '<p class="meta">' + n.lat.toFixed(6) + ',' + n.lng.toFixed(6) + (n.note ? ' · ' + esc(n.note) : '') + '</p></div>'
+    + '<div class="fs"><h3>' + ic('tree') + 'เส้นทางสาย' + (j.totalLen ? ' · รวม ' + mdist(j.totalLen) : '') + '</h3>'
+    + (j.path.length ? '<ol class="sp-path">' + j.path.map(s => step(s, false)).join('') + step(n, true) + '</ol>' + (j.rootFound ? '' : '<p class="hint bad">ไฟล์ไม่มีเส้นต่อถึงต้นทางของจุดนี้ แสดงเท่าที่ต่อได้</p>') : '<p class="hint">ไฟล์ไม่มีเส้นสายที่ต่อมาถึงจุดนี้</p>') + '</div>'
+    + (j.kids.length ? '<div class="fs"><h3>' + ic('arrow') + 'ต่อไปยัง (' + j.kids.length + ')</h3>' + j.kids.map(k => '<div class="kid" data-id="' + esc(k.id) + '"><b>' + esc(k.name) + '</b><span>' + (k.plen ? mdist(Math.round(k.plen)) : 'จุดเดียวกัน') + ' ›</span></div>').join('') + '</div>' : '');
+  $('spCopy').onclick = async () => { try { await navigator.clipboard.writeText(n.code); toast('คัดลอก ' + n.code); } catch (e) { say('คัดลอกไม่ได้ กดค้างที่รหัสเพื่อคัดลอก'); } };
+}
+function spDetailB(j){
+  const n = j.node, adm = !!me && me.role === 'admin', loc = n.loc;
+  $('spD').innerHTML = '<div class="fs sp-top"><div class="sp-name">' + esc(n.name) + '</div>'
+    + '<div class="dt">' + (n.codes.length ? 'SP Code ' + n.codes.map(esc).join(', ') + ' · ' : '') + 'จากงาน ' + n.jobs + ' งาน</div>'
+    + (loc ? '<p class="meta">ตำแหน่ง ' + loc.lat.toFixed(6) + ',' + loc.lng.toFixed(6) + ' · ' + (loc.from === 'fix' ? 'Chef ตั้ง (' + esc(n.fix.by) + ' ' + esc(n.fix.at) + ')' : 'ค่าล่าสุดจากงาน') + '</p>'
+      + '<div class="row"><a class="btn go" target="_blank" rel="noopener noreferrer" href="' + navUrl(loc.lat, loc.lng) + '">' + ic('nav') + 'นำทาง</a></div>' : '<p class="hint bad">ยังไม่มีพิกัด · กรอก "พิกัด SP" ในงานที่ใช้ SP นี้</p>')
+    + '</div>'
+    + '<div class="fs"><h3>' + ic('pin') + 'พิกัดที่บันทึก (' + j.pins.length + ')</h3>'
+    + (j.pins.length ? j.pins.map((p, i) => '<div class="spb-pin' + (p.hidden ? ' off' : '') + '"><div><a class="lnk" target="_blank" rel="noopener noreferrer" href="' + navUrl(p.lat, p.lng) + '">' + p.lat.toFixed(6) + ',' + p.lng.toFixed(6) + '</a>'
+      + '<small>' + esc(p.at) + ' · ' + esc(p.team) + (p.dist != null && !p.hidden ? ' · ห่าง ' + mdist(p.dist) : '') + (p.hidden ? ' · ซ่อนแล้ว' : i === 0 && loc && loc.from === 'job' ? ' · ใช้อยู่' : '') + '</small></div>'
+      + (adm ? '<div class="spb-act"><button type="button" class="ghost" data-fix="' + p.lat + ',' + p.lng + '">ใช้ค่านี้</button><button type="button" class="' + (p.hidden ? 'ghost' : 'del') + '" data-hide="' + esc(p.cid) + '" data-on="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? 'แสดง' : 'ซ่อน') + '</button></div>' : '') + '</div>').join('')
+      : '<p class="hint">ยังไม่มีงานที่กรอกพิกัด SP</p>') + '</div>'
+    + (adm ? '<div class="fs"><h3>' + ic('edit') + 'Chef ตั้งพิกัด SP นี้</h3><div class="inrow"><input id="spFixIn" placeholder="lat,lng" value="' + (n.fix ? n.fix.lat + ',' + n.fix.lng : '') + '"><button type="button" id="spFixGo" aria-label="บันทึก">' + ic('check') + '</button></div>'
+      + (n.fix ? '<button type="button" class="ghost" id="spFixClr">ยกเลิกพิกัดที่ Chef ตั้ง</button>' : '') + '<p class="hint">พิกัดที่ Chef ตั้งใช้แทนค่าจากงาน</p></div>' : '');
+  const re = r => { if (!r.ok) return say(r.error); toast('บันทึกแล้ว ✓'); spDetailB(r); };
+  $('spD').querySelectorAll('[data-hide]').forEach(b => b.onclick = () => busy(b, '…', async () => re(await api('sp_hide', {cid: b.dataset.hide, hide: b.dataset.on === '1'}))));
+  $('spD').querySelectorAll('[data-fix]').forEach(b => b.onclick = () => busy(b, '…', async () => re(await api('sp_fix', {key: n.key, pin: b.dataset.fix}))));
+  if ($('spFixGo')) $('spFixGo').onclick = () => busy($('spFixGo'), '…', async () => re(await api('sp_fix', {key: n.key, pin: $('spFixIn').value.trim()})));
+  if ($('spFixClr')) $('spFixClr').onclick = () => busy($('spFixClr'), '…', async () => re(await api('sp_fix', {key: n.key, clear: true})));
+}
+$('spD').onclick = e => { const k = e.target.closest('.kid[data-id]'); if (k) spDetail(k.dataset.id); };
+
+/* ฟอร์ม CM: พิกัด SP (กรอก/วาง หรือจับ GPS ตอนยืนที่ SP) */
+$('spGps').onclick = async () => {
+  const b = $('spGps'), old = b.innerHTML; b.disabled = true; b.textContent = '…'; say();
+  try { const p = await geoNow(); $('spPin').value = p.lat.toFixed(6) + ',' + p.lng.toFixed(6); if (p.acc > 50) say('ความแม่นยำ ±' + Math.round(p.acc) + ' ม. ลองจับใหม่กลางแจ้ง'); }
+  catch (e) { say(e.message); }
+  b.disabled = false; b.innerHTML = old;
+};
+
 /* Line Type: ปุ่มเพิ่ม → แสดงช่อง Drum No. (เก็บรูปแบบเดิม) */
 function setLine(on){ $('lineBox').classList.toggle('hide', !on); $('lineAdd').classList.toggle('hide', on); }
 $('lineAdd').onclick = () => { setLine(true); $('drum').focus(); };
@@ -1187,7 +1502,7 @@ $('items').onclick = async e => {
     const [j] = await Promise.all([api('get', {id}), loadPP()]);
     if (my !== formSeq) return;
     if (!j.ok) { backTo('vList'); return say(j.error); }
-    const c = j.rec; fill({net: c.net, pin: c.pin, drum: c.drum, sp: c.sp, plate: c.plate}); lock(false); say();
+    const c = j.rec; fill({net: c.net, pin: c.pin, drum: c.drum, sp: c.sp, plate: c.plate, spPin: c.spPin}); lock(false); say();
     $('ppMain').focus();
     return;
   }
