@@ -434,6 +434,17 @@ textarea{min-height:88px}
 .spb-act{display:flex;gap:4px;flex:none}
 .spb-act button{min-height:28px;padding:0 8px;font-size:12px}
 #spFixClr{min-height:30px;font-size:12px;margin:0 0 10px}
+
+.bt-acts{margin:12px 0}
+.bt-acts button,#btBig{min-height:46px;margin:0;padding:0 12px;font-size:15px;border-style:solid;width:100%}
+.bt-list h3 span{color:var(--mut);font-weight:600}
+.bt-grp{font-size:11px;font-weight:700;color:var(--mut);margin:6px 0 4px;letter-spacing:.3px}
+.bt-chips{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 8px}
+.bt-chips button{min-height:40px;padding:4px 8px;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;text-align:left}
+.bt-chips button b{font:700 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;overflow-wrap:anywhere}
+.bt-chips button small{font-size:10px;color:var(--mut);font-weight:600}
+.bt-chips button.on{background:#000;color:#fff;border-color:#000}
+.bt-chips button.on small{color:#ddd}
 </style>
 </head>
 <body>
@@ -512,7 +523,8 @@ textarea{min-height:88px}
     <div class="bc" id="btPrev" title="แตะเพื่อขยาย"></div>
     <p class="hint" id="btMsg"></p>
   </div>
-  <div class="two" style="margin-top:12px"><button id="btBig" class="ghost" disabled><svg class="ic"><use href="#i-zoom"/></svg>Zoom</button><button id="btDl" class="big" disabled><svg class="ic"><use href="#i-dl"/></svg>Save to PNG</button></div>
+  <div class="two bt-acts"><button id="btBig" class="ghost" disabled><svg class="ic"><use href="#i-zoom"/></svg>Zoom</button><button id="btDl" disabled><svg class="ic"><use href="#i-dl"/></svg>Save to PNG</button></div>
+  <div class="fs bt-list"><h3><svg class="ic"><use href="#i-bar"/></svg>SN ในคลัง <span id="btCnt"></span></h3><div id="btList"><p class="hint">กำลังโหลด…</p></div></div>
 </section>
 
 <section id="vOh" class="hide">
@@ -908,9 +920,22 @@ function openBar(sn, replace){
   say();
   if (replace) { NAV[navI] = 'vBar'; history.replaceState({cm: navI}, '', location.pathname + location.search); show('vBar'); }   // เปิดจากลิงก์: Back กลับหน้าที่กดมา
   else view('vBar');
-  $('bt').value = String(sn || '').trim(); updBar(); window.scrollTo(0, 0);
+  $('bt').value = String(sn || '').trim(); updBar(); drawBtList(); window.scrollTo(0, 0);
 }
-$('toolBar').onclick = () => { say(); view('vBar'); updBar(); $('bt').focus(); };
+/* รายการ SN ในคลัง: แตะเพื่อสร้างบาร์โค้ดทันที */
+function drawBtList(){
+  const isAdm = me && me.role === 'admin', cur = $('bt').value.trim().toLowerCase();
+  const paint = () => {
+    $('btCnt').textContent = STOCK.length ? '· ' + STOCK.length : '';
+    if (!STOCK.length) { $('btList').innerHTML = '<p class="hint">ไม่มี SN ในคลัง' + (isAdm ? '' : 'ของทีม') + '</p>'; return; }
+    const groups = {}; STOCK.forEach(d => { const k = d.type || '-'; (groups[k] = groups[k] || []).push(d); });
+    $('btList').innerHTML = Object.keys(groups).sort().map(k => '<div class="bt-grp">' + esc(k) + ' · ' + groups[k].length + '</div><div class="bt-chips">'
+      + groups[k].map(d => '<button type="button" class="ghost' + (d.sn.toLowerCase() === cur ? ' on' : '') + '" data-sn="' + esc(d.sn) + '"><b>' + esc(d.sn) + '</b>' + (isAdm ? '<small>' + esc(d.team) + '</small>' : '') + '</button>').join('') + '</div>').join('');
+  };
+  paint(); loadStock(true).then(paint);
+}
+$('btList').onclick = e => { const b = e.target.closest('[data-sn]'); if (!b) return; $('bt').value = b.dataset.sn; updBar(); drawBtList(); window.scrollTo({top: 0, behavior: 'smooth'}); };
+$('toolBar').onclick = () => { say(); view('vBar'); updBar(); drawBtList(); };
 
 /* ---------- เครื่องมือ Barcode ---------- */
 const BT_RE = /^[ -~]{1,80}$/;
@@ -924,7 +949,7 @@ function updBar(){
   btMsg(''); $('btPrev').innerHTML = barcodeSvg(t); curText = t; $('btBig').disabled = false;
   pngBlob(t, b => { if (my === btSeq && b) { curBlob = b; $('btDl').disabled = false; } });
 }
-$('bt').oninput = updBar;
+$('bt').oninput = () => { updBar(); $('btList').querySelectorAll('[data-sn]').forEach(b => b.classList.toggle('on', b.dataset.sn.toLowerCase() === $('bt').value.trim().toLowerCase())); };
 $('btPrev').onclick = () => { if (curText) showBig(curText); };
 $('btBig').onclick = () => { if (curText) showBig(curText); };
 $('btDl').onclick = () => {
