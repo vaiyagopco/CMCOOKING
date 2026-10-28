@@ -167,11 +167,19 @@ nav.nav a{padding:4px 7px;font-size:11.5px;border-radius:8px}
 button.sm{min-height:30px;padding:0 10px;font-size:12px}
 button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
 .fab .mi{width:18px;height:18px}
+
+/* brand: CMCOOKING + role */
+header.cx h1,#vLogin .lg-head h1{font-weight:800;letter-spacing:2px;display:flex;align-items:center;gap:7px}
+header.cx h1{font-size:18px}
+.cx-role{font-size:10px;font-weight:800;letter-spacing:1px;background:#000;color:#fff;border-radius:6px;padding:2px 6px;line-height:1.35}
+.cx-role:empty{display:none}
+header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
+.cx-fly{position:fixed;z-index:200;pointer-events:none;fill:none;stroke:#1a1a1a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><div class="cx-tt"><h1>CMCOOKING SYSTEM</h1><small class="cx-sub" id="cxSub">Users</small></div></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><div class="cx-tt"><h1>CMCOOKING<span class="cx-role"></span></h1><small class="cx-sub" id="cxSub">Users</small></div></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
 <nav class="nav" aria-label="เมนูผู้ดูแล"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="onhand.html">On Hand</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
 <main>
 <p id="msg" role="alert"></p>
@@ -188,7 +196,7 @@ button.mv{min-height:30px;width:30px;padding:0;font-size:11px}
     <h2 id="dlgT"></h2>
     <p id="dlgM"></p>
     <div id="fTeam"><label for="tm">Name (ชื่อทีม 1-30 ตัว · หลายคนใช้ทีมเดียวกันได้)</label><input id="tm" maxlength="30" list="teams" autocomplete="off"><datalist id="teams"></datalist></div>
-    <div id="fName"><label for="nm">Username (ใช้เข้าระบบ 2-20 ตัว: ตัวอักษร ตัวเลข . _ -)</label><input id="nm" maxlength="20" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"></div>
+    <div id="fName"><label for="nm">CODE (ใช้เข้าระบบ 2-20 ตัว: ตัวอักษร ตัวเลข . _ -)</label><input id="nm" maxlength="20" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"></div>
     <div id="fPin"><label for="pn">รหัสผ่าน (อย่างน้อย 8 ตัว)</label>
       <div class="pinrow"><input id="pn" maxlength="30" autocomplete="off"><button id="rnd" type="button" class="ghost">สุ่ม</button></div></div>
     <div id="fRole"><label for="rl">สิทธิ์</label><select id="rl"><option value="tech">ช่าง (tech)</option><option value="admin">ผู้ดูแล (admin)</option></select></div>
@@ -238,15 +246,15 @@ async function load(){
 
 function draw(){
   const on = users.filter(u => u.active).length;
-  $('cap').textContent = 'ผู้ใช้ทั้งหมด ' + users.length + ' คน · ใช้งานอยู่ ' + on + ' คน · เข้าสู่ระบบเป็น ' + me.name;
+  $('cap').textContent = 'ผู้ใช้ทั้งหมด ' + users.length + ' คน · ใช้งานอยู่ ' + on + ' คน · เข้าสู่ระบบเป็น ' + (me.team || '-');
   $('list').innerHTML = users.length ? users.map((u, i) => {
     const self = u.name.toLowerCase() === me.name.toLowerCase();
     return `<div class="u ${u.active ? '' : 'off'}" data-i="${i}">
       <b>${esc(u.team || '(ยังไม่มี Name)')}</b><span class="tag ${u.role === 'admin' ? '' : 't'}">${u.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง'}</span>${u.active ? '' : '<span class="tag x">ปิดใช้งาน</span>'}${self ? '<span class="tag t">คุณ</span>' : ''}
-      <div class="un">Username: ${esc(u.name)}</div>
+      <div class="un">CODE: ${esc(u.name)}</div>
       <div class="acts">
         <button class="ghost" data-a="team"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Name</button>
-        <button class="ghost" data-a="uname"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>User</button>
+        <button class="ghost" data-a="uname"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>CODE</button>
         <button class="ghost" data-a="pin"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2L20 3M16 7l3 3M14 9l2 2"/></svg>รหัส</button>
         <button class="ghost" data-a="role"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>สิทธิ์</button>
         ${self ? '' : `<button class="${u.active ? 'del' : 'ghost'}" data-a="act">${u.active ? '<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>ปิด' : '<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>เปิด'}</button>`}
@@ -280,7 +288,7 @@ function dlg(cfg){
     const j = await cfg.run(v);
     y.disabled = false; y.textContent = old;
     if (!j.ok) { $('dlgE').textContent = j.error || 'ไม่สำเร็จ'; return; }
-    if (j.relogin) { endSession('เปลี่ยน Username แล้ว เข้าระบบใหม่ด้วย ' + j.newName); return; }
+    if (j.relogin) { endSession('เปลี่ยน CODE แล้ว เข้าระบบใหม่ด้วย ' + j.newName); return; }
     users = j.users; draw();
     if (cfg.showPin) {      /* แสดงรหัสครั้งเดียว: ระบบเก็บเป็น hash ดูย้อนหลังไม่ได้ */
       $('dlgT').textContent = 'สำเร็จ · จดรหัสนี้ไว้';
@@ -308,14 +316,14 @@ $('list').onclick = e => {
   const u = users[+b.closest('.u').dataset.i]; if (!u) return;
   const self = u.name.toLowerCase() === me.name.toLowerCase();
   if (b.dataset.a === 'team') dlg({
-    title: 'แก้ไข Name (ทีม)', msg: 'Username: ' + u.name + '\nงานที่บันทึกไปแล้วยังแสดง Name เดิม (Name ตอนบันทึก) งานใหม่จะใช้ Name นี้',
+    title: 'แก้ไข Name (ทีม)', msg: 'CODE: ' + u.name + '\nงานที่บันทึกไปแล้วยังแสดง Name เดิม (Name ตอนบันทึก) งานใหม่จะใช้ Name นี้',
     team: true, teamVal: u.team, yes: 'บันทึก',
     run: v => v.team === u.team ? Promise.resolve({ok: false, error: 'Name เหมือนเดิม'}) : api('user_edit', {name: u.name, team: v.team})
   });
   if (b.dataset.a === 'uname') dlg({
-    title: 'แก้ไข Username', msg: 'Name: ' + (u.team || '-') + '\nใช้ Username ใหม่เข้าระบบ รหัสผ่านเดิมยังใช้ได้ ผู้ใช้จะถูกบังคับออกจากระบบ' + (self ? '\n\nนี่คือบัญชีของคุณ ต้องเข้าระบบใหม่หลังบันทึก' : ''),
+    title: 'แก้ไข CODE', msg: 'Name: ' + (u.team || '-') + '\nใช้ CODE ใหม่เข้าระบบ รหัสผ่านเดิมยังใช้ได้ ผู้ใช้จะถูกบังคับออกจากระบบ' + (self ? '\n\nนี่คือบัญชีของคุณ ต้องเข้าระบบใหม่หลังบันทึก' : ''),
     name: true, nameVal: u.name, yes: 'บันทึก',
-    run: v => v.name === u.name ? Promise.resolve({ok: false, error: 'Username เหมือนเดิม'}) : api('user_edit', {name: u.name, newName: v.name})
+    run: v => v.name === u.name ? Promise.resolve({ok: false, error: 'CODE เหมือนเดิม'}) : api('user_edit', {name: u.name, newName: v.name})
   });
   if (b.dataset.a === 'pin') dlg({
     title: 'ตั้งรหัสผ่านใหม่', msg: 'ผู้ใช้: ' + u.name + '\nรหัสเดิมจะใช้ไม่ได้ ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าระบบ และเซสชันเดิมจะถูกบังคับออก',
@@ -335,6 +343,19 @@ $('list').onclick = e => {
 };
 
 load(); pendingBadge();
+
+/* ไอคอนบทบาท + ป้าย CHEF / COOK บนหัวเว็บ */
+const ROLE_IC = {"cook": "M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M4.5 21 h27 a1.5 1.5 0 0 1 1.5 1.5 v7.5 a1.5 1.5 0 0 1 -1.5 1.5 h-27 a1.5 1.5 0 0 1 -1.5 -1.5 v-7.5 a1.5 1.5 0 0 1 1.5 -1.5 z M8.5 26.2 h.01 M12.5 26.2 h.01 M16.5 26.2 h.01 M23.5 26.2 h4.5 M8 21 l-2.4-3.4 M28 21 l2.4-3.4", "chef": "M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M5 19.5 h26 a1.5 1.5 0 0 1 1.5 1.5 v9 a1.5 1.5 0 0 1 -1.5 1.5 h-26 a1.5 1.5 0 0 1 -1.5 -1.5 v-9 a1.5 1.5 0 0 1 1.5 -1.5 z M13.5 35 h9 M18 31.5 v3.5 M13.5 25.5 l3 3 6-6"};
+function cxBrand(u){
+  const role = u ? (u.role === 'admin' ? 'chef' : 'cook') : '';
+  document.querySelectorAll('header.cx .cx-role').forEach(el => { el.textContent = role ? role.toUpperCase() : ''; });
+  document.querySelectorAll('header.cx .cx-gear').forEach(g => {
+    if (!g.dataset.gear) { g.dataset.gear = g.innerHTML; g.dataset.vb = g.getAttribute('viewBox'); }
+    if (role) { g.setAttribute('viewBox', '0 0 36 36'); g.innerHTML = '<path d="' + ROLE_IC[role] + '"/>'; g.classList.add('cx-roleic'); }
+    else { g.setAttribute('viewBox', g.dataset.vb); g.innerHTML = g.dataset.gear; g.classList.remove('cx-roleic'); }
+  });
+}
+cxBrand(typeof me !== "undefined" ? me : null);
 </script>
 </body>
 </html>
