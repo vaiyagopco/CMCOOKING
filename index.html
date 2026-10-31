@@ -453,6 +453,11 @@ header.cx h1{font-size:18px}
 .cx-role:empty{display:none}
 header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
 .cx-fly{position:fixed;z-index:200;pointer-events:none;fill:none;stroke:#1a1a1a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.fs-sub{border-top:1px solid var(--line);margin:4px 0 0;padding:10px 0 0}
+.fs-sub h4{margin:0 0 6px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#1a1a1a;display:flex;align-items:center;gap:6px}
+.fs-sub h4 .ic{width:13px;height:13px}
+.fs-sub label[for=note]{display:none}
 </style>
 </head>
 <body>
@@ -611,9 +616,30 @@ header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
     <button id="exAdd" type="button" class="ghost exadd"><svg class="ic"><use href="#i-plus"/></svg>ตัวรอง</button>
     <p class="hint" id="exHint">ตัวรองเพิ่มเติมไม่นับในสถิติ</p>
     <p class="hint bad" id="ppMsg"></p>
+    <div class="fs-sub"><h4><svg class="ic"><use href="#i-pin"/></svg>Pain Point Pin</h4>
+    <label for="ppPin">พิกัดจุดที่เกิดปัญหา</label>
+      <div class="inrow"><input id="ppPin" inputmode="text" placeholder="lat,lng" autocomplete="off"><button id="ppGps" type="button" class="ghost" aria-label="จับพิกัดจุดปัญหา" title="จับพิกัดตรงนี้"><svg class="ic"><use href="#i-gps"/></svg></button></div>
+    </div>
+    <div class="fs-sub"><h4><svg class="ic"><use href="#i-ruler"/></svg>Range</h4>
+    <div class="grid2"><div><label for="range">ระยะยิงสาย DW (ม.)</label><input id="range" inputmode="numeric" maxlength="4" placeholder="เช่น 120" autocomplete="off"></div>
+      <div><label for="rangeFrom">ยิงจาก</label><select id="rangeFrom"><option value="">—</option><option value="router">เร้าเตอร์</option><option value="sp">SP</option><option value="other">อื่นๆ</option></select></div></div>
+    </div>
+    <div class="fs-sub"><h4><svg class="ic"><use href="#i-ext"/></svg>Line Type</h4>
+    <button id="lineAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>Line Type</button>
+      <div id="lineBox" class="hide">
+        <label for="drum">Drum No.</label>
+        <input id="drum" maxlength="60" autocomplete="off">
+        <div class="chips" id="drumChips"></div>
+        <button id="lineDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ Line Type</button>
+      </div>
+    </div>
+    <div class="fs-sub"><h4><svg class="ic"><use href="#i-edit"/></svg>Detail</h4>
+    <label for="note">Detail</label>
+      <textarea id="note" rows="4" maxlength="2000"></textarea>
+    </div>
   </div>
   <div class="fs">
-    <h3><svg class="ic"><use href="#i-tree"/></svg>SP &amp; Detail</h3>
+    <h3><svg class="ic"><use href="#i-tree"/></svg>SP</h3>
     <label for="sp">SP Code</label><input id="sp" maxlength="60" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="2805_155_00/01_SP011_3291608/3">
     <p class="hint sp-fmt" id="spFmt"></p>
     <label for="spPin">พิกัด SP</label>
@@ -624,28 +650,6 @@ header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
       <p class="hint sp-fmt" id="spOldFmt"></p>
       <button id="spOldDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ SP เดิม</button>
     </div>
-    <label for="note">Detail</label>
-    <textarea id="note" rows="4" maxlength="2000"></textarea>
-  </div>
-  <div class="fs">
-    <h3><svg class="ic"><use href="#i-ext"/></svg>Line Type</h3>
-    <button id="lineAdd" type="button" class="ghost big"><svg class="ic"><use href="#i-plus"/></svg>Line Type</button>
-    <div id="lineBox" class="hide">
-      <label for="drum">Drum No.</label>
-      <input id="drum" maxlength="60" autocomplete="off">
-      <div class="chips" id="drumChips"></div>
-      <button id="lineDel" type="button" class="del"><svg class="ic"><use href="#i-trash"/></svg>ลบ Line Type</button>
-    </div>
-  </div>
-  <div class="fs">
-    <h3><svg class="ic"><use href="#i-ruler"/></svg>Range</h3>
-    <div class="grid2"><div><label for="range">ระยะยิงสาย DW (ม.)</label><input id="range" inputmode="numeric" maxlength="4" placeholder="เช่น 120" autocomplete="off"></div>
-    <div><label for="rangeFrom">ยิงจาก</label><select id="rangeFrom"><option value="">—</option><option value="router">เร้าเตอร์</option><option value="sp">SP</option><option value="other">อื่นๆ</option></select></div></div>
-  </div>
-  <div class="fs">
-    <h3><svg class="ic"><use href="#i-pin"/></svg>Pain Point Pin</h3>
-    <label for="ppPin">พิกัดจุดที่เกิดปัญหา</label>
-    <div class="inrow"><input id="ppPin" inputmode="text" placeholder="lat,lng" autocomplete="off"><button id="ppGps" type="button" class="ghost" aria-label="จับพิกัดจุดปัญหา" title="จับพิกัดตรงนี้"><svg class="ic"><use href="#i-gps"/></svg></button></div>
   </div>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-bar"/></svg>เคลม ONU</h3>
