@@ -451,13 +451,21 @@ header.cx h1,#vLogin .lg-head h1{font-weight:800;letter-spacing:2px;display:flex
 header.cx h1{font-size:18px}
 .cx-role{font-size:10px;font-weight:800;letter-spacing:1px;background:#000;color:#fff;border-radius:6px;padding:2px 6px;line-height:1.35}
 .cx-role:empty{display:none}
-header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
-.cx-fly{position:fixed;z-index:200;pointer-events:none;fill:none;stroke:#1a1a1a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+header.cx{--hatbg:#B2D235}
+header.cx .cx-gear.cx-roleic{width:28px;height:28px;color:#1a1a1a}
+.cx-role{display:inline-flex;align-items:center;gap:3px}
+.cx-bi{width:11px;height:11px;flex:none}
+.cx-fly{position:fixed;z-index:200;pointer-events:none;color:#1a1a1a;--hatbg:#B2D235}
+#vLogin .lg-card{--hatbg:#fff}
+#vLogin .lg-card[aria-pressed="true"]{--hatbg:#000}
+#vLogin .lg-card .lg-ic{width:46px;height:46px;stroke:none;color:#1a1a1a}
+#vLogin .lg-card[aria-pressed="true"] .lg-ic{color:#fff;stroke:none}
 
 .fs-sub{border-top:1px solid var(--line);margin:4px 0 0;padding:10px 0 0}
 .fs-sub h4{margin:0 0 6px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#1a1a1a;display:flex;align-items:center;gap:6px}
 .fs-sub h4 .ic{width:13px;height:13px}
 .fs-sub label[for=note]{display:none}
+.mp-pin{white-space:pre;text-align:center;line-height:1.15}
 </style>
 </head>
 <body>
@@ -501,10 +509,10 @@ header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
     <p class="lg-label">ยินดีต้อนรับยอดนักปรุง</p>
     <div class="lg-cards" role="group" aria-label="เลือกกลุ่มผู้ใช้งาน">
       <button type="button" class="lg-card" data-role="cook" aria-pressed="false"><span class="lg-tick"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 L5 8.6 L9.5 3.6"/></svg></span>
-        <svg class="lg-ic" viewBox="0 0 36 36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M4.5 21 h27 a1.5 1.5 0 0 1 1.5 1.5 v7.5 a1.5 1.5 0 0 1 -1.5 1.5 h-27 a1.5 1.5 0 0 1 -1.5 -1.5 v-7.5 a1.5 1.5 0 0 1 1.5 -1.5 z M8.5 26.2 h.01 M12.5 26.2 h.01 M16.5 26.2 h.01 M23.5 26.2 h4.5 M8 21 l-2.4-3.4 M28 21 l2.4-3.4"/></svg>
+        <svg class="lg-ic" viewBox="0 0 36 36" aria-hidden="true"><g fill="none" stroke="#9aa3ad" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 31.5 L27 11"/><path d="M27.5 10.5 m-1.6-4.3 a4 4 0 0 1 5.9 5.9 l-2.6-.5 -.7-2.6 z"/><path d="M29.5 31.5 L10 12"/></g><rect x="3.6" y="5.2" width="8.2" height="5.4" rx="1.3" fill="#9aa3ad" transform="rotate(45 7.7 7.9)"/><g transform="translate(0 2)"><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z"/><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 h15 v5.5 h-15 z"/><path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15 20.8 v1 M18 20.8 v1 M21 20.8 v1"/></g></svg>
         <b>COOK</b></button>
       <button type="button" class="lg-card" data-role="chef" aria-pressed="false"><span class="lg-tick"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 L5 8.6 L9.5 3.6"/></svg></span>
-        <svg class="lg-ic" viewBox="0 0 36 36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M5 19.5 h26 a1.5 1.5 0 0 1 1.5 1.5 v9 a1.5 1.5 0 0 1 -1.5 1.5 h-26 a1.5 1.5 0 0 1 -1.5 -1.5 v-9 a1.5 1.5 0 0 1 1.5 -1.5 z M13.5 35 h9 M18 31.5 v3.5 M13.5 25.5 l3 3 6-6"/></svg>
+        <svg class="lg-ic" viewBox="0 0 36 36" aria-hidden="true"><g transform="translate(0 -1)"><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z"/><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 h15 v5.5 h-15 z"/><path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15 20.8 v1 M18 20.8 v1 M21 20.8 v1"/></g><path d="M18.00 23.70 L19.53 27.39 L23.52 27.71 L20.48 30.31 L21.41 34.19 L18.00 32.11 L14.59 34.19 L15.52 30.31 L12.48 27.71 L16.47 27.39Z" fill="#F5B700" stroke="#B98200" stroke-width=".9" stroke-linejoin="round"/></svg>
         <b>CHEF</b></button>
     </div>
     <div class="lg-form" id="lgForm" aria-hidden="true"><div>
@@ -673,7 +681,7 @@ header.cx .cx-gear.cx-roleic{stroke-width:2.3;stroke-linecap:round}
   <div class="login">
     <div class="mark"><svg class="ic"><use href="#i-user"/></svg></div>
     <h2>ตั้งรหัสผ่านใหม่</h2>
-    <p class="hint">ตั้งครั้งแรกหรือหลังผู้ดูแลตั้งรหัสให้ กรุณาตั้งรหัสใหม่ก่อนใช้งาน (อย่างน้อย 8 ตัว ไม่ซ้ำตัวเดียว และไม่มีชื่อผู้ใช้)</p>
+    <p class="hint">ตั้งครั้งแรกหรือหลัง CHEF ตั้งรหัสให้ กรุณาตั้งรหัสใหม่ก่อนใช้งาน (อย่างน้อย 8 ตัว ไม่ซ้ำตัวเดียว และไม่มี CODE)</p>
     <label for="cOld">รหัสเดิม</label><input id="cOld" type="password" autocomplete="current-password">
     <label for="cNew">รหัสใหม่</label><input id="cNew" type="password" autocomplete="new-password">
     <label for="cNew2">ยืนยันรหัสใหม่</label><input id="cNew2" type="password" autocomplete="new-password">
@@ -815,7 +823,7 @@ function flashItem(id){
 function say(t){ $('msg').textContent = t || ''; $('lgMsg').textContent = t || ''; }
 function goHome(){
   formSeq++; say(); closeBig();
-  $('whoName').textContent = me ? (me.team || '-') : ''; $('whoRole').textContent = me ? (me.role === 'admin' ? 'ผู้ดูแล' : 'ช่าง') : '';
+  $('whoName').textContent = me ? (me.team || '-') : ''; $('whoRole').textContent = me ? (me.role === 'admin' ? 'CHEF' : 'COOK') : '';
   cxBrand(me);
   $('toolAdm').classList.toggle('hide', !(me && me.role === 'admin'));
   if (NAV.lastIndexOf('vHome', navI - 1) > 0) backTo('vHome'); else view('vHome');
@@ -872,13 +880,13 @@ function loadPP(force){
 
 
 /* ไอคอนบทบาท + ป้าย CHEF / COOK บนหัวเว็บ */
-const ROLE_IC = {"cook": "M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M4.5 21 h27 a1.5 1.5 0 0 1 1.5 1.5 v7.5 a1.5 1.5 0 0 1 -1.5 1.5 h-27 a1.5 1.5 0 0 1 -1.5 -1.5 v-7.5 a1.5 1.5 0 0 1 1.5 -1.5 z M8.5 26.2 h.01 M12.5 26.2 h.01 M16.5 26.2 h.01 M23.5 26.2 h4.5 M8 21 l-2.4-3.4 M28 21 l2.4-3.4", "chef": "M11 13 a4.6 4.6 0 0 1 1.6-8.8 a5.4 5.4 0 0 1 9.8 0 a4.6 4.6 0 0 1 1.6 8.8 z M11 13 v3.2 h14 v-3.2 M5 19.5 h26 a1.5 1.5 0 0 1 1.5 1.5 v9 a1.5 1.5 0 0 1 -1.5 1.5 h-26 a1.5 1.5 0 0 1 -1.5 -1.5 v-9 a1.5 1.5 0 0 1 1.5 -1.5 z M13.5 35 h9 M18 31.5 v3.5 M13.5 25.5 l3 3 6-6"};
+const ROLE_IC = {"cook": "<g fill=\"none\" stroke=\"#9aa3ad\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6.5 31.5 L27 11\"/><path d=\"M27.5 10.5 m-1.6-4.3 a4 4 0 0 1 5.9 5.9 l-2.6-.5 -.7-2.6 z\"/><path d=\"M29.5 31.5 L10 12\"/></g><rect x=\"3.6\" y=\"5.2\" width=\"8.2\" height=\"5.4\" rx=\"1.3\" fill=\"#9aa3ad\" transform=\"rotate(45 7.7 7.9)\"/><g transform=\"translate(0 2)\"><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z\"/><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 h15 v5.5 h-15 z\"/><path stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M15 20.8 v1 M18 20.8 v1 M21 20.8 v1\"/></g>", "chef": "<g transform=\"translate(0 -1)\"><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z\"/><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 h15 v5.5 h-15 z\"/><path stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M15 20.8 v1 M18 20.8 v1 M21 20.8 v1\"/></g><path d=\"M18.00 23.70 L19.53 27.39 L23.52 27.71 L20.48 30.31 L21.41 34.19 L18.00 32.11 L14.59 34.19 L15.52 30.31 L12.48 27.71 L16.47 27.39Z\" fill=\"#F5B700\" stroke=\"#B98200\" stroke-width=\".9\" stroke-linejoin=\"round\"/>"}, ROLE_BADGE = {"chef": "<svg class=\"cx-bi\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M6.00 0.80 L7.48 4.36 L11.33 4.67 L8.40 7.18 L9.29 10.93 L6.00 8.92 L2.71 10.93 L3.60 7.18 L0.67 4.67 L4.52 4.36Z\" fill=\"#F5B700\" stroke=\"#B98200\" stroke-width=\".5\"/></svg>", "cook": "<svg class=\"cx-bi\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><g stroke=\"#c4cad1\" stroke-width=\"1.6\" stroke-linecap=\"round\" fill=\"none\"><path d=\"M2 10 L9 3\"/><path d=\"M10 10 L3 3\"/><path d=\"M9.2 1.6 a1.6 1.6 0 1 1 1.2 1.2\"/></g><rect x=\"1.2\" y=\"1.3\" width=\"3\" height=\"2\" rx=\".5\" fill=\"#c4cad1\" transform=\"rotate(45 2.7 2.3)\"/></svg>"};
 function cxBrand(u){
   const role = u ? (u.role === 'admin' ? 'chef' : 'cook') : '';
-  document.querySelectorAll('header.cx .cx-role').forEach(el => { el.textContent = role ? role.toUpperCase() : ''; });
+  document.querySelectorAll('header.cx .cx-role').forEach(el => { el.innerHTML = role ? role.toUpperCase() + ROLE_BADGE[role] : ''; });
   document.querySelectorAll('header.cx .cx-gear').forEach(g => {
     if (!g.dataset.gear) { g.dataset.gear = g.innerHTML; g.dataset.vb = g.getAttribute('viewBox'); }
-    if (role) { g.setAttribute('viewBox', '0 0 36 36'); g.innerHTML = '<path d="' + ROLE_IC[role] + '"/>'; g.classList.add('cx-roleic'); }
+    if (role) { g.setAttribute('viewBox', '0 0 36 36'); g.innerHTML = ROLE_IC[role]; g.classList.add('cx-roleic'); }
     else { g.setAttribute('viewBox', g.dataset.vb); g.innerHTML = g.dataset.gear; g.classList.remove('cx-roleic'); }
   });
 }
@@ -889,7 +897,7 @@ function cxFly(from, toEl, role){
     const to = toEl.getBoundingClientRect();
     if (!to.width) return res();
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    s.setAttribute('viewBox', '0 0 36 36'); s.setAttribute('class', 'cx-fly'); s.innerHTML = '<path d="' + ROLE_IC[role] + '"/>';
+    s.setAttribute('viewBox', '0 0 36 36'); s.setAttribute('class', 'cx-fly'); s.innerHTML = ROLE_IC[role];
     Object.assign(s.style, {left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px'});
     document.body.appendChild(s); toEl.style.opacity = '0';
     const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top + to.height / 2 - (from.top + from.height / 2), k = to.width / from.width;
@@ -926,7 +934,7 @@ $('go').onclick = () => busy($('go'), '…', async () => {
   if (!j.ok) return say(j.error);
   if (wantAdmin && j.user.role !== 'admin') {
     fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token: j.token})}).catch(() => {});
-    return say('ทางเข้านี้สำหรับผู้ดูแลเท่านั้น');
+    return say('ทางเข้านี้สำหรับ CHEF เท่านั้น');
   }
   token = j.token; me = j.user; rows = j.rows || []; loaded = true;
   sessionStorage.setItem('t', token); sessionStorage.setItem('u', JSON.stringify(me));
@@ -1402,8 +1410,17 @@ function spMapGet(){
   if (!spMapO) { spMapO = cmMap($('spMap')); spMapO.onPick(m => spPick(m.id)); spMapO.onMe = () => spNearMe(); }
   $('spMap').classList.remove('hide'); spMapO.redraw(); return spMapO;
 }
+function spPinLabel(x){
+  const k = String(x.key || x.id || ''), m = k.match(/_SP(\d+)$/);
+  if (m && !k.startsWith('X:')) return 'SP' + m[1];
+  const r = k.match(/^(RET\d+)(-\d+)$/i);
+  if (r) return r[1] + '\n' + r[2];
+  const s = String(x.name || k.replace(/^X:/, '')), cut = (t) => t.length > 11 ? t.slice(0, 10) + '…' : t;
+  const i = s.search(/[_-]/);
+  return i > 0 ? cut(s.slice(0, i)) + '\n' + cut(s.slice(i)) : cut(s);
+}
 function spMarks(){
-  return spItems.filter(x => x.lat != null).map(x => ({id: x.id || x.key || x.v, lat: x.lat, lng: x.lng, label: x.name || x.label, cls: spSrc === 'b' ? 'b' : ''}));
+  return spItems.filter(x => x.lat != null).map(x => ({id: x.id || x.key || x.v, lat: x.lat, lng: x.lng, label: spSrc === 'b' ? spPinLabel(x) : (x.name || x.label), cls: spSrc === 'b' ? 'b' : ''}));
 }
 function spOpenTree(src){
   spSrc = src; spItems = []; spSelId = null; say();
@@ -1576,11 +1593,11 @@ $('items').onclick = async e => {
     return;
   }
   if (b.dataset.a === 'req') {
-    const ok = await ask('ส่งคำขอลบรายการ ' + r.net + ' ไปให้ผู้ดูแลอนุมัติ?\n\nเมื่อผู้ดูแลอนุมัติแล้วรายการจะถูกลบ');
+    const ok = await ask('ส่งคำขอลบรายการ ' + r.net + ' ไปให้ CHEF อนุมัติ?\n\nเมื่อ CHEF อนุมัติแล้วรายการจะถูกลบ');
     if (!ok) return;
     busy(b, 'กำลังส่ง…', async () => {
       const j = await api('req_delete', {id});
-      if (j.ok) toast('ส่งคำขอลบแล้ว รอผู้ดูแลอนุมัติ'); else say(j.error);
+      if (j.ok) toast('ส่งคำขอลบแล้ว รอ CHEF อนุมัติ'); else say(j.error);
     });
     return;
   }
