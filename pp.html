@@ -183,6 +183,10 @@ header.cx .cx-gear.cx-roleic{width:28px;height:28px;color:#1a1a1a}
 #vLogin .lg-card[aria-pressed="true"]{--hatbg:#000}
 #vLogin .lg-card .lg-ic{width:46px;height:46px;stroke:none;color:#1a1a1a}
 #vLogin .lg-card[aria-pressed="true"] .lg-ic{color:#fff;stroke:none}
+
+.cx-foot{text-align:center;font-size:11px;color:rgba(0,0,0,.55);letter-spacing:.3px;padding:18px 12px calc(84px + env(safe-area-inset-bottom))}
+.cx-foot b{font-weight:800;color:rgba(0,0,0,.7);letter-spacing:1px}
+#vLogin .cx-foot{flex:none;padding:10px 12px calc(14px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -368,5 +372,6 @@ function cxBrand(u){
 }
 cxBrand(typeof me !== "undefined" ? me : null);
 </script>
+<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.0</footer>
 </body>
 </html>

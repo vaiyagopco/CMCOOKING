@@ -466,6 +466,10 @@ header.cx .cx-gear.cx-roleic{width:28px;height:28px;color:#1a1a1a}
 .fs-sub h4 .ic{width:13px;height:13px}
 .fs-sub label[for=note]{display:none}
 .mp-pin{white-space:pre;text-align:center;line-height:1.15}
+
+.cx-foot{text-align:center;font-size:11px;color:rgba(0,0,0,.55);letter-spacing:.3px;padding:18px 12px calc(84px + env(safe-area-inset-bottom))}
+.cx-foot b{font-weight:800;color:rgba(0,0,0,.7);letter-spacing:1px}
+#vLogin .cx-foot{flex:none;padding:10px 12px calc(14px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -524,6 +528,7 @@ header.cx .cx-gear.cx-roleic{width:28px;height:28px;color:#1a1a1a}
       <p class="lg-msg" id="lgMsg" role="alert"></p>
     </div></div>
   </div>
+  <footer class="cx-foot"><b>CMCOOKING</b> · live v1.0</footer>
 </section>
 
 <section id="vHome" class="hide">
@@ -1756,5 +1761,6 @@ try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && 
   else if (token && me && !me.mustChange && h.get('bar')) openBar(h.get('bar'), true); } catch (e) {}
 try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
 </script>
+<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.0</footer>
 </body>
 </html>
