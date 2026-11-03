@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; base-uri 'none'; form-action 'none'">
-<meta name="theme-color" content="#0f3d3e">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#B2D235">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
-<title>CMCOOKING Stats</title>
+<title>CMCOOKING · Report</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-:root{--g:#B2D235;--o:#F58220;--bg:#07090a;--card:#0f1512;--ink:#e8f0e4;--mut:#8fa196;--line:#22302a;--soft:#16201b;--err:#ff5c5c;--glow:0 0 12px #B2D23566;color-scheme:dark}
+
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Noto Sans Thai","Sarabun",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
@@ -107,7 +108,7 @@ header.cx .cx-i{width:19px;height:19px;fill:none;stroke:currentColor;stroke-widt
 .cx-who b{font-size:17px;font-weight:600;color:#1a1a1a}
 
 /* ===== CMCS template: admin pages ===== */
-:root{--g:#1a1a1a;--o:#F58220;--bg:#B2D235;--card:#fff;--ink:#1a1a1a;--mut:#5b6152;--line:#d9dfcd;--soft:#f2f4ec;--err:#b3261e;--glow:none;color-scheme:light}
+:root{--g:#1a1a1a;--o:#F58220;--bg:#B2D235;--card:#fff;--ink:#1a1a1a;--mut:#5b6152;--line:#d9dfcd;--soft:#f2f4ec;--err:#9b0018;--glow:none;color-scheme:light}
 *{text-shadow:none!important}
 body{background:#B2D235;color:#1a1a1a}
 nav.nav{background:#B2D235;border-bottom:0;padding:12px 16px 4px;justify-content:center;flex-wrap:wrap}
@@ -199,101 +200,8 @@ header.cx .cx-gear.cx-roleic{width:28px;height:28px;color:#1a1a1a}
 #vLogin .cx-foot{flex:none;padding:10px 12px calc(14px + env(safe-area-inset-bottom))}
 </style>
 </head>
-<body>
-<div id="bar"></div>
-<header class="cx"><a class="cx-btn l" href="admin.html" aria-label="HOME" title="HOME"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a><div class="cx-title"><svg class="cx-gear" viewBox="6 6 36 36" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M24.00 11.00 L26.00 7.12 L29.88 8.05 L29.90 12.42 L33.19 14.81 L37.35 13.48 L39.44 16.88 L36.36 19.98 L37.00 24.00 L40.88 26.00 L39.95 29.88 L35.58 29.90 L33.19 33.19 L34.52 37.35 L31.12 39.44 L28.02 36.36 L24.00 37.00 L22.00 40.88 L18.12 39.95 L18.10 35.58 L14.81 33.19 L10.65 34.52 L8.56 31.12 L11.64 28.02 L11.00 24.00 L7.12 22.00 L8.05 18.12 L12.42 18.10 L14.81 14.81 L13.48 10.65 L16.88 8.56 L19.98 11.64 Z"/><circle cx="24" cy="24" r="5"/></svg><div class="cx-tt"><h1>CMCOOKING<span class="cx-role"></span></h1><small class="cx-sub" id="cxSub">Stats</small></div></div><button id="out" class="cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
-<nav class="nav" aria-label="เมนู CHEF"><a href="admin.html">HOME</a><a href="pp.html">Pain Point</a><a href="stats.html">Stats</a><a href="users.html">Users</a><a href="onhand.html">On Hand</a><a href="approve.html">อนุมัติ<span class="badge hide" id="apBadge"></span></a></nav>
-<main>
-<p id="msg" role="alert"></p>
-
-<section id="vSt">
-  <div class="mrow"><button id="prv" aria-label="เดือนก่อนหน้า">◀</button><select id="mo" aria-label="เลือกเดือน"></select><button id="nxt" aria-label="เดือนถัดไป">▶</button></div>
-  <div id="out2"></div>
-</section>
-</main>
-
-<script>
-if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
-const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let token = null, me = null, pending = 0;   // อ่านจาก sessionStorage ของแท็บนี้ (ใช้ร่วมกับหน้าเข้าสู่ระบบ)
-try { token = sessionStorage.getItem('t'); me = JSON.parse(sessionStorage.getItem('u') || 'null'); } catch (e) { token = null; me = null; }
-if (!token || !me || me.role !== 'admin' || me.mustChange) { location.replace('index.html'); throw new Error('no-session'); }   // ต้องเข้าผ่านหน้าเข้าสู่ระบบก่อน
-function say(t, ok){ $('msg').textContent = t || ''; $('msg').className = ok ? 'ok' : ''; }
-function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์
-function endSession(m){ bye(); token = null; me = null; try { sessionStorage.clear(); if (m) sessionStorage.setItem('flash', m); } catch (e) {} location.replace('index.html'); }
-$('out').onclick = () => endSession('');
-function badge(n){ const b = $('apBadge'); if (b) { b.textContent = n; b.classList.toggle('hide', !n); } }
-(function markNav(){ const here = location.pathname.split('/').pop() || 'admin.html'; document.querySelectorAll('nav.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === here)); })();
-async function api(action, data = {}){
-  pending++; $('bar').classList.add('on');
-  try{
-    const r = await fetch(API, {method:'POST', body: JSON.stringify({action, token, ...data})});
-    const j = await r.json();
-    if (j.auth) endSession(j.error);
-    return j;
-  }catch(e){ return {ok:false, error:'เชื่อมต่อไม่ได้ ตรวจสอบสัญญาณแล้วลองใหม่'}; }
-  finally{ if (--pending <= 0) { pending = 0; $('bar').classList.remove('on'); } }
-}
-async function busy(b, txt, fn){
-  const old = b.textContent; b.disabled = true; b.textContent = txt;
-  try{ return await fn(); } finally { b.disabled = false; b.textContent = old; }
-}
-function pendingBadge(){ api('req_list').then(j => { if (j.ok) badge(j.items.length); }); }
-const HEX = /^#[0-9a-fA-F]{6}$/, col = c => HEX.test(c) ? c : '#8A8F98';
-const TH = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-const mName = m => TH[+m.slice(5) - 1] + ' ' + (+m.slice(0, 4) + 543);
-let cur = '', mlist = [];
-
-async function load(m){
-  say(); $('out2').innerHTML = '<p class="empty">กำลังโหลด…</p>';
-  const j = await api('stats', m ? {month: m} : {});
-  if (!j.ok) { $('out2').innerHTML = ''; return say(j.error); }
-  cur = j.month;
-  const set = {}; j.months.forEach(x => { set[x.m] = x.n; }); set[cur] = set[cur] || 0;
-  mlist = Object.keys(set).sort().reverse();
-  $('mo').innerHTML = mlist.map(k => `<option value="${esc(k)}"${k === cur ? ' selected' : ''}>${esc(mName(k))} (${set[k]})</option>`).join('');
-  $('nxt').disabled = mlist.indexOf(cur) <= 0; $('prv').disabled = mlist.indexOf(cur) >= mlist.length - 1;
-  draw(j);
-}
-$('mo').onchange = () => load($('mo').value);
-$('prv').onclick = () => { const i = mlist.indexOf(cur); if (i < mlist.length - 1) load(mlist[i + 1]); };
-$('nxt').onclick = () => { const i = mlist.indexOf(cur); if (i > 0) load(mlist[i - 1]); };
-
-function draw(j){
-  if (!j.total) { $('out2').innerHTML = '<p class="empty">เดือนนี้ยังไม่มีรายการ</p>'; return; }
-  const linked = j.groups.reduce((a, g) => a + g.n, 0), old = j.total - linked;
-  const mx = Math.max(1, ...j.days), nd = new Date(+cur.slice(0, 4), +cur.slice(5), 0).getDate();
-  const top = j.groups.length ? j.groups.slice().sort((a, b) => b.n - a.n)[0] : null;
-  let h = `<div class="tiles"><div class="tile"><b>${j.total}</b><span>รายการทั้งหมด</span></div>
-    <div class="tile"><b>${top ? esc(top.main) : '-'}</b><span>หมวกที่พบมากสุด${top ? ' (' + top.n + ')' : ''}</span></div></div>`;
-  h += '<div class="card"><h2>ตามหมวก Pain Point</h2>' + (j.groups.length ? j.groups.map(g => `<div class="g">
-    <div class="gt"><span>${esc(g.main)}</span><span>${g.n} · ${Math.round(g.n * 100 / j.total)}%</span></div>
-    <div class="stack" role="img" aria-label="${esc(g.main)} ${g.n} รายการ">${g.subs.map(s => `<i style="width:${s.n * 100 / g.n}%;background:${col(s.color)}"></i>`).join('')}</div>
-    ${g.subs.map(s => `<div class="sr ${s.active ? '' : 'off'}"><span class="dot" style="background:${col(s.color)}"></span><span class="n">${esc(s.sub)}${s.active ? '' : ' (ปิดใช้งาน)'}</span><em>${s.n}</em></div>`).join('')}
-  </div>`).join('') : '<p class="hint">ยังไม่มีรายการที่ผูกหมวก</p>') + '</div>';
-  if (old) h += `<div class="card"><h2>ข้อมูลเก่า (ยังไม่ผูกหมวก) · ${old}</h2>${j.legacy.map(l => `<div class="tr"><span>${esc(l.text)}</span><b>${l.n}</b></div>`).join('')}</div>`;
-  h += `<div class="card"><h2>รายวัน</h2><div class="days" role="img" aria-label="จำนวนรายการรายวัน">${j.days.slice(0, nd).map((n, i) => `<div title="วันที่ ${i + 1}: ${n}" style="height:${n * 100 / mx}%"></div>`).join('')}</div>
-    <div class="dl"><span>1</span><span>${nd}</span></div></div>`;
-  h += '<div class="card"><h2>ตามทีม (Name ตอนบันทึก)</h2>' + j.tech.map(t => `<div class="tr"><span>${esc(t.name)}</span><b>${t.n}</b></div>`).join('') + '</div>';
-  $('out2').innerHTML = h;
-}
-load(''); pendingBadge();
-
-/* ไอคอนบทบาท + ป้าย CHEF / COOK บนหัวเว็บ */
-const ROLE_IC = {"cook": "<g fill=\"none\" stroke=\"#9aa3ad\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6.5 31.5 L27 11\"/><path d=\"M27.5 10.5 m-1.6-4.3 a4 4 0 0 1 5.9 5.9 l-2.6-.5 -.7-2.6 z\"/><path d=\"M29.5 31.5 L10 12\"/></g><rect x=\"3.6\" y=\"5.2\" width=\"8.2\" height=\"5.4\" rx=\"1.3\" fill=\"#9aa3ad\" transform=\"rotate(45 7.7 7.9)\"/><g transform=\"translate(0 2)\"><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z\"/><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 h15 v5.5 h-15 z\"/><path stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M15 20.8 v1 M18 20.8 v1 M21 20.8 v1\"/></g>", "chef": "<g transform=\"translate(0 -1)\"><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z\"/><path style=\"fill:var(--hatbg,#fff)\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" d=\"M10.5 18.5 h15 v5.5 h-15 z\"/><path stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M15 20.8 v1 M18 20.8 v1 M21 20.8 v1\"/></g><path d=\"M18.00 23.70 L19.53 27.39 L23.52 27.71 L20.48 30.31 L21.41 34.19 L18.00 32.11 L14.59 34.19 L15.52 30.31 L12.48 27.71 L16.47 27.39Z\" fill=\"#F5B700\" stroke=\"#B98200\" stroke-width=\".9\" stroke-linejoin=\"round\"/>"}, ROLE_BADGE = {"chef": "<svg class=\"cx-bi\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M6.00 0.80 L7.48 4.36 L11.33 4.67 L8.40 7.18 L9.29 10.93 L6.00 8.92 L2.71 10.93 L3.60 7.18 L0.67 4.67 L4.52 4.36Z\" fill=\"#F5B700\" stroke=\"#B98200\" stroke-width=\".5\"/></svg>", "cook": "<svg class=\"cx-bi\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><g stroke=\"#c4cad1\" stroke-width=\"1.6\" stroke-linecap=\"round\" fill=\"none\"><path d=\"M2 10 L9 3\"/><path d=\"M10 10 L3 3\"/><path d=\"M9.2 1.6 a1.6 1.6 0 1 1 1.2 1.2\"/></g><rect x=\"1.2\" y=\"1.3\" width=\"3\" height=\"2\" rx=\".5\" fill=\"#c4cad1\" transform=\"rotate(45 2.7 2.3)\"/></svg>"};
-function cxBrand(u){
-  const role = u ? (u.role === 'admin' ? 'chef' : 'cook') : '';
-  document.querySelectorAll('header.cx .cx-role').forEach(el => { el.innerHTML = role ? role.toUpperCase() + ROLE_BADGE[role] : ''; });
-  document.querySelectorAll('header.cx .cx-gear').forEach(g => {
-    if (!g.dataset.gear) { g.dataset.gear = g.innerHTML; g.dataset.vb = g.getAttribute('viewBox'); }
-    if (role) { g.setAttribute('viewBox', '0 0 36 36'); g.innerHTML = ROLE_IC[role]; g.classList.add('cx-roleic'); }
-    else { g.setAttribute('viewBox', g.dataset.vb); g.innerHTML = g.dataset.gear; g.classList.remove('cx-roleic'); }
-  });
-}
-cxBrand(typeof me !== "undefined" ? me : null);
-</script>
-<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.0</footer>
+<body style="background:#B2D235;font-family:system-ui,sans-serif;text-align:center;padding:40px 16px">
+<p>ย้ายไปหน้า <a href="index.html#report">REPORT</a> แล้ว…</p>
+<script>location.replace('index.html#report');</script>
 </body>
 </html>
