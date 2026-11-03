@@ -1,0 +1,33 @@
+{
+ "id": "./",
+ "name": "CMCOOKING",
+ "short_name": "CMCOOKING",
+ "description": "ระบบงานทีม COOK / CHEF",
+ "lang": "th",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#B2D235",
+ "theme_color": "#B2D235",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
