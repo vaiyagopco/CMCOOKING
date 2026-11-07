@@ -620,6 +620,29 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
 #scanOv .scan-btns{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:12px}
 #scanOv .scan-btns button{min-width:110px;min-height:46px;font-size:15px;background:#fff;color:#1a1a1a;border-radius:12px}
 #scanOv .scan-btns button.on{background:#F5B700}
+
+/* ===== Power (dBm) ===== */
+.pw{display:inline-flex;align-items:center;gap:3px;font:800 11px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:0 7px;border-radius:8px;white-space:nowrap;flex:none}
+.pw small{font:700 9px system-ui,sans-serif;opacity:.9}.pw em{font-style:normal;font-size:10px}
+.pw.g{background:#43A047;color:#fff}.pw.y{background:#F2B300;color:#1a0b00}.pw.o{background:#F58220;color:#1a0b00}.pw.r{background:#D93025;color:#fff}
+.item .l1 .pw{margin-left:6px;margin-right:auto}
+.pw-row{margin-top:10px}
+.pw-in{display:flex;gap:8px;align-items:center}
+.pw-in input{flex:1;min-width:0}
+.pw-lv{flex:none;min-width:64px;text-align:center;font:800 13px system-ui,sans-serif;padding:7px 10px;border-radius:10px;background:#f2f4ec;color:#3d4433}
+.pw-lv.g{background:#43A047;color:#fff}.pw-lv.y{background:#F2B300;color:#1a0b00}.pw-lv.o{background:#F58220;color:#1a0b00}.pw-lv.r{background:#D93025;color:#fff}
+.pw-dd{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.pw-dd .pw{font-size:12px}
+/* ===== On Hand ป้าย ===== */
+#ohList .item .hl{display:flex;flex-direction:column;gap:6px;width:100%}
+#ohList .item .l1{display:flex;align-items:center;gap:8px}
+#ohList .item .l1 b{flex:1;min-width:0;overflow-wrap:anywhere}
+.oh-bdg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.oh-bdg .tag,.oh-bdg .ohb{margin:0;white-space:nowrap;font:700 12px/1.4 system-ui,sans-serif;padding:3px 10px;border-radius:9px}
+.oh-bdg .tag.g{background:#B2D235;color:#1a1a1a}
+.oh-bdg .ohb.ty{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a;padding:2px 9px}
+.oh-bdg .ohb.d{background:#f2f4ec;color:#1a1a1a;border:1px solid #d9dfcd;padding:2px 9px}
+.oh-bdg .ohb.d.old{background:#F58220;color:#1a0b00;border-color:#F58220}
 </style>
 </head>
 <body>
@@ -748,10 +771,11 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
 <div class="rp-ov hide" id="flSheet"><div class="rp-sheet">
   <h3><span>ค้นหาแบบละเอียด</span><button type="button" id="flX">ปิด</button></h3>
   <div class="fg"><h4>ช่วงเวลา</h4><div class="rp-chips2" id="flPer"></div><div class="fl-dates hide" id="flDates"><input type="date" id="flFrom" aria-label="ตั้งแต่"><input type="date" id="flTo" aria-label="ถึง"></div></div>
-  <div class="fg"><h4>Pain Point (หมวดหลัก)</h4><div class="rp-chips2" id="flMain"></div></div>
-  <div class="fg"><h4>ตัวรอง</h4><select id="flSub"></select></div>
+  <div class="fg"><h4>Pain Point (Main)</h4><div class="rp-chips2" id="flMain"></div></div>
+  <div class="fg"><h4>Sub</h4><select id="flSub"></select></div>
   <div class="fg"><h4>SP</h4><input id="flSp" list="flSpList" placeholder="เช่น 2801_314_11/01_SP111 หรือ RET0042-035" autocomplete="off"><datalist id="flSpList"></datalist></div>
   <div class="fg"><h4>ทีม</h4><select id="flTeam"></select></div>
+  <div class="fg"><h4>Power หลังแก้ไข</h4><div class="rp-chips2" id="flPw"></div></div>
   <div class="fg"><h4>มีข้อมูล</h4><div class="rp-chips2" id="flHas"></div></div>
   <div class="fg"><h4>อื่นๆ</h4><div class="rp-chips2" id="flOther"></div></div>
   <div class="fg"><h4>เรียง</h4><div class="rp-chips2" id="flSort"></div></div>
@@ -795,6 +819,9 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
     <h3><svg class="ic"><use href="#i-user"/></svg>Internet No.</h3>
     <input id="net" inputmode="numeric" maxlength="10" autocomplete="off" aria-label="Internet No.">
     <button id="chgNet" type="button" class="ghost hide"><svg class="ic"><use href="#i-edit"/></svg>เปลี่ยนเลข</button>
+    <div class="pw-row"><label for="pwA">Power ก่อนแก้ไข (dBm) · ไม่บังคับ</label><div class="pw-in"><input id="pwA" inputmode="decimal" placeholder="เช่น 31.20" autocomplete="off"><span class="pw-lv" id="pwAlv">–</span></div></div>
+    <div class="pw-row"><label for="pwZ">Power หลังแก้ไข (dBm) · ไม่บังคับ</label><div class="pw-in"><input id="pwZ" inputmode="decimal" placeholder="เช่น 22.10" autocomplete="off"><span class="pw-lv" id="pwZlv">–</span></div></div>
+    <p class="hint">ไม่ต้องพิมพ์เครื่องหมายลบ ระบบใส่ให้ (ค่าบวกพิมพ์ + นำหน้า) · 🟢 ถึง -25.99 ดี · 🟡 -26 ถึง -27.99 พอใช้ · 🟠 -28 ถึง -29.99 ต่ำ · 🔴 -30 ลงไป ต่ำมาก</p>
   </div>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-pin"/></svg>Place</h3>
@@ -803,14 +830,14 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
   </div>
   <div class="fs">
     <h3><svg class="ic"><use href="#i-list"/></svg>Pain Point</h3>
-    <label for="ppMain">หมวกหลัก <i>*</i></label>
+    <label for="ppMain">Main <i>*</i></label>
     <select id="ppMain"></select>
-    <label for="ppSub">ตัวรอง <i>*</i></label>
+    <label for="ppSub">Sub <i>*</i></label>
     <div class="selrow"><i class="dot" id="ppDot"></i><select id="ppSub" disabled></select></div>
     <p class="hint" id="ppOld"></p>
     <div id="exBox"></div>
-    <button id="exAdd" type="button" class="ghost exadd"><svg class="ic"><use href="#i-plus"/></svg>ตัวรอง</button>
-    <p class="hint" id="exHint">ตัวรองเพิ่มเติมไม่นับในสถิติ</p>
+    <button id="exAdd" type="button" class="ghost exadd"><svg class="ic"><use href="#i-plus"/></svg>Sub</button>
+    <p class="hint" id="exHint">Sub เพิ่มเติมไม่นับในสถิติ</p>
     <p class="hint bad" id="ppMsg"></p>
     <div class="fs-sub"><h4><svg class="ic"><use href="#i-pin"/></svg>Pain Point Pin</h4>
     <label for="ppPin">พิกัดจุดที่เกิดปัญหา</label>
@@ -1271,12 +1298,12 @@ function itemHtml(r){
   const rg = r.range !== '' && r.range != null ? r.range + ' ม. · ' + (RANGE_FROM[r.rangeFrom] || '-') : '';
   return `<div class="item" data-id="${esc(r.id)}" style="--pc:${pc}">
       <div class="head" data-a="tog">
-        <div class="hl"><div class="l1"><b>${esc(r.net)}</b><time>${esc(tm)}</time></div>
+        <div class="hl"><div class="l1"><b>${esc(r.net)}</b>${pwBadge(r)}<time>${esc(tm)}</time></div>
           <div class="pn"><i class="dot"></i>${esc(sub)}${ex.length ? ` <span class="x">+${ex.length}</span>` : ''}${who ? ` <span class="tm">· ${esc(who)}</span>` : ''}</div></div>
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>ตัวรองเพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.spPin ? `<div><dt>พิกัด SP</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${mapLink(r.spPin)}">${esc(r.spPin)}</a></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
+        <dl class="kv">${pwDetail(r)}${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>Sub เพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.spPin ? `<div><dt>พิกัด SP</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${mapLink(r.spPin)}">${esc(r.spPin)}</a></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
         ${r.note ? `<div class="dtl"><p>${esc(r.note)}</p></div>` : ''}
         <p class="meta">บันทึก ${esc(String(r.at || '').slice(0, 16))} · ${esc(r.team || '-')}${r.upAt ? ' · แก้ไข ' + esc(ts(r.upAt, d0)) + ' · ' + esc(r.upTeam || '-') : ''}</p>
         <div class="row">
@@ -1315,7 +1342,7 @@ function toggle(el){
 }
 
 /* ---------- ฟอร์ม ---------- */
-const F = ['net','pin','drum','sp','plate','note','range','rangeFrom','ppPin','spPin'];
+const F = ['net','pin','drum','sp','plate','note','range','rangeFrom','ppPin','spPin','pwA','pwZ'];
 function lock(on){
   F.forEach(k => $(k).disabled = on);
   $('ppMain').disabled = on; $('ppSub').disabled = on || !$('ppMain').value;
@@ -1324,15 +1351,15 @@ function lock(on){
   $('exAdd').disabled = on; ['sn','snOld','snAdd','snDel','spOld','spOldAdd','spOldDel'].forEach(k => $(k).disabled = on); $('exBox').querySelectorAll('select,button').forEach(el => el.disabled = on);
 }
 
-/* Pain Point: หมวกหลัก → ตัวรอง */
+/* Pain Point: Main → Sub */
 function fillMain(){
   const sel = $('ppMain'), seen = [];
-  sel.length = 0; sel.add(new Option('— เลือกหมวกหลัก —', ''));
+  sel.length = 0; sel.add(new Option('— เลือก Main —', ''));
   PP.forEach(p => { if (seen.indexOf(p.main) < 0) { seen.push(p.main); sel.add(new Option(p.main, p.main)); } });
 }
 function fillSub(main){
   const sel = $('ppSub');
-  sel.length = 0; sel.add(new Option(main ? '— เลือกตัวรอง —' : 'เลือกหมวกหลักก่อน', ''));
+  sel.length = 0; sel.add(new Option(main ? '— เลือก Sub —' : 'เลือก Main ก่อน', ''));
   if (main) PP.filter(p => p.main === main).forEach(p => sel.add(new Option(p.sub, p.id)));
   sel.disabled = !main;
 }
@@ -1358,23 +1385,23 @@ function refreshPP(){          // โหลดรายการเสร็จ�
 $('ppMain').onchange = () => { fillSub($('ppMain').value); updPain(); };
 $('ppSub').onchange = updPain;
 
-/* ตัวรองเพิ่มเติม: ไม่บังคับ สูงสุด 4 แถว แต่ละแถวเลือกหมวกหลัก/ตัวรองเองได้ (ค่าเริ่มต้น = หมวกหลักของตัวแรก) */
+/* Sub เพิ่มเติม: ไม่บังคับ สูงสุด 4 แถว แต่ละแถวเลือก Main/Sub เองได้ (ค่าเริ่มต้น = Main ของตัวแรก) */
 const EX_MAX = 4;
 const exRows = () => [...$('exBox').querySelectorAll('.exrow')];
 function exFillMain(row){
   const sel = row.querySelector('.exMain'), seen = [];
-  sel.length = 0; sel.add(new Option('— เลือกหมวกหลัก —', ''));
+  sel.length = 0; sel.add(new Option('— เลือก Main —', ''));
   PP.forEach(p => { if (seen.indexOf(p.main) < 0) { seen.push(p.main); sel.add(new Option(p.main, p.main)); } });
 }
 function exFillSub(row, main){
   const sel = row.querySelector('.exSub');
-  sel.length = 0; sel.add(new Option(main ? '— เลือกตัวรอง —' : 'เลือกหมวกหลักก่อน', ''));
+  sel.length = 0; sel.add(new Option(main ? '— เลือก Sub —' : 'เลือก Main ก่อน', ''));
   if (main) PP.filter(p => p.main === main).forEach(p => sel.add(new Option(p.sub, p.id)));
   sel.disabled = !main;
 }
 function exDot(row){ const id = row.querySelector('.exSub') ? row.querySelector('.exSub').value : row.dataset.kept; row.querySelector('.dot').style.background = id ? ppColor(id) : GRAY; }
 function exNumber(){
-  exRows().forEach((row, i) => { row.querySelector('.exn').textContent = 'ตัวรองที่ ' + (i + 2); });
+  exRows().forEach((row, i) => { row.querySelector('.exn').textContent = 'Sub ที่ ' + (i + 2); });
   $('exAdd').classList.toggle('hide', exRows().length >= EX_MAX);
 }
 function addExtra(x){
@@ -1382,12 +1409,12 @@ function addExtra(x){
   const known = x && x.id && PPMAP[x.id];
   if (x && x.id && !known) {                     // ตัวเลือกที่ถูกปิดแล้ว: คงไว้ตามที่บันทึก ลบได้แต่เลือกใหม่ไม่ได้
     row.dataset.kept = x.id;
-    row.innerHTML = `<div class="exhead"><span class="exn"></span><button type="button" class="exdel ghost" aria-label="ลบตัวรองนี้">${ic('x')}</button></div>
+    row.innerHTML = `<div class="exhead"><span class="exn"></span><button type="button" class="exdel ghost" aria-label="ลบ Sub นี้">${ic('x')}</button></div>
       <div class="selrow"><i class="dot"></i><span class="exkept">${esc(x.t || x.id)} (ปิดใช้งานแล้ว)</span></div>`;
   } else {
-    row.innerHTML = `<div class="exhead"><span class="exn"></span><button type="button" class="exdel ghost" aria-label="ลบตัวรองนี้">${ic('x')}</button></div>
-      <select class="exMain" aria-label="หมวกหลัก (ตัวรองเพิ่มเติม)"></select>
-      <div class="selrow"><i class="dot"></i><select class="exSub" aria-label="ตัวรองเพิ่มเติม"></select></div>`;
+    row.innerHTML = `<div class="exhead"><span class="exn"></span><button type="button" class="exdel ghost" aria-label="ลบ Sub นี้">${ic('x')}</button></div>
+      <select class="exMain" aria-label="Main (Sub เพิ่มเติม)"></select>
+      <div class="selrow"><i class="dot"></i><select class="exSub" aria-label="Sub เพิ่มเติม"></select></div>`;
     exFillMain(row);
     const main = known ? PPMAP[x.id].main : $('ppMain').value;
     row.querySelector('.exMain').value = main; exFillSub(row, row.querySelector('.exMain').value);
@@ -1396,7 +1423,7 @@ function addExtra(x){
     row.querySelector('.exSub').onchange = () => {
       const v = row.querySelector('.exSub').value;
       const dup = v && (v === $('ppSub').value || exRows().some(o => o !== row && (o.dataset.kept === v || (o.querySelector('.exSub') && o.querySelector('.exSub').value === v))));
-      if (dup) { row.querySelector('.exSub').value = ''; say('เลือกตัวรองซ้ำกับที่เลือกไว้แล้ว'); } else say();
+      if (dup) { row.querySelector('.exSub').value = ''; say('เลือก Sub ซ้ำกับที่เลือกไว้แล้ว'); } else say();
       exDot(row);
     };
   }
@@ -1406,14 +1433,14 @@ function addExtra(x){
 }
 function setExtra(list){ $('exBox').innerHTML = ''; (list || []).forEach(x => addExtra(x)); exNumber(); }
 $('exAdd').onclick = () => { if (exRows().length >= EX_MAX) return; const row = addExtra(null); (row.querySelector('.exSub:not(:disabled)') || row.querySelector('.exMain')).focus(); };
-/* คืนค่า id ของตัวรองเพิ่มเติม หรือ null ถ้ามีแถวที่เลือกไม่ครบ */
+/* คืนค่า id ของ Sub เพิ่มเติม หรือ null ถ้ามีแถวที่เลือกไม่ครบ */
 function collectExtra(){
   const ids = [];
   for (const row of exRows()) {
     if (row.dataset.kept) { ids.push(row.dataset.kept); continue; }
     const v = row.querySelector('.exSub').value;
     if (v) { if (!ids.includes(v)) ids.push(v); }
-    else if (row.querySelector('.exMain').value) return null;        // เลือกหมวกแล้วแต่ยังไม่เลือกตัวรอง
+    else if (row.querySelector('.exMain').value) return null;        // เลือก Main แล้วแต่ยังไม่เลือก Sub
   }
   return ids;
 }
@@ -1466,8 +1493,9 @@ async function drawOh(reload){
   const q = $('ohQ').value.trim().toLowerCase();
   const list = OH.devices.filter(d => !q || d.sn.toLowerCase().includes(q));
   $('ohList').innerHTML = list.length ? list.map(d => `<div class="item ${d.cid ? 'ohjob' : ''}" data-sn="${esc(d.sn)}" data-job="${esc(d.cid || '')}" style="--pc:${d.status === 'stock' ? '#B2D235' : '#1a1a1a'}"><div class="head"><div class="hl">
-      <div class="l1"><b style="font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace">${esc(d.sn)}</b><span class="tag ${d.status === 'stock' ? 'g' : ''}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span><button type="button" class="bcbtn" data-bc="${esc(d.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></div>
-      <span class="dt">${isAdm ? esc(d.team) + ' · ' : ''}${d.type ? esc(d.type) + ' · ' : ''}${d.status === 'stock' ? 'รับเข้า ' + esc(d.at) : 'ติดตั้ง ' + esc(d.instAt) + ' · ' + esc(d.instBy) + (d.net ? ' · ' + esc(d.net) : '')}</span>
+      <div class="l1"><b style="font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace">${esc(d.sn)}</b><button type="button" class="bcbtn" data-bc="${esc(d.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></div>
+      <div class="oh-bdg"><span class="tag ${d.status === 'stock' ? 'g' : ''}">${d.status === 'stock' ? 'ในคลัง' : 'ติดตั้งแล้ว'}</span>${d.type ? `<span class="ohb ty">${esc(d.type)}</span>` : ''}${d.status === 'stock' ? ohDays(d.at) : ''}${isAdm ? `<span class="ohb d">${esc(d.team)}</span>` : ''}</div>
+      ${d.status === 'stock' ? '' : `<span class="dt">ติดตั้ง ${esc(d.instAt)} · ${esc(d.instBy)}${d.net ? ' · ' + esc(d.net) : ''}</span>`}
     </div></div></div>`).join('') : '<p class="empty">ไม่มี SN</p>';
 }
 
@@ -1829,6 +1857,8 @@ function rpDraw(){
   if (RP.tab === 'map') rpMapInit(d);
 }
 $('rpBody').onclick = e => {
+  const jb = e.target.closest('[data-job]');
+  if (jb) { FL = FL0(); flChips(); openJob(jb.dataset.nf, jb.dataset.job); return; }
   const o = e.target.closest('[data-open]');
   if (o) { RP.open[o.dataset.open] = !RP.open[o.dataset.open]; rpDraw(); return; }
   const s = e.target.closest('[data-find]');
@@ -1863,19 +1893,36 @@ function rpBarsHtml(d){
 const rpMains = d => d.groups.map(g => ({name: g.main, n: g.n, color: g.color})).concat(d.legacy.map(l => ({name: l.text, n: l.n, color: GRAY})));
 const rpNoData = '<p class="rp-empty">ช่วงนี้ยังไม่มีงาน</p>';
 
+/* v1.2: ส่งออกใช้เลขเต็ม · Power ใน Text · PDF แสดงเลขเต็ม */
+const rpN = x => RP.full ? (x.nf || x.net) : x.net;
+function rpPwTxt(a, z){
+  a = a === '' || a == null ? null : +a; z = z === '' || z == null ? null : +z;
+  if (z != null && a != null) return '  Power ' + pwFmt(a) + '→' + pwFmt(z);
+  if (z != null) return '  Power ' + pwFmt(z);
+  if (a != null) return '  Power ก่อน ' + pwFmt(a);
+  return '';
+}
+function rpPowerCard(d){
+  const p = d.power; if (!p || !p.n) return '';
+  const items = [['g', 'ดี (ถึง -25.99)', '#43A047'], ['y', 'พอใช้ (-26 ถึง -27.99)', '#F2B300'], ['o', 'ต่ำ (-28 ถึง -29.99)', '#F58220'], ['r', 'ต่ำมาก (-30 ลงไป)', '#D93025']].map(([k, n, c]) => ({name: n, n: p[k], color: c})).filter(x => x.n);
+  return `<div class="rp-card"><h3>Power หลังแก้ไข<small>มีค่า ${p.n} จาก ${d.total} งาน</small></h3>${rpPie(items, p.n)}
+    <p class="rp-hint">${p.imp == null ? 'ยังไม่มีงานที่มีค่าก่อน–หลังครบ' : (p.imp >= 0 ? 'ดีขึ้น' : 'แย่ลง') + `เฉลี่ย <b>${p.imp >= 0 ? '+' : ''}${p.imp.toFixed(2)} dB</b> (จาก ${p.both} งานที่มีค่าก่อน–หลังครบ)`}</p></div>`;
+}
+
+
 /* R1 ภาพรวม */
 function rpOv(d){
   if (!d.total) return rpNoData;
   const ch = d.prevTotal ? Math.round((d.total - d.prevTotal) * 100 / d.prevTotal) : null;
   const top = rpMains(d).sort((a, b) => b.n - a.n)[0];
-  const avg = Math.round(d.total / d.days * 10) / 10;
+  const avg = Math.round(d.total / d.days);
   return `<div class="rp-tiles">
     <div class="rp-t"><b>${d.total}</b><span>งานทั้งหมด</span><em class="${ch == null ? '' : ch >= 0 ? 'up' : 'dn'}">${ch == null ? 'ช่วงก่อน 0 งาน' : (ch >= 0 ? '▲ ' : '▼ ') + Math.abs(ch) + '% จากช่วงก่อน (' + d.prevTotal + ')'}</em></div>
     <div class="rp-t"><b>${rpPct(top.n, d.total)}%</b><span>${esc(top.name)}</span><em>มากสุด · ${top.n} งาน</em></div>
     <div class="rp-t"><b>${d.repeats.length}</b><span>เคสซ้ำ</span><em>Internet No. ซ้ำ ${d.repeats.reduce((a, r) => a + r.n, 0)} งาน</em></div>
     <div class="rp-t"><b>${avg}</b><span>งาน/วัน</span><em>เฉลี่ย ${d.days} วัน</em></div></div>
-    <div class="rp-card"><h3>Pain Point<small>หมวดหลัก</small></h3>${rpPie(rpMains(d).sort((a, b) => b.n - a.n), d.total)}</div>
-    ${rpBarsHtml(d)}`;
+    <div class="rp-card"><h3>Pain Point<small>Main</small></h3>${rpPie(rpMains(d).sort((a, b) => b.n - a.n), d.total)}</div>
+    ${rpPowerCard(d)}${rpBarsHtml(d)}`;
 }
 /* R2 Pain Point */
 function rpPp(d){
@@ -1883,8 +1930,8 @@ function rpPp(d){
   const subs = [];
   d.groups.forEach(g => g.subs.forEach(s => subs.push({name: g.main + ' › ' + s.sub, n: s.n, color: s.color, cls: 'wide'})));
   subs.sort((a, b) => b.n - a.n);
-  return `<div class="rp-card"><h3>ตัวรองที่พบมากสุด<small>${d.total} งาน</small></h3>${rpHBars(subs.slice(0, 10))}</div>
-    <div class="rp-card"><h3>แยกตามหมวดหลัก</h3>${d.groups.slice().sort((a, b) => b.n - a.n).map(g => `<div class="rp-g">
+  return `<div class="rp-card"><h3>Sub ที่พบมากสุด<small>${d.total} งาน</small></h3>${rpHBars(subs.slice(0, 10))}</div>
+    <div class="rp-card"><h3>แยกตาม Main</h3>${d.groups.slice().sort((a, b) => b.n - a.n).map(g => `<div class="rp-g">
       <div class="rp-gt"><span>${esc(g.main)}</span><span>${g.n} · ${rpPct(g.n, d.total)}%</span></div>
       <div class="rp-stack" role="img" aria-label="${esc(g.main)} ${g.n} งาน">${g.subs.map(s => `<i style="width:${(s.n * 100 / g.n).toFixed(1)}%;background:${rpCol(s.color)}"></i>`).join('')}</div>
       ${g.subs.slice().sort((a, b) => b.n - a.n).map(s => `<div class="rp-sr"><i style="background:${rpCol(s.color)}"></i><span>${esc(s.sub)}${s.active ? '' : ' (ปิดใช้งาน)'}</span><b>${s.n}</b></div>`).join('')}</div>`).join('')}
@@ -1908,7 +1955,7 @@ function rpMapInit(d){
   RP.map = cmMap(el);
   const marks = d.pins.map((p, i) => ({id: 'p' + i, lat: p.lat, lng: p.lng, label: '', cls: 'rpd rpc' + cols.indexOf(rpCol(p.color))}));
   RP.map.setMarks(marks);
-  RP.map.onPick(m => { const p = d.pins[+m.id.slice(1)]; RP.map.select(m.id); $('rpMapInfo').textContent = p.net + ' · ' + p.main + ' › ' + p.sub + ' · ' + p.at; });
+  RP.map.onPick(m => { const p = d.pins[+m.id.slice(1)]; RP.map.select(m.id); $('rpMapInfo').innerHTML = esc(p.net + ' · ' + p.main + ' › ' + p.sub + ' · ' + p.at) + ` <button type="button" class="rp-chip rp-job" data-job="${esc(p.id)}" data-nf="${esc(p.nf)}">เปิดใบงาน ›</button>`; });
   RP.map.onMe = () => toast('ใช้ปุ่ม + / − หรือหยิกเพื่อซูม');
   requestAnimationFrame(() => RP.map.fit(marks, 16));
 }
@@ -1918,14 +1965,14 @@ function rpSp(d){
   const mx = d.sp[0].n;
   return `<div class="rp-card"><h3>SP ที่มีงานมากสุด<small>แตะเพื่อดูงาน</small></h3>${d.sp.slice(0, 20).map(s => `
     ${rpHBars([{name: s.label, n: s.n, cls: 'rp-open wide', attr: ` data-open="sp:${esc(s.key)}"`}], mx, true)}
-    ${RP.open['sp:' + s.key] ? `<div class="rp-sub">${s.nets.map(x => `<div><span class="rp-mono">${esc(x.net)}</span><span>${esc(x.at)}</span></div>`).join('')}<div><button type="button" class="rp-chip" data-find="${esc(s.key)}">ค้นหาใน CM:MENU ›</button></div></div>` : ''}`).join('')}
+    ${RP.open['sp:' + s.key] ? `<div class="rp-sub">${s.nets.map(x => `<div><span class="rp-mono">${esc(rpN(x))}</span><span>${esc(x.at)}</span></div>`).join('')}<div><button type="button" class="rp-chip" data-find="${esc(s.key)}">ค้นหาใน CM:MENU ›</button></div></div>` : ''}`).join('')}
     <p class="rp-hint">นับรวมทุกพอร์ตและ HF/FF ของ SP เดียวกัน (แบบ SP TREE Beta)</p></div>`;
 }
 /* R5 เคสซ้ำ */
 function rpRep(d){
   if (!d.repeats.length) return '<p class="rp-empty">ช่วงนี้ไม่มีเคสซ้ำ</p>';
   return `<div class="rp-card"><h3>เคสซ้ำ<small>${d.repeats.length} Internet No.</small></h3>${d.repeats.map(r => `
-    <div class="rp-row rp-open" data-open="rep:${r.k}"><span class="rp-net">${esc(r.net)}</span><span class="rp-star" title="${r.n} ครั้ง">${rpStars(r.n)}</span><span class="rp-pp"><span>${r.n} ครั้ง · ล่าสุด ${esc(rpShort(r.last.slice(0, 10)))}</span></span></div>
+    <div class="rp-row rp-open" data-open="rep:${r.k}"><span class="rp-net">${esc(rpN(r))}</span><span class="rp-star" title="${r.n} ครั้ง">${rpStars(r.n)}</span><span class="rp-pp"><span>${r.n} ครั้ง · ล่าสุด ${esc(rpShort(r.last.slice(0, 10)))}</span></span></div>
     ${RP.open['rep:' + r.k] ? `<div class="rp-sub">${r.items.map(x => `<div><span>${esc(x.at)}</span><span>${esc(x.main + ' › ' + x.sub)}</span></div>`).join('')}</div>` : ''}`).join('')}</div>`;
 }
 /* R6 ทีม / คน (CHEF) */
@@ -1971,7 +2018,7 @@ function rpSum(d){
   d.jobs.forEach(j => { (byDate[j.at.slice(0, 10)] = byDate[j.at.slice(0, 10)] || []).push(j); });
   let i = 0;
   const list = Object.keys(byDate).sort().map(day => (RP.sMode === 'day' ? '' : `<div class="rp-dh">${esc(rpLong(day))} · ${byDate[day].length} งาน</div>`)
-    + byDate[day].map(j => `<div class="rp-row"><span class="rp-no">${++i}</span><span class="rp-net">${esc(j.net)}</span><span class="rp-pp"><i style="background:${rpCol(j.color)}"></i><span>${esc(j.main)} › ${esc(j.sub)}</span></span>${c[j.k] > 1 ? `<span class="rp-star" title="ซ้ำ ${c[j.k]} ครั้งในช่วงนี้">${rpStars(c[j.k])}</span>` : ''}</div>`).join('')).join('');
+    + byDate[day].map(j => `<div class="rp-row"><span class="rp-no">${++i}</span><span class="rp-net">${esc(rpN(j))}</span><span class="rp-pp"><i style="background:${rpCol(j.color)}"></i><span>${esc(j.main)} › ${esc(j.sub)}</span></span>${c[j.k] > 1 ? `<span class="rp-star" title="ซ้ำ ${c[j.k]} ครั้งในช่วงนี้">${rpStars(c[j.k])}</span>` : ''}</div>`).join('')).join('');
   const reps = Object.values(c).filter(n => n > 1).length;
   return `<div class="rp-card"><h3>สรุปงาน · ${d.total} งาน<small>${reps ? '⭐ = ซ้ำ ' + reps + ' เลข' : 'ไม่มีเคสซ้ำ'}</small></h3>${list}</div>
     <div class="rp-card"><h3>แยกตาม Pain Point</h3>${rpHBars(rpMains(d).sort((a, b) => b.n - a.n))}</div>`;
@@ -1989,20 +2036,21 @@ function rpText(){
     d.jobs.forEach(j => {
       const day = j.at.slice(0, 10);
       if (RP.sMode !== 'day' && day !== last) { if (last) lines.push(''); lines.push('— ' + rpLong(day)); last = day; }
-      lines.push((++i) + '. ' + j.net + '  ' + j.main + ' › ' + j.sub + (c[j.k] > 1 ? ' ' + rpStars(c[j.k]) : ''));
+      lines.push((++i) + '. ' + j.nf + '  ' + j.main + ' › ' + j.sub + rpPwTxt(j.pa, j.pz) + (c[j.k] > 1 ? ' ' + rpStars(c[j.k]) : ''));
     });
     lines.push('', 'สรุป: ' + rpMains(d).sort((a, b) => b.n - a.n).map(m => m.name + ' ' + m.n).join(' · '));
     const reps = Object.keys(c).filter(k => c[k] > 1);
-    if (reps.length) lines.push('เคสซ้ำ ' + reps.length + ' เลข: ' + reps.map(k => d.jobs.find(j => String(j.k) === k).net + ' ' + rpStars(c[k])).join(', '));
+    if (reps.length) lines.push('เคสซ้ำ ' + reps.length + ' เลข: ' + reps.map(k => d.jobs.find(j => String(j.k) === k).nf + ' ' + rpStars(c[k])).join(', '));
     return lines.join('\n');
   }
   const d = RP.data; if (!d) return '';
   const L = ['CMCOOKING · รายงาน ' + rpSpan(d.from, d.to), rpTeamTxt(d.team), ''];
-  L.push('งานทั้งหมด ' + d.total + ' งาน (ช่วงก่อน ' + d.prevTotal + ')' + ' · เฉลี่ย ' + Math.round(d.total / d.days * 10) / 10 + ' งาน/วัน');
+  L.push('งานทั้งหมด ' + d.total + ' งาน (ช่วงก่อน ' + d.prevTotal + ')' + ' · เฉลี่ย ' + Math.round(d.total / d.days) + ' งาน/วัน');
   L.push('', 'Pain Point:');
   rpMains(d).sort((a, b) => b.n - a.n).forEach(m => L.push('- ' + m.name + ' ' + m.n + ' (' + rpPct(m.n, d.total) + '%)'));
   if (d.sp.length) { L.push('', 'SP ที่มีงานมากสุด:'); d.sp.slice(0, 5).forEach((s, i) => L.push((i + 1) + '. ' + s.label + ' · ' + s.n + ' งาน')); }
-  if (d.repeats.length) { L.push('', 'เคสซ้ำ ' + d.repeats.length + ' เลข:'); d.repeats.slice(0, 15).forEach(r => L.push('- ' + r.net + ' ' + rpStars(r.n) + ' (' + r.n + ' ครั้ง)')); }
+  if (d.repeats.length) { L.push('', 'เคสซ้ำ ' + d.repeats.length + ' เลข:'); d.repeats.slice(0, 15).forEach(r => L.push('- ' + r.nf + ' ' + rpStars(r.n) + ' (' + r.n + ' ครั้ง)')); }
+  if (d.power && d.power.n) L.push('', 'Power หลังแก้ไข (' + d.power.n + ' งาน): ดี ' + d.power.g + ' · พอใช้ ' + d.power.y + ' · ต่ำ ' + d.power.o + ' · ต่ำมาก ' + d.power.r + (d.power.imp == null ? '' : ' · เฉลี่ย ' + (d.power.imp >= 0 ? '+' : '') + d.power.imp.toFixed(2) + ' dB'));
   if (chef && d.teams) { L.push('', 'งานต่อทีม:'); d.teams.forEach(t => L.push('- ' + t.team + ' ' + t.n)); }
   return L.join('\n');
 }
@@ -2029,7 +2077,10 @@ $('rpPdf').onclick = () => {
   let h = $('rpPrintHd'); if (!h) { h = document.createElement('div'); h.id = 'rpPrintHd'; document.body.insertBefore(h, document.body.firstChild); }
   const tab = (RP_TABS.find(t => t[0] === RP.tab) || [])[1] || '';
   h.textContent = 'CMCOOKING · รายงาน' + tab + ' · ' + (RP.tab === 'sum' ? rpWinLabel() : rpSpan(d.from, d.to)) + ' · ' + rpTeamTxt(d.team);
-  setTimeout(() => window.print(), 50);
+  RP.full = true; rpDraw();
+  const back = () => { RP.full = false; window.removeEventListener('afterprint', back); rpDraw(); };
+  window.addEventListener('afterprint', back);
+  setTimeout(() => { window.print(); setTimeout(() => { if (RP.full) back(); }, 1500); }, 80);
 };
 
 /* ---------- ส่งออก: Excel (.xlsx สร้างในเครื่อง ไม่ต้องใช้ไลบรารี) ---------- */
@@ -2083,15 +2134,16 @@ function rpXlsSheets(){
   const c = rpRepCount(d), chef = rpIsChef();
   const label = sum ? rpWinLabel() : rpSpan(d.from, d.to);
   const S = [];
-  S.push(['สรุป', [['หัวข้อ', 'ค่า'], ['ช่วงเวลา', label], ['ตั้งแต่', d.from], ['ถึง', d.to], ['ทีม', d.team || (chef ? 'ทุกทีม' : '-')], ['งานทั้งหมด', d.total], ['ช่วงก่อนหน้า (' + d.prevFrom + ' ถึง ' + d.prevTo + ')', d.prevTotal], ['เฉลี่ยงาน/วัน', Math.round(d.total / d.days * 10) / 10], ['เคสซ้ำ (เลข)', d.repeats.length], ['ส่งออกเมื่อ', new Date().toLocaleString('th-TH', {timeZone: 'Asia/Bangkok'})]]]);
-  S.push(['งาน', [['ลำดับ', 'วันที่', 'เวลา', 'Internet No.', 'Pain Point', 'ตัวรอง', 'ทีม', 'ซ้ำ (ครั้งในช่วง)']].concat(d.jobs.map((j, i) => [i + 1, j.at.slice(0, 10), j.at.slice(11, 16), j.net, j.main, j.sub, j.team, c[j.k] > 1 ? c[j.k] : '']))]);
-  const pp = [['Pain Point', 'ตัวรอง', 'จำนวน', '%']];
+  S.push(['สรุป', [['หัวข้อ', 'ค่า'], ['ช่วงเวลา', label], ['ตั้งแต่', d.from], ['ถึง', d.to], ['ทีม', d.team || (chef ? 'ทุกทีม' : '-')], ['งานทั้งหมด', d.total], ['ช่วงก่อนหน้า (' + d.prevFrom + ' ถึง ' + d.prevTo + ')', d.prevTotal], ['เฉลี่ยงาน/วัน', Math.round(d.total / d.days)], ['เคสซ้ำ (เลข)', d.repeats.length], ['ส่งออกเมื่อ', new Date().toLocaleString('th-TH', {timeZone: 'Asia/Bangkok'})]]]);
+  S.push(['งาน', [['ลำดับ', 'วันที่', 'เวลา', 'Internet No.', 'Pain Point', 'Sub', 'ทีม', 'ซ้ำ (ครั้งในช่วง)', 'Power ก่อน (dBm)', 'Power หลัง (dBm)']].concat(d.jobs.map((j, i) => [i + 1, j.at.slice(0, 10), j.at.slice(11, 16), j.nf, j.main, j.sub, j.team, c[j.k] > 1 ? c[j.k] : '', j.pa == null ? '' : j.pa, j.pz == null ? '' : j.pz]))]);
+  const pp = [['Pain Point', 'Sub', 'จำนวน', '%']];
   d.groups.forEach(g => g.subs.forEach(s => pp.push([g.main, s.sub, s.n, rpPct(s.n, d.total)])));
   d.legacy.forEach(l => pp.push([l.text, '(ข้อมูลเก่า)', l.n, rpPct(l.n, d.total)]));
   S.push(['Pain Point', pp]);
   S.push(['รายวัน', [['วันที่', 'จำนวนงาน']].concat(Object.keys(d.byDay).sort().map(k => [k, d.byDay[k]]))]);
   S.push(['SP', [['SP', 'จำนวนงาน']].concat(d.sp.map(s => [s.label, s.n]))]);
-  S.push(['เคสซ้ำ', [['Internet No.', 'จำนวนครั้ง', 'ล่าสุด', 'Pain Point ล่าสุด']].concat(d.repeats.map(r => [r.net, r.n, r.last, r.items[r.items.length - 1].main + ' › ' + r.items[r.items.length - 1].sub]))]);
+  if (d.power && d.power.n) S.push(['Power', [['ระดับ (หลังแก้ไข)', 'จำนวนงาน'], ['ดี (ถึง -25.99)', d.power.g], ['พอใช้ (-26 ถึง -27.99)', d.power.y], ['ต่ำ (-28 ถึง -29.99)', d.power.o], ['ต่ำมาก (-30 ลงไป)', d.power.r], ['ดีขึ้นเฉลี่ย (dB)', d.power.imp == null ? '' : d.power.imp], ['งานที่มีค่าก่อน–หลังครบ', d.power.both]]]);
+  S.push(['เคสซ้ำ', [['Internet No.', 'จำนวนครั้ง', 'ล่าสุด', 'Pain Point ล่าสุด']].concat(d.repeats.map(r => [r.nf, r.n, r.last, r.items[r.items.length - 1].main + ' › ' + r.items[r.items.length - 1].sub]))]);
   if (chef && d.teams) {
     S.push(['ทีม', [['ทีม', 'จำนวนงาน']].concat(d.teams.map(t => [t.team, t.n]))]);
     S.push(['คน', [['CODE', 'ทีม', 'จำนวนงาน']].concat(d.people.map(p => [p.code, p.team, p.n]))]);
@@ -2111,7 +2163,8 @@ $('rpXls').onclick = () => {
 /* =====================================================================
    CM:MENU · ค้นหาแบบละเอียด (ทุกทีม แยกจาก REPORT) · ส่งออก Text
    ===================================================================== */
-const FL0 = () => ({per: '', from: '', to: '', mains: [], sub: '', sp: '', team: '', has: [], repeat: false, edited: false, sort: 'new'});
+const FL0 = () => ({per: '', from: '', to: '', mains: [], sub: '', sp: '', team: '', has: [], repeat: false, edited: false, sort: 'new', pw: [], pwBoth: false});
+const FL_PW = [['g', '🟢 ดี'], ['y', '🟡 พอใช้'], ['o', '🟠 ต่ำ'], ['r', '🔴 ต่ำมาก']];
 let FL = FL0(), flDraft = FL0(), flOpt = null, flTotal = 0, flCapped = false;
 const FL_HAS = [['sn', 'SN (เคลม ONU)'], ['spOld', 'SP เดิม'], ['range', 'Range'], ['ppPin', 'Pain Point Pin'], ['spPin', 'พิกัด SP']];
 const FL_PER = [['', 'ทั้งหมด'], ['today', 'วันนี้'], ['7d', '7 วัน'], ['month', 'เดือนนี้'], ['prev', 'เดือนก่อน'], ['custom', 'เลือกช่วง']];
@@ -2124,10 +2177,10 @@ function flRange(f){
   if (f.per === 'custom') return [f.from || '', f.to || ''];
   return ['', ''];
 }
-function flOn(){ const f = FL; return !!(f.per || f.mains.length || f.sub || f.sp || f.team || f.has.length || f.repeat || f.edited || f.sort === 'old'); }
+function flOn(){ const f = FL; return !!(f.per || f.mains.length || f.sub || f.sp || f.team || f.has.length || f.repeat || f.edited || f.sort === 'old' || f.pw.length || f.pwBoth); }
 function flParams(){
   const [from, to] = flRange(FL);
-  return {from, to, mains: FL.mains, subs: FL.sub ? [FL.sub] : [], sp: FL.sp, team: FL.team, has: FL.has, repeat: FL.repeat, edited: FL.edited, sort: FL.sort};
+  return {from, to, mains: FL.mains, subs: FL.sub ? [FL.sub] : [], sp: FL.sp, team: FL.team, has: FL.has, repeat: FL.repeat, edited: FL.edited, sort: FL.sort, pw: FL.pw, pwBoth: FL.pwBoth};
 }
 function flChips(){
   const c = [];
@@ -2137,6 +2190,8 @@ function flChips(){
   if (FL.sp) c.push(['sp', FL.sp]);
   if (FL.team) c.push(['team', FL.team]);
   FL.has.forEach(h => c.push(['has:' + h, 'มี ' + FL_HAS.find(x => x[0] === h)[1]]));
+  FL.pw.forEach(x => c.push(['pw:' + x, 'Power ' + FL_PW.find(y => y[0] === x)[1]]));
+  if (FL.pwBoth) c.push(['pwBoth', 'มี Power ก่อน–หลัง']);
   if (FL.repeat) c.push(['repeat', 'เฉพาะเคสซ้ำ']);
   if (FL.edited) c.push(['edited', 'แก้ไขแล้ว']);
   if (FL.sort === 'old') c.push(['sort', 'เก่าก่อน']);
@@ -2150,6 +2205,7 @@ $('flAct').onclick = e => {
   else if (k === 'per') { FL.per = ''; FL.from = FL.to = ''; }
   else if (k.startsWith('main:')) { FL.mains = FL.mains.filter(m => m !== k.slice(5)); if (FL.sub && !FL.mains.includes((PPMAP[FL.sub] || {}).main)) FL.sub = ''; }
   else if (k.startsWith('has:')) FL.has = FL.has.filter(h => h !== k.slice(4));
+  else if (k.startsWith('pw:')) FL.pw = FL.pw.filter(h => h !== k.slice(3));
   else if (k === 'sort') FL.sort = 'new';
   else FL[k] = typeof FL[k] === 'boolean' ? false : '';
   flApply();
@@ -2167,6 +2223,7 @@ function flSheetDraw(){
   $('flSp').value = f.sp;
   $('flSpList').innerHTML = (flOpt ? flOpt.keys : []).map(k => `<option value="${esc(k.label)}">${k.n} งาน</option>`).join('');
   $('flTeam').innerHTML = '<option value="">ทุกทีม</option>' + (flOpt ? flOpt.teams : []).map(t => `<option${t === f.team ? ' selected' : ''}>${esc(t)}</option>`).join('');
+  $('flPw').innerHTML = FL_PW.map(([k, n]) => ch(k, n, f.pw.includes(k))).join('') + ch('both', 'มีค่าก่อน–หลังครบ', f.pwBoth);
   $('flHas').innerHTML = FL_HAS.map(([k, n]) => ch(k, n, f.has.includes(k))).join('');
   $('flOther').innerHTML = ch('repeat', 'เฉพาะเคสซ้ำ', f.repeat) + ch('edited', 'แก้ไขแล้ว', f.edited);
   $('flSort').innerHTML = ch('new', 'ล่าสุดก่อน', f.sort !== 'old') + ch('old', 'เก่าก่อน', f.sort === 'old');
@@ -2186,6 +2243,7 @@ $('flSub').onchange = () => { flDraft.sub = $('flSub').value; };
 $('flSp').oninput = () => { flDraft.sp = $('flSp').value.trim(); };
 $('flTeam').onchange = () => { flDraft.team = $('flTeam').value; };
 $('flHas').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; const h = b.dataset.v; flDraft.has = flDraft.has.includes(h) ? flDraft.has.filter(x => x !== h) : flDraft.has.concat(h); flSheetDraw(); };
+$('flPw').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; const v = b.dataset.v; if (v === 'both') flDraft.pwBoth = !flDraft.pwBoth; else flDraft.pw = flDraft.pw.includes(v) ? flDraft.pw.filter(x => x !== v) : flDraft.pw.concat(v); flSheetDraw(); };
 $('flOther').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; flDraft[b.dataset.v] = !flDraft[b.dataset.v]; flSheetDraw(); };
 $('flSort').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; flDraft.sort = b.dataset.v; flSheetDraw(); };
 $('flClr').onclick = () => { flDraft = FL0(); flSheetDraw(); };
@@ -2195,14 +2253,16 @@ $('flGo').onclick = () => {
   FL = flDraft; flClose(); flApply();
 };
 /* ส่งออกผลค้นหาเป็น Text */
-$('flTxt').onclick = () => {
-  const s = shown(); if (!s.list.length) return toast('ไม่มีรายการ', true);
+$('flTxt').onclick = async () => {
+  const s0 = shown(); if (!s0.list.length) return toast('ไม่มีรายการ', true);
+  const jf = await api('list', {q: qv(), f: flParams(), full: true}); if (!jf || !jf.ok) return say((jf && jf.error) || 'โหลดไม่ได้');
+  const s = {list: jf.rows}; flTotal = jf.total || jf.rows.length;
   const L = ['CMCOOKING · ผลค้นหา ' + s.list.length + ' งาน'];
   const desc = [...$('flAct').querySelectorAll('button:not(.clr)')].map(b => b.textContent.replace(' ✕', ''));
   if (qv()) desc.unshift('คำค้น "' + qv() + '"');
   if (desc.length) L.push('เงื่อนไข: ' + desc.join(' · '));
   L.push('');
-  s.list.forEach((r, i) => { const p = String(r.pain || ''), cut = p.indexOf(' - '); L.push((i + 1) + '. ' + r.net + '  ' + (cut > 0 ? p.slice(0, cut) + ' › ' + p.slice(cut + 3) : p) + ' · ' + String(r.at || '').slice(0, 10) + (r.team ? ' · ' + r.team : '')); });
+  s.list.forEach((r, i) => { const p = String(r.pain || ''), cut = p.indexOf(' - '); L.push((i + 1) + '. ' + (r.nf || r.net) + '  ' + (cut > 0 ? p.slice(0, cut) + ' › ' + p.slice(cut + 3) : p) + rpPwTxt(r.pwA, r.pwZ) + ' · ' + String(r.at || '').slice(0, 10) + (r.team ? ' · ' + r.team : '')); });
   if (flTotal > s.list.length) L.push('', '(แสดง ' + s.list.length + ' จาก ' + flTotal + ' งาน)');
   rpShowText('ส่งออกผลค้นหา (Text)', L.join('\n'));
 };
@@ -2288,6 +2348,51 @@ function btFindShow(){ const t = $('bt').value.trim(); $('btFind').classList.tog
 $('btFind').onclick = () => { const t = $('bt').value.trim(); if (!t) return; FL = FL0(); flChips(); $('q').value = t; hist = false; load(); };
 
 
+
+/* ---------- Power ก่อน/หลังแก้ไข (dBm) ---------- */
+const PW_LV = {g: 'ดี', y: 'พอใช้', o: 'ต่ำ', r: 'ต่ำมาก'};
+const pwLv = v => v > -26 ? 'g' : v > -28 ? 'y' : v > -30 ? 'o' : 'r';
+const pwFmt = v => (v > 0 ? '+' : '') + Number(v).toFixed(2);
+/* ไม่มีเครื่องหมาย = ติดลบ (ค่า Power ปกติติดลบ) · + = บวก · คืน null ถ้าว่าง, false ถ้าผิดรูปแบบ */
+function pwParse(s){
+  s = String(s == null ? '' : s).trim().replace(/\s+/g, '').replace(/[−–]/g, '-').replace(',', '.');
+  if (!s) return null;
+  if (!/^[+-]?\d{1,2}(\.\d{1,2})?$/.test(s)) return false;
+  let n = parseFloat(s); if (!/^[+-]/.test(s)) n = -Math.abs(n);
+  n = Math.round(n * 100) / 100;
+  return n <= 10 && n >= -50 ? n : false;
+}
+function pwBadge(r){
+  const a = r.pwA === '' || r.pwA == null ? null : +r.pwA, z = r.pwZ === '' || r.pwZ == null ? null : +r.pwZ;
+  if (z != null) return `<span class="pw ${pwLv(z)}" title="Power หลังแก้ไข"><small>Power</small>${pwFmt(z)}${a != null ? `<em>${z > a ? '▲' : z < a ? '▼' : '='}</em>` : ''}</span>`;
+  if (a != null) return `<span class="pw ${pwLv(a)}" title="Power ก่อนแก้ไข"><small>ก่อน</small>${pwFmt(a)}</span>`;
+  return '';
+}
+function pwDetail(r){
+  const a = r.pwA === '' || r.pwA == null ? null : +r.pwA, z = r.pwZ === '' || r.pwZ == null ? null : +r.pwZ;
+  if (a == null && z == null) return '';
+  const b = v => `<span class="pw ${pwLv(v)}">${pwFmt(v)}</span>`;
+  let h = '';
+  if (a != null && z != null) { const d = Math.round((z - a) * 100) / 100; h = `ก่อน ${b(a)} → หลัง ${b(z)} dBm · <b>${d > 0 ? 'ดีขึ้น ' + d.toFixed(2) : d < 0 ? 'แย่ลง ' + Math.abs(d).toFixed(2) : 'เท่าเดิม 0.00'} dB</b>`; }
+  else if (z != null) h = `หลัง ${b(z)} dBm · ${PW_LV[pwLv(z)]}`;
+  else h = `ก่อน ${b(a)} dBm · ${PW_LV[pwLv(a)]}`;
+  return `<div class="full"><dt>Power ก่อน → หลังแก้ไข</dt><dd class="pw-dd">${h}</dd></div>`;
+}
+function pwShow(id){
+  const v = pwParse($(id).value), el = $(id + 'lv');
+  el.className = 'pw-lv' + (v === null || v === false ? '' : ' ' + pwLv(v));
+  el.textContent = v === null ? '–' : v === false ? 'ผิดรูปแบบ' : PW_LV[pwLv(v)];
+}
+['pwA', 'pwZ'].forEach(id => { $(id).addEventListener('input', () => pwShow(id)); $(id).addEventListener('blur', () => { const v = pwParse($(id).value); if (v !== null && v !== false) $(id).value = pwFmt(v); pwShow(id); }); });
+
+
+/* On Hand: จำนวนวันที่อยู่ในคลัง (นับจากวันรับเข้า) · เกิน 30 วันสีส้ม */
+function ohDays(at){
+  const d0 = String(at || '').slice(0, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(d0)) return '';
+  const n = Math.max(0, Math.round((Date.parse(today() + 'T00:00:00Z') - Date.parse(d0 + 'T00:00:00Z')) / 86400000));
+  return `<span class="ohb d${n > 30 ? ' old' : ''}" title="รับเข้า ${esc(at)}">${n ? n + ' วัน' : 'วันนี้'}</span>`;
+}
+
 /* Line Type: ปุ่มเพิ่ม → แสดงช่อง Drum No. (เก็บรูปแบบเดิม) */
 function setLine(on){ $('lineBox').classList.toggle('hide', !on); $('lineAdd').classList.toggle('hide', on); }
 $('lineAdd').onclick = () => { setLine(true); $('drum').focus(); };
@@ -2300,6 +2405,7 @@ function fill(r){
   setPain(r); setLine(!!r.drum); sync('drumChips', 'drum');
   setExtra(r.extra || []); spFmtShow();
   spBase = r.sp || ''; spOldNo = false; $('spOld').value = r.spOld || ''; setSpOld(!!r.spOld); spFmtShow('spOld', 'spOldFmt');
+  ['pwA', 'pwZ'].forEach(k => { if ($(k).value !== '') $(k).value = pwFmt(+$(k).value); pwShow(k); });
   formClean();
 }
 
@@ -2491,13 +2597,15 @@ $('save').onclick = () => busy($('save'), 'กำลังบันทึก…'
   if (rec.range && !/^\d{1,4}$/.test(rec.range)) return say('Range ต้องเป็นตัวเลข (เมตร)');
   if (rec.range && !rec.rangeFrom) return say('เลือกว่ายิงสายจาก เร้าเตอร์ / SP / อื่นๆ');
   if (!rec.range && rec.rangeFrom) return say('กรอกระยะ Range (เมตร)');
+  for (const [k, lab] of [['pwA', 'Power ก่อนแก้ไข'], ['pwZ', 'Power หลังแก้ไข']]) { const v = pwParse(rec[k]); if (v === false) return say(lab + ' ต้องเป็นตัวเลข +10 ถึง -50 ทศนิยมไม่เกิน 2 ตำแหน่ง เช่น 24.50'); rec[k] = v === null ? '' : String(v); }
+  { const pos = [['ก่อน', rec.pwA], ['หลัง', rec.pwZ]].filter(([, v]) => v !== '' && +v > 0); if (pos.length && !(await ask('Power ' + pos.map(([n, v]) => n + ' ' + pwFmt(+v)).join(', ') + ' เป็นค่าบวก\nปกติค่า Power จะติดลบ บันทึกค่านี้จริงหรือไม่?'))) return; }
   const sub = $('ppSub').value;
   if (sub) rec.painId = sub;                       // เลือกจากรายการ: เซิร์ฟเวอร์ตรวจและสร้างข้อความ Pain Point เอง
   else if (legacy) rec.pain = legacy;              // รายการเก่า (ข้อความอิสระ / ตัวเลือกที่ถูกปิดแล้ว) แก้ช่องอื่นได้โดยคงค่าเดิม
-  else return say('เลือก Pain Point (หมวกหลักและตัวรอง) ก่อนบันทึก');
+  else return say('เลือก Pain Point (Main และ Sub) ก่อนบันทึก');
   const ex = collectExtra();
-  if (ex === null) return say('เลือกตัวรองให้ครบทุกแถว หรือกดลบแถวที่ไม่ใช้');
-  if (sub && ex.includes(sub)) return say('ตัวรองเพิ่มเติมซ้ำกับตัวแรก');
+  if (ex === null) return say('เลือก Sub ให้ครบทุกแถว หรือกดลบแถวที่ไม่ใช้');
+  if (sub && ex.includes(sub)) return say('Sub เพิ่มเติมซ้ำกับตัวแรก');
   rec.extra = ex;
   const j = await api('save', {rec});
   if (!j.ok) { buzz(true); return say(j.error); }
