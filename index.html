@@ -716,7 +716,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
       <svg viewBox="8 8 84 84" aria-hidden="true"><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg>
       <span>CMCS</span>
     </div>
-    <p class="lg-label">ยินดีต้อนรับยอดนักปรุง</p>
+    <p class="lg-label">Welcome to CMCOOKING</p>
     <div class="lg-cards" role="group" aria-label="เลือกกลุ่มผู้ใช้งาน">
       <button type="button" class="lg-card" data-role="cook" aria-pressed="false"><span class="lg-tick"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 L5 8.6 L9.5 3.6"/></svg></span>
         <svg class="lg-ic" viewBox="0 0 36 36" aria-hidden="true"><g fill="none" stroke="#9aa3ad" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 31.5 L27 11"/><path d="M27.5 10.5 m-1.6-4.3 a4 4 0 0 1 5.9 5.9 l-2.6-.5 -.7-2.6 z"/><path d="M29.5 31.5 L10 12"/></g><rect x="3.6" y="5.2" width="8.2" height="5.4" rx="1.3" fill="#9aa3ad" transform="rotate(45 7.7 7.9)"/><g transform="translate(0 2)"><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 a5.2 5.2 0 0 1 1.8-10 a6.2 6.2 0 0 1 11.4 0 a5.2 5.2 0 0 1 1.8 10 z"/><path style="fill:var(--hatbg,#fff)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M10.5 18.5 h15 v5.5 h-15 z"/><path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15 20.8 v1 M18 20.8 v1 M21 20.8 v1"/></g></svg>
@@ -734,7 +734,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
       <p class="lg-msg" id="lgMsg" role="alert"></p>
     </div></div>
   </div>
-  <footer class="cx-foot"><b>CMCOOKING</b> · live v1.0</footer>
+  <footer class="cx-foot"><b>CMCOOKING</b> · live v1.3</footer>
 </section>
 
 <section id="vHome" class="hide">
@@ -1168,7 +1168,7 @@ function cxFly(from, toEl, role){
   });
 }
 let adminEntry = false, lgRole = null;
-const LG_GREET = { cook: 'สวัสดีเหล่า COOK', chef: 'สวัสดีครับ CHEF 👨‍🍳' };
+const LG_GREET = { cook: 'Hello COOK', chef: 'Hello CHEF 👨‍🍳' };
 document.querySelectorAll('#vLogin .lg-card').forEach(card => card.addEventListener('click', () => {
   const next = card.dataset.role;
   if (lgRole && lgRole !== next) $('p').value = '';          // สลับการ์ด: ล้างรหัสผ่าน คงชื่อไว้
@@ -2753,6 +2753,6 @@ try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && 
   else if (token && me && !me.mustChange && h.get('bar')) openBar(h.get('bar'), true); } catch (e) {}
 try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
 </script>
-<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.0</footer>
+<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.3</footer>
 </body>
 </html>
