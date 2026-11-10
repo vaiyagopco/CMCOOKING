@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcooking.cmcooking.workers.dev; img-src 'self' data: https://tile.openstreetmap.org https://server.arcgisonline.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://cmcs.cmcooking.workers.dev; img-src 'self' data: https://tile.openstreetmap.org https://server.arcgisonline.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#B2D235">
 <meta name="referrer" content="no-referrer">
 <title>CMCOOKINGLIST</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CMCOOKING">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CMCS TEST">
 <style>
 /* ===== สีหลัก แก้ที่นี่ที่เดียว ===== */
 :root{
@@ -393,6 +393,24 @@ textarea{min-height:88px}
 .bcbtn .ic{width:15px;height:15px}
 .l1 .bcbtn{margin-left:auto;flex:none}
 .sno{font-size:13px}
+/* ทดสอบเครือข่าย */
+.net-tg{margin:0 0 12px}
+.net-chip{min-height:40px;border-radius:10px;border:1px solid #1a1a1a;background:#fff;color:#1a1a1a;font-size:14px;font-weight:700;padding:0 10px}
+.net-chip.on{background:#1a1a1a;color:#fff}
+.net-chip.soon{border-color:#ccc;color:#8a8a8a}
+.net-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.net-kpi div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 6px;text-align:center}
+.net-kpi span{display:block;font-size:12px;color:var(--mut)}
+.net-kpi b{font-size:22px;font-weight:700}
+.net-kpi i{font-style:normal;font-size:12px;color:var(--mut);margin-left:2px}
+.net-bars{display:flex;align-items:flex-end;gap:4px;height:56px;margin:4px 0 6px}
+.net-bars i{flex:1;min-height:4px;background:#1a1a1a;border-radius:3px 3px 0 0}
+.net-bars i.hi{background:var(--o)}
+.net-bars i.miss{background:#d0d0d0}
+.net-hop{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.net-hop span{color:var(--mut)}
+.net-hop b{font-weight:600;word-break:break-all}
+.net-hop em{font-style:normal;color:var(--mut);font-size:13px}
 
 /* SP Finder v2 */
 .sp-menu{margin:8px auto 10px}
@@ -643,6 +661,39 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
 .oh-bdg .ohb.ty{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a;padding:2px 9px}
 .oh-bdg .ohb.d{background:#f2f4ec;color:#1a1a1a;border:1px solid #d9dfcd;padding:2px 9px}
 .oh-bdg .ohb.d.old{background:#F58220;color:#1a0b00;border-color:#F58220}
+
+/* ===== v1.3 งานซ้ำ ===== */
+.rpb{display:inline-flex;align-items:center;font:800 10px/1.6 system-ui,sans-serif;padding:0 7px;border-radius:8px;white-space:nowrap;flex:none}
+.rpb.x{background:#9B0018;color:#fff}.rpb.m{background:#fff;color:#9a4a00;box-shadow:inset 0 0 0 1.5px #F58220}
+.item .l1 .bdg{display:flex;flex:1 1 0;align-items:center;flex-wrap:wrap;gap:3px 4px;margin:0 0 0 6px;min-width:0}
+.item .l1 time{flex:none}
+.item .l1 .bdg:empty{margin:0}
+.item .l1 .bdg .pw{margin:0}
+.rp-row .rpb{margin-left:4px}
+.rp-sub .rpb{margin-left:6px}
+.rep-dd{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.rp-reps{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 8px}
+.rp-reps span{display:inline-flex;align-items:center;gap:6px;font-size:13px}
+/* ===== v1.3 หน้าต่างประวัติ ===== */
+#hsOv{position:fixed;inset:0;z-index:85;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
+#hsOv.hide{display:none}
+#hsOv .hs{background:#fff;width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));color:#1a1a1a}
+#hsOv h3{margin:0 0 2px;font-size:17px}
+#hsOv .sub{font-size:13px;color:#3d4433;margin:0 0 10px}
+#hsOv .job{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:9px 10px;border:1.5px solid #d9dfcd;border-radius:12px;margin:0 0 8px;font-size:13px;background:#fff;color:#1a1a1a;min-height:0}
+#hsOv .job.on{border-color:#1a1a1a;background:#f2f4ec}
+#hsOv .job .d{font:800 12px ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+#hsOv .job .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#hsOv .job .tm{font-size:11px;color:#3d4433;white-space:nowrap}
+#hsOv .job .pw,#hsOv .job .rpb{margin:0}
+#hsOv .copy{font-size:12px;background:#f2f4ec;border-radius:10px;padding:8px 10px;margin:4px 0 10px;line-height:1.6;overflow-wrap:anywhere}
+#hsOv .btns{display:flex;flex-direction:column;gap:8px}
+#hsOv .btns button{width:100%;min-height:48px;font-size:15px;font-weight:700;border-radius:12px;margin:0}
+#hsOv #hsEdit{background:#fff;color:#1a1a1a;border:1.5px solid #1a1a1a}
+#hsOv #hsEdit:disabled{opacity:.5}
+#hsOv #hsNo{background:none;color:#3d4433;border:0}
+.sp-menu .cx-card{height:auto;min-height:92px;padding-bottom:9px}
+.cx-card small.sp-cnt{margin-top:3px;font-weight:800;opacity:1;line-height:1.3}
 </style>
 </head>
 <body>
@@ -672,7 +723,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
 </svg>
 <div id="bar"></div>
-<header class="cx"><button id="home" class="hide cx-btn l" type="button" aria-label="KITCHEN" title="KITCHEN"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button><div class="cx-title"><svg class="cx-gear cx-logo" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#000"/><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg><div class="cx-tt"><h1>CMCOOKING<span class="cx-role"></span></h1><small class="cx-sub" id="cxSub"></small></div></div><button id="out" class="hide cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
+<header class="cx"><button id="home" class="hide cx-btn l" type="button" aria-label="KITCHEN" title="KITCHEN"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button><div class="cx-title"><svg class="cx-gear cx-logo" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#000"/><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg><div class="cx-tt"><h1>CMCOOKING<span class="cx-role"></span></h1><span class="cx-subrow"><b class="cx-tb">TEST</b><small class="cx-sub" id="cxSub"></small></span></div></div><button id="out" class="hide cx-btn r" type="button" aria-label="EXIT" title="EXIT"><svg class="cx-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button></header>
 <main>
 <p id="msg" role="alert"></p>
 
@@ -680,7 +731,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
   <div class="lg-head"><div class="cx-title" style="display:flex;align-items:center;gap:8px"><svg class="cx-gear lg-gear" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#000"/><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg><h1>CMCOOKING<span class="cx-role"></span></h1></div></div>
   <div class="lg-main">
     <div class="lg-logo" aria-label="CMCS">
-      <svg viewBox="8 8 84 84" aria-hidden="true"><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg>
+      <svg viewBox="8 8 84 84" aria-hidden="true"><polygon points="80.28,43.36 87.68,45.09 87.68,54.91 80.28,56.64 78.40,62.42 83.37,68.18 77.60,76.12 70.59,73.17 65.68,76.74 66.31,84.32 56.97,87.35 53.04,80.85 46.96,80.85 43.03,87.35 33.69,84.32 34.32,76.74 29.41,73.17 22.40,76.12 16.63,68.18 21.60,62.42 19.72,56.64 12.32,54.91 12.32,45.09 19.72,43.36 21.60,37.58 16.63,31.82 22.40,23.88 29.41,26.83 34.32,23.26 33.69,15.68 43.03,12.65 46.96,19.15 53.04,19.15 56.97,12.65 66.31,15.68 65.68,23.26 70.59,26.83 77.60,23.88 83.37,31.82 78.40,37.58" fill="#fff"/><circle cx="50" cy="50" r="25" fill="#000"/><g fill="#F5B700"><circle cx="43.25" cy="49.00" r="6.75"/><circle cx="56.75" cy="49.00" r="6.75"/><circle cx="50.00" cy="44.50" r="8.25"/><rect x="40.25" y="49.00" width="19.50" height="10.50"/><rect x="40.25" y="61.00" width="19.50" height="3.75" rx="1.12"/></g></svg><i class="lg-tb">TEST</i>
       <span>CMCS</span>
     </div>
     <p class="lg-label">ยินดีต้อนรับยอดนักปรุง</p>
@@ -701,7 +752,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
       <p class="lg-msg" id="lgMsg" role="alert"></p>
     </div></div>
   </div>
-  <footer class="cx-foot"><b>CMCOOKING</b> · live v1.0</footer>
+  <footer class="cx-foot"><b>CMCOOKING SYSTEM</b> · Test system v1.0</footer>
 </section>
 
 <section id="vHome" class="hide">
@@ -711,6 +762,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
     <button class="tool cx-card" id="toolBar" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5v14M7.5 5v14M11 5v14M15 5v14M18.5 5v14M21 5v14"/></svg><b>BARCODE</b></button>
     <button class="tool cx-card" id="toolSp" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.3"/><circle cx="5" cy="19" r="2.3"/><circle cx="19" cy="19" r="2.3"/><path d="M12 7.3V12M12 12l-5.3 5M12 12l5.3 5"/></svg><b>SP FINDER</b></button>
     <button class="tool cx-card" id="toolOh" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></svg><b>ON HAND</b></button>
+    <button class="tool cx-card" id="toolNet" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><b>NET TEST</b></button>
     <button class="tool cx-card" id="toolRep" type="button"><svg class="cx-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg><b>REPORT</b></button>
     <button class="tool cx-card hide" id="toolAdm" type="button"><svg class="cx-ic" viewBox="6 2 36 36" aria-hidden="true"><rect x="8" y="5" width="32" height="21.5" rx="2.5"/><path d="M24 26.5 v6 M17 33.5 h14"/><circle cx="24" cy="15.5" r="4.5"/></svg><b>CHEF</b></button>
   </div>
@@ -734,6 +786,26 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
   <div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="ohQ" placeholder="ค้นหา SN" autocomplete="off" spellcheck="false"></div>
   <div id="ohList"></div>
 </section>
+
+<section id="vNet" class="hide">
+  <div class="two net-tg">
+    <button type="button" class="net-chip on" aria-pressed="true">Internet ทั่วไป</button>
+    <button type="button" class="net-chip soon" disabled>ISP · เร็ว ๆ นี้</button>
+  </div>
+  <div class="net-kpi">
+    <div><span>Avg</span><b id="kAvg">–</b><i>ms</i></div>
+    <div><span>Min</span><b id="kMin">–</b><i>ms</i></div>
+    <div><span>Max</span><b id="kMax">–</b><i>ms</i></div>
+    <div><span>Jitter</span><b id="kJit">–</b><i>ms</i></div>
+    <div><span>Loss</span><b id="kLoss">–</b><i>%</i></div>
+  </div>
+  <div class="net-bars" id="netBars" aria-label="ค่า ping 10 ครั้งล่าสุด"></div>
+  <p class="hint" id="netMsg">แตะ Ping เพื่อวัด 10 ครั้ง</p>
+  <div class="two"><button id="netPing" class="big" type="button">Ping</button><button id="netTrace" class="ghost" type="button">Tracer</button></div>
+  <p class="hint">วัดจากมือถือถึงเซิร์ฟเวอร์ของระบบ ไม่ใช่ถึงบ้านลูกค้า · ผลไม่บันทึกลงงาน</p>
+  <div id="netHops"></div>
+</section>
+
 
 <section id="vSp" class="hide">
   <div class="cx-cards sp-menu">
@@ -789,6 +861,18 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
   <div class="scan-btns"><button type="button" id="scanTorch" class="hide">ไฟฉาย</button><button type="button" id="scanX">ปิด</button></div>
 </div>
 
+<div id="hsOv" class="hide" role="dialog" aria-modal="true" aria-labelledby="hsT">
+  <div class="hs">
+    <h3 id="hsT"></h3><p class="sub" id="hsSub"></p>
+    <div id="hsJobs"></div>
+    <div class="copy" id="hsCopy"></div>
+    <div class="btns">
+      <button type="button" id="hsNew">＋ เริ่มงานใหม่ (ดึงข้อมูลเดิม)</button>
+      <button type="button" id="hsEdit">✎ แก้ไขงานที่เลือก</button>
+      <button type="button" id="hsNo">ยกเลิก</button>
+    </div>
+  </div>
+</div>
 <section id="vList" class="hide">
   <div class="sticky">
     <div class="fl-row"><label class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ค้นหา เลข 4 ตัวท้าย · SP · SN · Detail" aria-label="ค้นหา"></label><button id="flBtn" type="button" aria-label="ค้นหาแบบละเอียด">⚙ ตัวกรอง<b></b></button></div>
@@ -911,7 +995,7 @@ header.cx .cx-gear.cx-logo{width:28px;height:28px;flex:none}
 
 <script>
 if (window.top !== window.self) { document.documentElement.textContent = ''; throw new Error('framed'); }   // กันถูกฝังในเว็บอื่น (clickjacking)
-const API = 'https://cmcooking.cmcooking.workers.dev/';   // Worker API (Phase 2)
+const API = 'https://cmcs.cmcooking.workers.dev/';   // Worker API (Phase 2)
 const DRUMS = ['ZT cable','Shenzhen','Hulli cable','Fiberhome','FIBRE3','Change','Chang Yun','AWN'];
 const GRAY = '#8A8F98';
 const $ = id => document.getElementById(id);
@@ -962,20 +1046,20 @@ function pngBlob(text, cb){
   c.toBlob(cb, 'image/png');
 }
 
-let token = sessionStorage.getItem('t'), me = JSON.parse(sessionStorage.getItem('u') || 'null');
+let token = sessionStorage.getItem('cmcs_t'), me = JSON.parse(sessionStorage.getItem('cmcs_u') || 'null');
 let rows = [], allRows = null, found = [], hist = false, seq = 0, timer, pending = 0, formSeq = 0, loaded = false, keepSn = '';
 let PP = [], PPMAP = {}, ppAt = 0, ppBusy = null, legacy = '', fromForm = false;
 const SLOW = 'กำลังเชื่อมต่อ… ครั้งแรกอาจใช้เวลาสักครู่';
 
-const VIEWS = ['vRep','vSpD','vSpT','vSp','vLogin','vHome','vBar','vList','vStart','vForm','vChg','vOh'];
+const VIEWS = ['vRep','vSpD','vSpT','vSp','vNet','vLogin','vHome','vBar','vList','vStart','vForm','vChg','vOh'];
 /* ---------- นำทาง: ปุ่ม Back ของมือถือ/เบราว์เซอร์ ย้อนทีละหน้า ---------- */
-const NAV_VIEWS = ['vRep','vSpD','vSpT','vSp','vHome','vList','vBar','vOh','vStart','vForm'];
-const TITLES = {vRep: 'REPORT', vSpD: 'SP TREE', vSpT: 'SP TREE', vSp: 'SP Finder', vList: 'CM:MENU', vBar: 'Barcode', vOh: 'On Hand', vStart: 'เพิ่มงาน', vChg: 'ตั้งรหัสผ่าน'};
+const NAV_VIEWS = ['vRep','vSpD','vSpT','vSp','vNet','vHome','vList','vBar','vOh','vStart','vForm'];
+const TITLES = {vRep: 'REPORT', vSpD: 'SP TREE', vSpT: 'SP TREE', vSp: 'SP Finder', vNet: 'NET TEST', vList: 'CM:MENU', vBar: 'Barcode', vOh: 'On Hand', vStart: 'เพิ่มงาน', vChg: 'ตั้งรหัสผ่าน'};
 let NAV = [], navI = -1, navMute = 0, curView = '';
 function show(v, dir){
   VIEWS.forEach(x => $(x).classList.toggle('hide', x !== v));
   $('out').classList.toggle('hide', v === 'vLogin');
-  $('home').classList.toggle('hide', !['vRep', 'vSpD', 'vSpT', 'vSp', 'vList', 'vBar', 'vOh'].includes(v));
+  $('home').classList.toggle('hide', !['vRep', 'vSpD', 'vSpT', 'vSp', 'vNet', 'vList', 'vBar', 'vOh'].includes(v));
   $('cxSub').textContent = v === 'vForm' ? ($('id').value ? 'แก้ไขงาน' : 'เพิ่มงาน') : (TITLES[v] || '');
   if (dir && v !== curView) { const el = $(v); el.classList.remove('cx-in-f', 'cx-in-b'); void el.offsetWidth; el.classList.add(dir === 'back' ? 'cx-in-b' : 'cx-in-f'); }
   curView = v;
@@ -1153,7 +1237,7 @@ $('go').onclick = () => busy($('go'), '…', async () => {
     return say('ทางเข้านี้สำหรับ CHEF เท่านั้น');
   }
   token = j.token; me = j.user; rows = j.rows || []; loaded = true;
-  sessionStorage.setItem('t', token); sessionStorage.setItem('u', JSON.stringify(me));
+  sessionStorage.setItem('cmcs_t', token); sessionStorage.setItem('cmcs_u', JSON.stringify(me));
   if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); return; }
   const fromIc = document.querySelector('#vLogin .lg-card[aria-pressed="true"] .lg-ic');
   const from = fromIc ? fromIc.getBoundingClientRect() : null, role = me.role === 'admin' ? 'chef' : 'cook';
@@ -1171,7 +1255,7 @@ $('cGo').onclick = () => busy($('cGo'), 'กำลังบันทึก…', 
   const j = await api('change_password', {oldPassword: a, newPassword: b});
   $('cOld').value = $('cNew').value = $('cNew2').value = '';
   if (!j.ok) return say(j.error);
-  me = Object.assign({}, me, {mustChange: false}); sessionStorage.setItem('u', JSON.stringify(me));
+  me = Object.assign({}, me, {mustChange: false}); sessionStorage.setItem('cmcs_u', JSON.stringify(me));
   say(); goHome(); loadPP(true); toast('เปลี่ยนรหัสผ่านแล้ว ✓');
 });
 function bye(){ if (token) fetch(API, {method:'POST', body: JSON.stringify({action:'logout', token})}).catch(() => {}); }   // ยกเลิกเซสชันฝั่งเซิร์ฟเวอร์ด้วย
@@ -1298,12 +1382,12 @@ function itemHtml(r){
   const rg = r.range !== '' && r.range != null ? r.range + ' ม. · ' + (RANGE_FROM[r.rangeFrom] || '-') : '';
   return `<div class="item" data-id="${esc(r.id)}" style="--pc:${pc}">
       <div class="head" data-a="tog">
-        <div class="hl"><div class="l1"><b>${esc(r.net)}</b>${pwBadge(r)}<time>${esc(tm)}</time></div>
+        <div class="hl"><div class="l1"><b>${esc(r.net)}</b><span class="bdg">${pwBadge(r)}${repBadge(r)}</span><time>${esc(tm)}</time></div>
           <div class="pn"><i class="dot"></i>${esc(sub)}${ex.length ? ` <span class="x">+${ex.length}</span>` : ''}${who ? ` <span class="tm">· ${esc(who)}</span>` : ''}</div></div>
         <button type="button" class="chev" data-a="tog" aria-expanded="false" aria-label="รายละเอียด">${ic('chev')}</button>
       </div>
       <div class="detail">
-        <dl class="kv">${pwDetail(r)}${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>Sub เพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.spPin ? `<div><dt>พิกัด SP</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${mapLink(r.spPin)}">${esc(r.spPin)}</a></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
+        <dl class="kv">${pwDetail(r)}${repDetail(r)}${kv('Pain Point', p, 'full')}${ex.length ? `<div class="full"><dt>Sub เพิ่มเติม</dt><dd>${ex.map(x => `<span class="pn pnx"><i class="dot" style="background:${ppColor(x.id)}"></i>${esc(x.t)}</span>`).join('')}</dd></div>` : ''}${r.spOld ? kv('SP ใหม่', r.sp) + kv('SP เดิม', r.spOld) : kv('SP', r.sp, 'full')}${r.sn ? `<div><dt>SN ใหม่</dt><dd><button type="button" class="snbtn" data-a="sn">${esc(r.sn)} ›</button><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.sn)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.snOld ? `<div><dt>SN เก่า</dt><dd><span class="sno">${esc(r.snOld)}</span><button type="button" class="bcbtn" data-a="bc" data-sn="${esc(r.snOld)}" aria-label="Barcode" title="Barcode"><svg class="ic" aria-hidden="true"><use href="#i-bar"/></svg></button></dd></div>` : ''}${r.spPin ? `<div><dt>พิกัด SP</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${mapLink(r.spPin)}">${esc(r.spPin)}</a></dd></div>` : ''}${kv('Line Type', r.drum)}${kv('Range', rg)}${pp ? `<div><dt>Pain Point Pin</dt><dd><a class="lnk" target="_blank" rel="noopener noreferrer" href="${pp}">${esc(r.ppPin)}</a></dd></div>` : ''}${kv('Name Plate', r.plate)}</dl>
         ${r.note ? `<div class="dtl"><p>${esc(r.note)}</p></div>` : ''}
         <p class="meta">บันทึก ${esc(String(r.at || '').slice(0, 16))} · ${esc(r.team || '-')}${r.upAt ? ' · แก้ไข ' + esc(ts(r.upAt, d0)) + ' · ' + esc(r.upTeam || '-') : ''}</p>
         <div class="row">
@@ -1499,6 +1583,68 @@ async function drawOh(reload){
     </div></div></div>`).join('') : '<p class="empty">ไม่มี SN</p>';
 }
 
+
+/* ---------- ทดสอบเครือข่าย: Ping วัดจากมือถือ · Tracer ผ่าน probe ---------- */
+const NET_N = 10;
+let netBusy = false;
+const netFmt = v => v == null ? '–' : String(Math.round(v * 10) / 10);
+function netShow(rtts, fails){
+  const ok = rtts.filter(x => x != null);
+  const avg = ok.length ? ok.reduce((a, b) => a + b, 0) / ok.length : null;
+  let jit = null;
+  if (ok.length > 1){ let d = 0; for (let i = 1; i < ok.length; i++) d += Math.abs(ok[i] - ok[i - 1]); jit = d / (ok.length - 1); }
+  $('kAvg').textContent = netFmt(avg);
+  $('kMin').textContent = netFmt(ok.length ? Math.min(...ok) : null);
+  $('kMax').textContent = netFmt(ok.length ? Math.max(...ok) : null);
+  $('kJit').textContent = netFmt(jit);
+  $('kLoss').textContent = String(Math.round(fails / NET_N * 100));
+  const max = Math.max(1, ...ok);
+  const box = $('netBars'); box.innerHTML = '';
+  rtts.forEach(x => {
+    const i = document.createElement('i');
+    if (x == null){ i.className = 'miss'; i.style.height = '100%'; i.title = 'ไม่ตอบ'; }
+    else { i.style.height = Math.max(8, x / max * 100) + '%'; if (avg && x > avg * 1.5) i.className = 'hi'; i.title = netFmt(x) + ' ms'; }
+    box.appendChild(i);
+  });
+}
+async function netPing(){
+  if (netBusy) return;
+  netBusy = true; say(); $('netPing').disabled = true;
+  const rtts = []; let fails = 0;
+  for (let k = 0; k < NET_N; k++){
+    if (!token) break;
+    $('netMsg').textContent = 'กำลังวัด ' + (k + 1) + '/' + NET_N + '…';
+    const t0 = performance.now();
+    const j = await api('net_ping');
+    if (j && j.ok) rtts.push(performance.now() - t0); else { rtts.push(null); fails++; }
+  }
+  netShow(rtts, fails);
+  $('netMsg').textContent = fails ? 'ไม่ตอบ ' + fails + ' จาก ' + NET_N + ' ครั้ง' : 'วัดครบ ' + rtts.length + ' ครั้ง';
+  $('netPing').disabled = false; netBusy = false;
+}
+async function netTracer(){
+  if (netBusy) return;
+  netBusy = true; say(); $('netTrace').disabled = true; $('netHops').innerHTML = '';
+  $('netMsg').textContent = 'กำลังทำ Tracer… อาจใช้เวลาสักครู่';
+  const j = await api('net_trace', {target: 'internet'});
+  netBusy = false; $('netTrace').disabled = false;
+  if (!j || !j.ok){ $('netMsg').textContent = (j && j.error) || 'ทำ Tracer ไม่สำเร็จ'; return; }
+  $('netMsg').textContent = j.target + ' · ' + j.hops.length + ' hop' + (j.reached ? '' : ' · ยังไม่ถึงปลายทาง');
+  const box = $('netHops');
+  j.hops.forEach(h => {
+    const row = document.createElement('div'); row.className = 'net-hop';
+    const n = document.createElement('span'); n.textContent = String(h.n);
+    const ip = document.createElement('b'); ip.textContent = h.ip || '* * *';
+    const ms = document.createElement('em');
+    ms.textContent = h.rtt.length ? netFmt(h.rtt.reduce((a, b) => a + b, 0) / h.rtt.length) + ' ms' : 'หมดเวลา';
+    row.append(n, ip, ms); box.appendChild(row);
+  });
+}
+$('toolNet').onclick = () => { say(); view('vNet'); };
+$('netPing').onclick = netPing;
+$('netTrace').onclick = netTracer;
+
+
 /* ---------- แผนที่ (เขียนเอง ไม่โหลดสคริปต์ภายนอก): ภาพแผนที่ OpenStreetMap / ภาพดาวเทียม Esri ---------- */
 function cmMap(el){
   const TS = 256, MINZ = 5, MAXZ = 19;
@@ -1657,7 +1803,7 @@ async function spLoad(q){
   if (!j.ok) return say(j.error);
   const lv = j.level, sel = $(spSels[lv - 1]);
   const ph = ['— เลือกกลุ่ม —', '— เลือก Site —', '— เลือก PON —', '— เลือก SP —'][lv - 1];
-  sel.innerHTML = '<option value="">' + ph + ' (' + j.items.length + ')</option>' + j.items.map(x => '<option value="' + esc(x.v) + '">' + esc(x.label) + (x.count != null ? ' · ' + x.count : '') + '</option>').join('');
+  sel.innerHTML = '<option value="">' + ph + ' (' + j.items.length + ' รายการ)</option>' + j.items.map(x => '<option value="' + esc(x.v) + '">' + esc(x.label) + (x.count != null ? ' (' + spNum(x.count) + 'sp)' : '') + '</option>').join('');
   sel.classList.remove('hide');
   for (let i = lv; i < 4; i++) { $(spSels[i]).classList.add('hide'); $(spSels[i]).innerHTML = ''; }
   if (lv === 4) {
@@ -1703,7 +1849,17 @@ async function spNearMe(){
   if (spItems.length) spPick(spItems[0].id);
 }
 $('spNear').onclick = spNearMe;
-$('toolSp').onclick = () => { say(); view('vSp'); };
+
+/* v1.3 การ์ด SP FINDER: จำนวน SP (ดึงสดทุกครั้งที่เปิด) */
+const spNum = n => Number(n || 0).toLocaleString('en-US');
+async function spCardCounts(){
+  ['spGoK', 'spGoB'].forEach(id => { const s = $(id).querySelector('.sp-cnt'); if (s) s.textContent = '…'; });
+  const [k, b] = await Promise.all([api('sp_tree', {src: 'k'}), api('sp_tree', {src: 'b'})]);
+  const put = (id, t) => { let s = $(id).querySelector('.sp-cnt'); if (!s) { s = document.createElement('small'); s.className = 'sp-cnt'; $(id).appendChild(s); } s.textContent = t; };
+  put('spGoK', k && k.ok ? '(' + spNum(k.total != null ? k.total : k.items.reduce((a, x) => a + (x.count || 0), 0)) + 'sp)' : '');
+  put('spGoB', b && b.ok ? 'บันทึกแล้ว (' + spNum(b.total != null ? b.total : b.items.reduce((a, x) => a + (x.count || 0), 0)) + 'sp)' + (b.pins != null ? ' · มีพิกัด ' + spNum(b.pins) + 'sp' : '') : '');
+}
+$('toolSp').onclick = () => { say(); view('vSp'); spCardCounts(); };
 $('spGoK').onclick = () => spOpenTree('k');
 $('spGoB').onclick = () => spOpenTree('b');
 
@@ -1969,11 +2125,15 @@ function rpSp(d){
     <p class="rp-hint">นับรวมทุกพอร์ตและ HF/FF ของ SP เดียวกัน (แบบ SP TREE Beta)</p></div>`;
 }
 /* R5 เคสซ้ำ */
+function rpRepHead(d){
+  const r = d.rep; if (!r || !(r.x || r.m)) return '';
+  return `<div class="rp-card"><h3>งานซ้ำ<small>เทียบงานก่อนหน้าของเลขเดียวกัน</small></h3><div class="rp-reps"><span><span class="rpb x">งานเสียซ้ำ</span><b>${r.x}</b> งาน · ไม่ถึง 7 วัน</span><span><span class="rpb m">งานซ้ำในเดือน</span><b>${r.m}</b> งาน · ไม่เกิน 30 วัน</span></div></div>`;
+}
 function rpRep(d){
-  if (!d.repeats.length) return '<p class="rp-empty">ช่วงนี้ไม่มีเคสซ้ำ</p>';
-  return `<div class="rp-card"><h3>เคสซ้ำ<small>${d.repeats.length} Internet No.</small></h3>${d.repeats.map(r => `
+  if (!d.repeats.length) return rpRepHead(d) || '<p class="rp-empty">ช่วงนี้ไม่มีเคสซ้ำ</p>';
+  return rpRepHead(d) + `<div class="rp-card"><h3>เคสซ้ำ<small>${d.repeats.length} Internet No.</small></h3>${d.repeats.map(r => `
     <div class="rp-row rp-open" data-open="rep:${r.k}"><span class="rp-net">${esc(rpN(r))}</span><span class="rp-star" title="${r.n} ครั้ง">${rpStars(r.n)}</span><span class="rp-pp"><span>${r.n} ครั้ง · ล่าสุด ${esc(rpShort(r.last.slice(0, 10)))}</span></span></div>
-    ${RP.open['rep:' + r.k] ? `<div class="rp-sub">${r.items.map(x => `<div><span>${esc(x.at)}</span><span>${esc(x.main + ' › ' + x.sub)}</span></div>`).join('')}</div>` : ''}`).join('')}</div>`;
+    ${RP.open['rep:' + r.k] ? `<div class="rp-sub">${r.items.map(x => `<div><span>${esc(x.at)}</span><span>${esc(x.main + ' › ' + x.sub)}${repBadge(x)}</span></div>`).join('')}</div>` : ''}`).join('')}</div>`;
 }
 /* R6 ทีม / คน (CHEF) */
 function rpTeam(d){
@@ -2018,7 +2178,7 @@ function rpSum(d){
   d.jobs.forEach(j => { (byDate[j.at.slice(0, 10)] = byDate[j.at.slice(0, 10)] || []).push(j); });
   let i = 0;
   const list = Object.keys(byDate).sort().map(day => (RP.sMode === 'day' ? '' : `<div class="rp-dh">${esc(rpLong(day))} · ${byDate[day].length} งาน</div>`)
-    + byDate[day].map(j => `<div class="rp-row"><span class="rp-no">${++i}</span><span class="rp-net">${esc(rpN(j))}</span><span class="rp-pp"><i style="background:${rpCol(j.color)}"></i><span>${esc(j.main)} › ${esc(j.sub)}</span></span>${c[j.k] > 1 ? `<span class="rp-star" title="ซ้ำ ${c[j.k]} ครั้งในช่วงนี้">${rpStars(c[j.k])}</span>` : ''}</div>`).join('')).join('');
+    + byDate[day].map(j => `<div class="rp-row"><span class="rp-no">${++i}</span><span class="rp-net">${esc(rpN(j))}</span><span class="rp-pp"><i style="background:${rpCol(j.color)}"></i><span>${esc(j.main)} › ${esc(j.sub)}</span></span>${repBadge(j)}${c[j.k] > 1 ? `<span class="rp-star" title="ซ้ำ ${c[j.k]} ครั้งในช่วงนี้">${rpStars(c[j.k])}</span>` : ''}</div>`).join('')).join('');
   const reps = Object.values(c).filter(n => n > 1).length;
   return `<div class="rp-card"><h3>สรุปงาน · ${d.total} งาน<small>${reps ? '⭐ = ซ้ำ ' + reps + ' เลข' : 'ไม่มีเคสซ้ำ'}</small></h3>${list}</div>
     <div class="rp-card"><h3>แยกตาม Pain Point</h3>${rpHBars(rpMains(d).sort((a, b) => b.n - a.n))}</div>`;
@@ -2036,10 +2196,11 @@ function rpText(){
     d.jobs.forEach(j => {
       const day = j.at.slice(0, 10);
       if (RP.sMode !== 'day' && day !== last) { if (last) lines.push(''); lines.push('— ' + rpLong(day)); last = day; }
-      lines.push((++i) + '. ' + j.nf + '  ' + j.main + ' › ' + j.sub + rpPwTxt(j.pa, j.pz) + (c[j.k] > 1 ? ' ' + rpStars(c[j.k]) : ''));
+      lines.push((++i) + '. ' + j.nf + '  ' + j.main + ' › ' + j.sub + rpPwTxt(j.pa, j.pz) + repTxt(j.rep) + (c[j.k] > 1 ? ' ' + rpStars(c[j.k]) : ''));
     });
     lines.push('', 'สรุป: ' + rpMains(d).sort((a, b) => b.n - a.n).map(m => m.name + ' ' + m.n).join(' · '));
     const reps = Object.keys(c).filter(k => c[k] > 1);
+    if (d.rep && (d.rep.x || d.rep.m)) lines.push('งานซ้ำ (เทียบงานก่อนหน้า): งานเสียซ้ำ ' + d.rep.x + ' · งานซ้ำในเดือน ' + d.rep.m);
     if (reps.length) lines.push('เคสซ้ำ ' + reps.length + ' เลข: ' + reps.map(k => d.jobs.find(j => String(j.k) === k).nf + ' ' + rpStars(c[k])).join(', '));
     return lines.join('\n');
   }
@@ -2049,6 +2210,7 @@ function rpText(){
   L.push('', 'Pain Point:');
   rpMains(d).sort((a, b) => b.n - a.n).forEach(m => L.push('- ' + m.name + ' ' + m.n + ' (' + rpPct(m.n, d.total) + '%)'));
   if (d.sp.length) { L.push('', 'SP ที่มีงานมากสุด:'); d.sp.slice(0, 5).forEach((s, i) => L.push((i + 1) + '. ' + s.label + ' · ' + s.n + ' งาน')); }
+  if (d.rep && (d.rep.x || d.rep.m)) L.push('', 'งานซ้ำ (เทียบงานก่อนหน้า): งานเสียซ้ำ (ไม่ถึง 7 วัน) ' + d.rep.x + ' · งานซ้ำในเดือน (ไม่เกิน 30 วัน) ' + d.rep.m);
   if (d.repeats.length) { L.push('', 'เคสซ้ำ ' + d.repeats.length + ' เลข:'); d.repeats.slice(0, 15).forEach(r => L.push('- ' + r.nf + ' ' + rpStars(r.n) + ' (' + r.n + ' ครั้ง)')); }
   if (d.power && d.power.n) L.push('', 'Power หลังแก้ไข (' + d.power.n + ' งาน): ดี ' + d.power.g + ' · พอใช้ ' + d.power.y + ' · ต่ำ ' + d.power.o + ' · ต่ำมาก ' + d.power.r + (d.power.imp == null ? '' : ' · เฉลี่ย ' + (d.power.imp >= 0 ? '+' : '') + d.power.imp.toFixed(2) + ' dB'));
   if (chef && d.teams) { L.push('', 'งานต่อทีม:'); d.teams.forEach(t => L.push('- ' + t.team + ' ' + t.n)); }
@@ -2134,8 +2296,8 @@ function rpXlsSheets(){
   const c = rpRepCount(d), chef = rpIsChef();
   const label = sum ? rpWinLabel() : rpSpan(d.from, d.to);
   const S = [];
-  S.push(['สรุป', [['หัวข้อ', 'ค่า'], ['ช่วงเวลา', label], ['ตั้งแต่', d.from], ['ถึง', d.to], ['ทีม', d.team || (chef ? 'ทุกทีม' : '-')], ['งานทั้งหมด', d.total], ['ช่วงก่อนหน้า (' + d.prevFrom + ' ถึง ' + d.prevTo + ')', d.prevTotal], ['เฉลี่ยงาน/วัน', Math.round(d.total / d.days)], ['เคสซ้ำ (เลข)', d.repeats.length], ['ส่งออกเมื่อ', new Date().toLocaleString('th-TH', {timeZone: 'Asia/Bangkok'})]]]);
-  S.push(['งาน', [['ลำดับ', 'วันที่', 'เวลา', 'Internet No.', 'Pain Point', 'Sub', 'ทีม', 'ซ้ำ (ครั้งในช่วง)', 'Power ก่อน (dBm)', 'Power หลัง (dBm)']].concat(d.jobs.map((j, i) => [i + 1, j.at.slice(0, 10), j.at.slice(11, 16), j.nf, j.main, j.sub, j.team, c[j.k] > 1 ? c[j.k] : '', j.pa == null ? '' : j.pa, j.pz == null ? '' : j.pz]))]);
+  S.push(['สรุป', [['หัวข้อ', 'ค่า'], ['ช่วงเวลา', label], ['ตั้งแต่', d.from], ['ถึง', d.to], ['ทีม', d.team || (chef ? 'ทุกทีม' : '-')], ['งานทั้งหมด', d.total], ['ช่วงก่อนหน้า (' + d.prevFrom + ' ถึง ' + d.prevTo + ')', d.prevTotal], ['เฉลี่ยงาน/วัน', Math.round(d.total / d.days)], ['เคสซ้ำ (เลข)', d.repeats.length], ['งานเสียซ้ำ (ไม่ถึง 7 วัน)', d.rep ? d.rep.x : ''], ['งานซ้ำในเดือน (ไม่เกิน 30 วัน)', d.rep ? d.rep.m : ''], ['ส่งออกเมื่อ', new Date().toLocaleString('th-TH', {timeZone: 'Asia/Bangkok'})]]]);
+  S.push(['งาน', [['ลำดับ', 'วันที่', 'เวลา', 'Internet No.', 'Pain Point', 'Sub', 'ทีม', 'ซ้ำ (ครั้งในช่วง)', 'Power ก่อน (dBm)', 'Power หลัง (dBm)', 'งานซ้ำ', 'ห่างงานก่อน (วัน)']].concat(d.jobs.map((j, i) => [i + 1, j.at.slice(0, 10), j.at.slice(11, 16), j.nf, j.main, j.sub, j.team, c[j.k] > 1 ? c[j.k] : '', j.pa == null ? '' : j.pa, j.pz == null ? '' : j.pz, REP_LB[j.rep] || '', j.repD == null ? '' : j.repD]))]);
   const pp = [['Pain Point', 'Sub', 'จำนวน', '%']];
   d.groups.forEach(g => g.subs.forEach(s => pp.push([g.main, s.sub, s.n, rpPct(s.n, d.total)])));
   d.legacy.forEach(l => pp.push([l.text, '(ข้อมูลเก่า)', l.n, rpPct(l.n, d.total)]));
@@ -2262,7 +2424,7 @@ $('flTxt').onclick = async () => {
   if (qv()) desc.unshift('คำค้น "' + qv() + '"');
   if (desc.length) L.push('เงื่อนไข: ' + desc.join(' · '));
   L.push('');
-  s.list.forEach((r, i) => { const p = String(r.pain || ''), cut = p.indexOf(' - '); L.push((i + 1) + '. ' + (r.nf || r.net) + '  ' + (cut > 0 ? p.slice(0, cut) + ' › ' + p.slice(cut + 3) : p) + rpPwTxt(r.pwA, r.pwZ) + ' · ' + String(r.at || '').slice(0, 10) + (r.team ? ' · ' + r.team : '')); });
+  s.list.forEach((r, i) => { const p = String(r.pain || ''), cut = p.indexOf(' - '); L.push((i + 1) + '. ' + (r.nf || r.net) + '  ' + (cut > 0 ? p.slice(0, cut) + ' › ' + p.slice(cut + 3) : p) + rpPwTxt(r.pwA, r.pwZ) + repTxt(r.rep) + ' · ' + String(r.at || '').slice(0, 10) + (r.team ? ' · ' + r.team : '')); });
   if (flTotal > s.list.length) L.push('', '(แสดง ' + s.list.length + ' จาก ' + flTotal + ' งาน)');
   rpShowText('ส่งออกผลค้นหา (Text)', L.join('\n'));
 };
@@ -2386,6 +2548,19 @@ function pwShow(id){
 ['pwA', 'pwZ'].forEach(id => { $(id).addEventListener('input', () => pwShow(id)); $(id).addEventListener('blur', () => { const v = pwParse($(id).value); if (v !== null && v !== false) $(id).value = pwFmt(v); pwShow(id); }); });
 
 
+
+/* ---------- v1.3 งานซ้ำ: เทียบงานก่อนหน้าของ Internet No. เดียวกัน (ทุกทีม) ---------- */
+const REP_LB = {x: 'งานเสียซ้ำ', m: 'งานซ้ำในเดือน'};
+function repBadge(r){
+  if (!r || !REP_LB[r.rep]) return '';
+  return `<span class="rpb ${r.rep}" title="ห่างจากงานก่อน ${r.repD == null ? '-' : r.repD} วัน">${REP_LB[r.rep]}</span>`;
+}
+function repDetail(r){
+  if (!r || !REP_LB[r.rep]) return '';
+  return `<div class="full"><dt>งานซ้ำ</dt><dd class="rep-dd">${repBadge(r)} ห่างจากงานก่อน ${r.repD == null ? '-' : r.repD} วัน${r.prevAt ? ' · งานก่อน ' + esc(r.prevAt) : ''}</dd></div>`;
+}
+const repTxt = rep => REP_LB[rep] ? '  [' + REP_LB[rep] + ']' : '';
+
 /* On Hand: จำนวนวันที่อยู่ในคลัง (นับจากวันรับเข้า) · เกิน 30 วันสีส้ม */
 function ohDays(at){
   const d0 = String(at || '').slice(0, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(d0)) return '';
@@ -2480,13 +2655,75 @@ function wire(box, input){
 chips('drumChips', DRUMS); wire('drumChips', 'drum');
 
 /* ---------- ขั้นที่ 1: Internet No. → เริ่ม ---------- */
-function startGo(){
+
+/* ---------- v1.3 ประวัติ Internet No. ตอนเริ่มงาน ---------- */
+let hsData = null, hsSel = '';
+const thD = s => { const m = String(s || '').match(/^(\d{4})-(\d\d)-(\d\d)/); if (!m) return s || ''; return (+m[3]) + ' ' + ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'][+m[2] - 1] + ' ' + String(+m[1] + 543).slice(2); };
+function hsAgo(at){
+  const d0 = String(at || '').slice(0, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(d0)) return '';
+  const n = Math.round((Date.parse(today() + 'T00:00:00Z') - Date.parse(d0 + 'T00:00:00Z')) / 86400000);
+  return n <= 0 ? 'วันนี้' : n + ' วันก่อน';
+}
+function hsDraw(){
+  const h = hsData, sel = h.items.find(x => x.id === hsSel) || h.items[0];
+  $('hsT').textContent = 'พบประวัติ ' + h.total + ' งาน · ' + h.net;
+  $('hsSub').textContent = 'ล่าสุด ' + thD(h.last) + ' (' + hsAgo(h.last) + ')' + (h.items[0] && h.items[0].team ? ' · ' + h.items[0].team : '') + (h.total > h.items.length ? ' · แสดง ' + h.items.length + ' งานล่าสุด' : '');
+  $('hsJobs').innerHTML = h.items.map(x => {
+    const p = String(x.pain || ''), cut = p.indexOf(' - '), sub = cut > 0 ? p.slice(cut + 3) : (p || '-');
+    return `<button type="button" class="job${x.id === sel.id ? ' on' : ''}" data-id="${esc(x.id)}"><span class="d">${esc(thD(x.at))}</span><span class="t">${esc(sub)}</span>${pwBadge(x)}${repBadge(x)}<span class="tm">${esc(x.team || '-')}</span></button>`;
+  }).join('');
+  const c = h.copy || {}, parts = [];
+  if (c.pin) parts.push('<b>Place</b> ' + esc(c.pin));
+  if (c.sp) parts.push('<b>SP</b> ' + esc(c.sp));
+  if (c.spPin) parts.push('<b>พิกัด SP</b> ' + esc(c.spPin));
+  if (c.drum) parts.push('<b>Line Type</b> ' + esc(c.drum));
+  $('hsCopy').innerHTML = parts.length ? 'งานใหม่จะดึงจากงานล่าสุด: ' + parts.join(' · ') : 'งานล่าสุดไม่มี Place / SP / Line Type ให้ดึง';
+  $('hsNew').textContent = parts.length ? '＋ เริ่มงานใหม่ (ดึงข้อมูลเดิม)' : '＋ เริ่มงานใหม่';
+  const e = $('hsEdit'); e.disabled = !sel.mine;
+  e.textContent = sel.mine ? '✎ แก้ไขงานที่เลือก (' + thD(sel.at) + ')' : '✎ แก้ไขไม่ได้ · งานของ ' + (sel.team || 'ทีมอื่น');
+  hsSel = sel.id;
+}
+function hsOpen(h){ hsData = h; hsSel = h.items[0] ? h.items[0].id : ''; hsDraw(); $('hsOv').classList.remove('hide'); $('hsNew').focus(); }
+function hsClose(){ $('hsOv').classList.add('hide'); }
+$('hsJobs').onclick = e => { const b = e.target.closest('[data-id]'); if (!b) return; hsSel = b.dataset.id; hsDraw(); };
+$('hsNo').onclick = () => { hsClose(); $('net0').focus(); };
+$('hsOv').onclick = e => { if (e.target === $('hsOv')) hsClose(); };
+$('hsNew').onclick = () => {
+  const h = hsData; hsClose(); if (!h) return;
+  const c = h.copy || {};
+  openForm('new'); fill({net: h.net, pin: c.pin || '', sp: c.sp || '', drum: c.drum || '', spPin: c.spPin || ''});
+  $('fmode').textContent = 'งานใหม่ · 2/2 · เคยซ่อม ' + h.total + ' ครั้ง (ล่าสุด ' + hsAgo(h.last) + ')';
+  if (c.pin || c.sp || c.drum || c.spPin) toast('ดึงข้อมูลเดิมแล้ว ตรวจสอบก่อนบันทึก');
+  $('ppMain').focus();
+};
+$('hsEdit').onclick = async () => {
+  const h = hsData, x = h && h.items.find(i => i.id === hsSel); if (!x || !x.mine) return;
+  hsClose(); openForm('edit', x.id); const my = formSeq;
+  lock(true); say('กำลังโหลดข้อมูล…');
+  const [j] = await Promise.all([api('get', {id: x.id}), loadPP()]);
+  if (my !== formSeq) return;
+  if (!j.ok) { backTo('vList'); return say(j.error); }
+  fill(j.rec); lock(false); say();
+};
+window.addEventListener('popstate', () => { if (!$('hsOv').classList.contains('hide')) hsClose(); });
+let hsSeq = 0;
+async function startGo(){
   const n = $('net0').value.trim();
   if (!/^(888|880)\d{7}$/.test(n)) return say('Internet No. ต้องเป็นตัวเลข 10 หลัก ขึ้นต้นด้วย 888 หรือ 880');
   say();
   if (fromForm) { $('net').value = n; fromForm = false; history.back(); return; }     // เปลี่ยนเลขระหว่างกรอก: คงข้อมูลที่กรอกไว้
+  const b = $('start'), my = ++hsSeq; if (b.disabled) return;
+  const old = b.innerHTML; b.disabled = true; b.textContent = 'กำลังตรวจประวัติ…';
+  let h = null;
+  try { h = await api('net_hist', {net: n}); } catch (e) { h = null; }
+  b.disabled = false; b.innerHTML = old;
+  if (my !== hsSeq || curView !== 'vStart') return;
+  if (h && h.ok && h.total > 0) return hsOpen(h);
+  if (h && !h.ok && h.auth) return say(h.error);
   openForm('new'); $('net').value = n; formClean(); $('ppMain').focus();
+  if (!h || !h.ok) toast('ตรวจประวัติไม่ได้ เริ่มงานใหม่แบบว่าง', true);
 }
+
 $('add').onclick = () => { say(); fromForm = false; $('net0').value = ''; $('net0Hint').textContent = ''; view('vStart'); $('net0').focus(); };
 $('start').onclick = startGo;
 $('net0').addEventListener('keydown', e => { if (e.key === 'Enter') startGo(); });
@@ -2615,8 +2852,8 @@ $('save').onclick = () => busy($('save'), 'กำลังบันทึก…'
 if (token && me) { if (me.mustChange) { say('ต้องตั้งรหัสผ่านใหม่ก่อนใช้งาน'); view('vChg'); } else if (location.hash === '#report') { $('whoName').textContent = me.team || '-'; $('whoRole').textContent = me.role === 'admin' ? 'CHEF' : 'COOK'; cxBrand(me); $('toolAdm').classList.toggle('hide', me.role !== 'admin'); openReport(); loadPP(); } else { goHome(); loadPP(); } } else view('vLogin');
 try { const h = new URLSearchParams(location.hash.slice(1)); if (token && me && !me.mustChange && h.get('sn')) openJob(h.get('sn'), h.get('job'), true);
   else if (token && me && !me.mustChange && h.get('bar')) openBar(h.get('bar'), true); } catch (e) {}
-try { const fl = sessionStorage.getItem('flash'); if (fl) { sessionStorage.removeItem('flash'); say(fl); } } catch (e) {}
+try { const fl = sessionStorage.getItem('cmcs_flash'); if (fl) { sessionStorage.removeItem('cmcs_flash'); say(fl); } } catch (e) {}
 </script>
-<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING</b> · live v1.0</footer>
+<footer class="cx-foot" aria-label="เวอร์ชัน"><b>CMCOOKING SYSTEM</b> · Test system v1.0</footer>
 </body>
 </html>
